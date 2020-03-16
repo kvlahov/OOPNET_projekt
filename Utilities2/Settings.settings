@@ -1,0 +1,18 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Utilities" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="PreferencesFileName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">preferences.txt</Value>
+    </Setting>
+    <Setting Name="WomenLeagueApiUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://worldcup.sfg.io/</Value>
+    </Setting>
+    <Setting Name="MenLeagueApiUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://world-cup-json-2018.herokuapp.com/</Value>
+    </Setting>
+    <Setting Name="FilesDir" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Files</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
