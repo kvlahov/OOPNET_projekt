@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Utilities
+﻿namespace Utilities
 {
     public static class SettingsHelper
     {

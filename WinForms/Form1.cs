@@ -19,6 +19,7 @@ namespace WinForms
         {
             InitializeComponent();
             InitListView();
+
         }
 
         private void InitListView()

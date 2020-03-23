@@ -1,19 +1,19 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web;
 
 namespace Utilities
 {
-    public class FileHelper
+    public static class FileHelper
     {
         public static string PreferencesPath {
             get {
                 var root = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+                Debug.WriteLine(root);
+                Debug.WriteLine(Directory.GetParent(root).Parent.FullName);
+
                 var path = Path.Combine(root, SettingsHelper.FilesDir, SettingsHelper.PreferencesFileName);
                 return path;
             }

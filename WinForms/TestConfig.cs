@@ -23,6 +23,8 @@ namespace WinForms
 
         private async Task WriteToFileAsync()
         {
+            var s = FileHelper.PreferencesPath;
+
             var apiHelper = new ApiHelper("https://api.punkapi.com/v2/beers");
             var data = await apiHelper.GetDataList<Beer>();
             FileHelper.WritePreferences(data);
