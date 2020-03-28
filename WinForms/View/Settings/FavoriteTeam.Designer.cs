@@ -28,45 +28,73 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.CbTeams = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.LbLeague = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // comboBox1
+            // CbTeams
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(21, 87);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(204, 28);
-            this.comboBox1.TabIndex = 0;
+            this.CbTeams.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CbTeams.FormattingEnabled = true;
+            this.CbTeams.Location = new System.Drawing.Point(33, 152);
+            this.CbTeams.Margin = new System.Windows.Forms.Padding(5);
+            this.CbTeams.Name = "CbTeams";
+            this.CbTeams.Size = new System.Drawing.Size(315, 43);
+            this.CbTeams.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(17, 52);
+            this.label1.Location = new System.Drawing.Point(26, 91);
+            this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(160, 20);
+            this.label1.Size = new System.Drawing.Size(258, 35);
             this.label1.TabIndex = 1;
             this.label1.Text = "Choose favorite team";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(25, 183);
+            this.button1.Location = new System.Drawing.Point(39, 320);
+            this.button1.Margin = new System.Windows.Forms.Padding(5);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(200, 65);
+            this.button1.Size = new System.Drawing.Size(311, 114);
             this.button1.TabIndex = 2;
             this.button1.Text = "Save";
             this.button1.UseVisualStyleBackColor = true;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(33, 230);
+            this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(141, 35);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "League url:";
+            // 
+            // LbLeague
+            // 
+            this.LbLeague.AutoSize = true;
+            this.LbLeague.Location = new System.Drawing.Point(171, 230);
+            this.LbLeague.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.LbLeague.Name = "LbLeague";
+            this.LbLeague.Size = new System.Drawing.Size(0, 35);
+            this.LbLeague.TabIndex = 4;
+            // 
             // FavoriteTeam
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 35F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(246, 271);
+            this.ClientSize = new System.Drawing.Size(383, 474);
+            this.Controls.Add(this.LbLeague);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.CbTeams);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "FavoriteTeam";
             this.Text = "FavoriteTeam";
             this.ResumeLayout(false);
@@ -76,8 +104,10 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox CbTeams;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label LbLeague;
     }
 }

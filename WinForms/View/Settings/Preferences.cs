@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
 using Utilities.Helpers;
@@ -77,10 +78,13 @@ namespace WinForms.View.Settings
                 LanguageId = selectedLanguage
             };
 
+
             try
             {
                 FileHelper.WritePreferences(new List<StartPreferences> { prefs });
                 MessageBox.Show("Succesfully saved!", "Success");
+
+                Utils.SetApplicationSettings(prefs);
                 this.Close();
             }
             catch (Exception ex)
@@ -91,5 +95,7 @@ namespace WinForms.View.Settings
 
 
         }
+
+        
     }
 }

@@ -8,6 +8,7 @@ using Utilities.Helpers;
 using Utilities.POCO;
 using WinForms.Properties;
 using WinForms.View;
+using System.Diagnostics;
 
 namespace WinForms
 {
@@ -30,31 +31,15 @@ namespace WinForms
             var preferences = FileHelper.ReadPreferences<StartPreferences>();
             if (preferences.Any())
             {
-                var pref = preferences.First();
-                string apiUrl;
-                switch (pref.LeagueId)
-                {
-                    case (int)Leagues.WomanLeague:
-                        apiUrl = ResourcesHelper.WomenLeagueBaseUrl;
-                        break;
-                    default:
-                        apiUrl = ResourcesHelper.MenLeagueBaseUrl;
-                        break;
-                }
-                
-                var language = ((Languages)pref.LanguageId).ToString();
-
-                Settings.Default.Language = language;
-                Settings.Default.ApiUrl = apiUrl;
-
-                Settings.Default.Save();
-
+                //initially set preferences
+                Utils.SetApplicationSettings(preferences.First());
                 Application.Run(new MainForm());
             }
             else
             {
                 Application.Run(new Preferences());
             }
+
         }
     }
 }

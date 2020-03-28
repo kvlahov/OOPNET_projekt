@@ -8,11 +8,24 @@ namespace Utilities.Helpers
 {
     public class ApiHelper
     {
-        public string Url { get; set; }
-
-        public ApiHelper(string url)
+        private readonly UriBuilder uriBuilder;
+        public string Url
         {
-            Url = url;
+            get
+            {
+                uriBuilder.Path = Path;
+                return uriBuilder.ToString();
+            }
+        }
+
+        public string BaseUrl { get; set; }
+        public string Path { get; set; }
+        public string QueryParams { get; set; }
+
+        public ApiHelper(string baseUrl)
+        {
+            BaseUrl = baseUrl;
+            uriBuilder = new UriBuilder(baseUrl);
         }
 
         private async Task<string> GetAsJsonAsync(string url)

@@ -21,5 +21,7 @@ namespace Utilities.Model
 
         [JsonProperty("group_letter")]
         public string GroupLetter { get; set; }
+
+        public override string ToString() => $"{Country} ({FifaCode})";
     }
 }

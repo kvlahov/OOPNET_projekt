@@ -1,6 +1,6 @@
 [
   {
     "LeagueId": 1,
-    "LanguageId": 0
+    "LanguageId": 1
   }
 ]
