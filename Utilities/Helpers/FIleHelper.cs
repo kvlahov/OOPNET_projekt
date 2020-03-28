@@ -1,20 +1,22 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 
-namespace Utilities
+namespace Utilities.Helpers
 {
     public static class FileHelper
     {
-        public static string PreferencesPath {
-            get {
+        public static string PreferencesPath
+        {
+            get
+            {
                 var root = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-                Debug.WriteLine(root);
-                Debug.WriteLine(Directory.GetParent(root).Parent.FullName);
 
-                var path = Path.Combine(root, SettingsHelper.FilesDir, SettingsHelper.PreferencesFileName);
+                //solution folder
+                root = Directory.GetParent(root).Parent.Parent.FullName;
+
+                var path = Path.Combine(root, ResourcesHelper.FilesDir, ResourcesHelper.PreferencesFileName);
                 return path;
             }
         }

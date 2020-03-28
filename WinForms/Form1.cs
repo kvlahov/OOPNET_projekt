@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Utilities;
-using WinForms.Model;
+using Utilities.Helpers;
 
 namespace WinForms
 {
@@ -18,7 +13,7 @@ namespace WinForms
         public Form1()
         {
             InitializeComponent();
-            InitListView();
+            //InitListView();
 
         }
 
@@ -44,7 +39,7 @@ namespace WinForms
             }
         }
 
-        private async Task<List<Beer>> GetBeerListAsync()
+        private async Task<List<string>> GetBeerListAsync()
         {
             var url = baseURL;
             if (tbUrl.Enabled && tbUrl.TextLength > 0)
@@ -52,7 +47,7 @@ namespace WinForms
                 url = tbUrl.Text;
             }
             var api = new ApiHelper(url);
-            return await api.GetDataList<Beer>();
+            return await api.GetDataList<string>();
         }
 
         private void FillListView<T>(List<T> data)

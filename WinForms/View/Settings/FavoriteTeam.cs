@@ -7,12 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WinForms.View;
 
-namespace WinForms
+namespace WinForms.View.Settings
 {
-    public partial class Preferences : Form
+    public partial class FavoriteTeam : BaseForm
     {
-        public Preferences()
+        public FavoriteTeam()
         {
             InitializeComponent();
         }
