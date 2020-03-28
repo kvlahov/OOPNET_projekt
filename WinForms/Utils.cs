@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Utilities.Helpers;
+﻿using Utilities.Helpers;
 using Utilities.POCO;
 
 namespace WinForms
@@ -25,8 +20,12 @@ namespace WinForms
 
             var language = ((Languages)preferences.LanguageId).ToString();
 
-            Properties.Settings.Default.Language = language;
-            Properties.Settings.Default.ApiUrl = apiUrl;
+            var settings = Properties.Settings.Default;
+
+            settings.Language = language;
+            settings.ApiUrl = apiUrl;
+
+            settings.FavoriteTeam = preferences.FavoriteTeamCode;
 
             //Settings.Default.Save();
         }

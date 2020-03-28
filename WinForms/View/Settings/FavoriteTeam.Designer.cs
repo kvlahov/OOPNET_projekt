@@ -30,7 +30,7 @@
         {
             this.CbTeams = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.BtnSave = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.LbLeague = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -55,15 +55,16 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Choose favorite team";
             // 
-            // button1
+            // BtnSave
             // 
-            this.button1.Location = new System.Drawing.Point(39, 320);
-            this.button1.Margin = new System.Windows.Forms.Padding(5);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(311, 114);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Save";
-            this.button1.UseVisualStyleBackColor = true;
+            this.BtnSave.Location = new System.Drawing.Point(39, 320);
+            this.BtnSave.Margin = new System.Windows.Forms.Padding(5);
+            this.BtnSave.Name = "BtnSave";
+            this.BtnSave.Size = new System.Drawing.Size(311, 114);
+            this.BtnSave.TabIndex = 2;
+            this.BtnSave.Text = "Save";
+            this.BtnSave.UseVisualStyleBackColor = true;
+            this.BtnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
             // label2
             // 
@@ -91,7 +92,7 @@
             this.ClientSize = new System.Drawing.Size(383, 474);
             this.Controls.Add(this.LbLeague);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.BtnSave);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.CbTeams);
             this.Margin = new System.Windows.Forms.Padding(5);
@@ -106,7 +107,7 @@
 
         private System.Windows.Forms.ComboBox CbTeams;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button BtnSave;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label LbLeague;
     }

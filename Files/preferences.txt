@@ -1,6 +1,7 @@
-[
-  {
-    "LeagueId": 1,
-    "LanguageId": 1
-  }
-]
+{
+  "LeagueId": 1,
+  "LanguageId": 1,
+  "FavoriteTeamId": 27,
+  "FavoriteTeamCode": "TUN",
+  "FavoritePlayers": null
+}

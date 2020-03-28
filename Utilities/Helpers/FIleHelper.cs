@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
@@ -21,28 +22,28 @@ namespace Utilities.Helpers
             }
         }
 
-        public static void WriteToFile<T>(List<T> data, string path)
+        public static void WriteToFile<T>(T data, string path)
         {
             var json = JsonConvert.SerializeObject(data, Formatting.Indented);
             File.WriteAllText(path, json);
         }
 
-        public static List<T> ReadFromFile<T>(string path)
+        public static T ReadFromFile<T>(string path)
         {
             if (File.Exists(path))
             {
                 var json = File.ReadAllText(path);
-                return JsonConvert.DeserializeObject<List<T>>(json);
+                return JsonConvert.DeserializeObject<T>(json);
             }
-            return new List<T>();
+            return Activator.CreateInstance<T>();
         }
 
-        public static void WritePreferences<T>(List<T> data)
+        public static void WritePreferences<T>(T data)
         {
             WriteToFile(data, PreferencesPath);
         }
 
-        public static List<T> ReadPreferences<T>()
+        public static T ReadPreferences<T>()
         {
             return ReadFromFile<T>(PreferencesPath);
         }

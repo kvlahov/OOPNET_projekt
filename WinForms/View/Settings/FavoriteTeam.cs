@@ -10,36 +10,57 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Utilities.Helpers;
 using Utilities.Model;
+using Utilities.POCO;
 using WinForms.View;
 
 namespace WinForms.View.Settings
 {
     public partial class FavoriteTeam : BaseForm
     {
+        private StartPreferences preferences;
         public FavoriteTeam()
         {
             InitializeComponent();
-            Task.Run(() => BindDataAsync());
+
+            preferences = FileHelper.ReadPreferences<StartPreferences>();
+
+            BindDataAsync();
         }
 
-        private async Task BindDataAsync()
+        private async void BindDataAsync()
         {
             var baseUrl = Properties.Settings.Default.ApiUrl;
-            LbLeague.Invoke(new Action(() => LbLeague.Text = baseUrl));
-            //LbLeague.Text = baseUrl;
+            LbLeague.Text = baseUrl;
 
             var helper = new ApiHelper(baseUrl);
             helper.Path = "teams";
 
             var teams = await helper.GetDataList<Team>();
-            CbTeams.Invoke(new Action(() => {                
-                CbTeams.ValueMember = "Id";
-                CbTeams.DisplayMember = "";
-                CbTeams.DataSource = teams;
-            }));
+
+            CbTeams.ValueMember = "Id";
+            CbTeams.DisplayMember = "";
+            CbTeams.DataSource = teams;
+
+            if(preferences.FavoriteTeamCode != null)
+            {
+                CbTeams.SelectedItem = CbTeams.Items.Cast<Team>().FirstOrDefault(m => m.Id == preferences.FavoriteTeamId);
+            }
 
             //var teams
             //CbTeams.DataSource
+        }
+
+        private void BtnSave_Click(object sender, EventArgs e)
+        {
+            var selected = CbTeams.SelectedItem as Team;
+
+            preferences.FavoriteTeamId = selected.Id;
+            preferences.FavoriteTeamCode = selected.FifaCode;
+
+            WritePreferencesAndClose(preferences);
+
+            Close();
+
         }
     }
 }

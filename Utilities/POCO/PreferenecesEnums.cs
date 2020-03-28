@@ -2,11 +2,11 @@
 {
     public enum Leagues
     {
-        MenLeague = 0, WomanLeague = 1
+        MenLeague = 1, WomanLeague = 2
     }
 
     public enum Languages
     {
-        English = 0, Croatian = 1
+        English = 1, Croatian = 2
     }
 }

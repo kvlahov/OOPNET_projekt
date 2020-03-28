@@ -72,26 +72,12 @@ namespace WinForms.View.Settings
             var selectedLeague = (int)RbContainer.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked).Tag;
             var selectedLanguage = ((KeyValuePair<int, string>)CbLanguage.SelectedItem).Key;
 
-            var prefs = new StartPreferences
-            {
-                LeagueId = selectedLeague,
-                LanguageId = selectedLanguage
-            };
+            var prefs = FileHelper.ReadPreferences<StartPreferences>();
 
+            prefs.LeagueId = selectedLeague;
+            prefs.LanguageId = selectedLanguage;
 
-            try
-            {
-                FileHelper.WritePreferences(new List<StartPreferences> { prefs });
-                MessageBox.Show("Succesfully saved!", "Success");
-
-                Utils.SetApplicationSettings(prefs);
-                this.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error occured!");
-                MessageBox.Show(ex.Message);
-            }
+            WritePreferencesAndClose(prefs);
 
 
         }

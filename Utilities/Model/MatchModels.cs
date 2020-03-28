@@ -73,10 +73,10 @@
         public TeamStatistics AwayTeamStatistics { get; set; }
 
         [JsonProperty("last_event_update_at")]
-        public DateTimeOffset LastEventUpdateAt { get; set; }
+        public DateTimeOffset? LastEventUpdateAt { get; set; }
 
         [JsonProperty("last_score_update_at")]
-        public DateTimeOffset LastScoreUpdateAt { get; set; }
+        public DateTimeOffset? LastScoreUpdateAt { get; set; }
     }
 
     public partial class MatchTeam
@@ -160,19 +160,19 @@
         public long RedCards { get; set; }
 
         [JsonProperty("fouls_committed")]
-        public long FoulsCommitted { get; set; }
+        public long? FoulsCommitted { get; set; }
 
         [JsonProperty("tactics")]
         public string Tactics { get; set; }
 
         [JsonProperty("starting_eleven")]
-        public List<StartingEleven> StartingEleven { get; set; }
+        public List<Player> StartingEleven { get; set; }
 
         [JsonProperty("substitutes")]
-        public List<StartingEleven> Substitutes { get; set; }
+        public List<Player> Substitutes { get; set; }
     }
 
-    public partial class StartingEleven
+    public partial class Player
     {
         [JsonProperty("name")]
         public string Name { get; set; }
@@ -185,6 +185,8 @@
 
         [JsonProperty("position")]
         public Position Position { get; set; }
+
+        public override string ToString() => $"{Name}";
     }
 
     public partial class Weather
@@ -209,11 +211,11 @@
         public string Description { get; set; }
     }
 
-    public enum TypeOfEvent { Goal, GoalOwn, GoalPenalty, SubstitutionIn, SubstitutionOut, YellowCard };
+    public enum TypeOfEvent { Goal, GoalOwn, GoalPenalty, SubstitutionIn, SubstitutionOut, YellowCard, RedCard, YellowCardSecond };
 
     public enum Position { Defender, Forward, Goalie, Midfield };
 
-    internal static class Converter
+    internal static class MatchConverter
     {
         public static readonly JsonSerializerSettings Settings = new JsonSerializerSettings
         {
@@ -266,7 +268,7 @@
         {
             if (reader.TokenType == JsonToken.Null) return null;
             var value = serializer.Deserialize<string>(reader);
-            switch (value)
+            switch (value.ToLower())
             {
                 case "goal":
                     return TypeOfEvent.Goal;
@@ -280,10 +282,13 @@
                     return TypeOfEvent.SubstitutionOut;
                 case "yellow-card":
                     return TypeOfEvent.YellowCard;
+                case "red-card":
+                    return TypeOfEvent.RedCard;
+                case "yellow-card-second":
+                    return TypeOfEvent.YellowCardSecond;
             }
             throw new Exception("Cannot unmarshal type TypeOfEvent");
         }
-
         public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
         {
             if (untypedValue == null)

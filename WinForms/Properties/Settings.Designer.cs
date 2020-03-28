@@ -49,19 +49,22 @@ namespace WinForms.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Calibri")]
-        public string DefaultFont {
+        [global::System.Configuration.DefaultSettingValueAttribute("Calibri, 14pt")]
+        public global::System.Drawing.Font DefaultFont {
             get {
-                return ((string)(this["DefaultFont"]));
+                return ((global::System.Drawing.Font)(this["DefaultFont"]));
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("14")]
-        public float DefaultFontSize {
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FavoriteTeam {
             get {
-                return ((float)(this["DefaultFontSize"]));
+                return ((string)(this["FavoriteTeam"]));
+            }
+            set {
+                this["FavoriteTeam"] = value;
             }
         }
     }

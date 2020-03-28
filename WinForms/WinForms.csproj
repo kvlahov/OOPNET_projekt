@@ -58,6 +58,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="View\BaseForm.cs">
       <SubType>Form</SubType>
@@ -67,6 +68,12 @@
     </Compile>
     <Compile Include="View\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Settings\FavoritePlayers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Settings\FavoritePlayers.Designer.cs">
+      <DependentUpon>FavoritePlayers.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Settings\FavoriteTeam.cs">
       <SubType>Form</SubType>
@@ -94,6 +101,9 @@
     </Compile>
     <EmbeddedResource Include="View\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Settings\FavoritePlayers.resx">
+      <DependentUpon>FavoritePlayers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Settings\FavoriteTeam.resx">
       <DependentUpon>FavoriteTeam.cs</DependentUpon>

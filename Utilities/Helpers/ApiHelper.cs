@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Utilities.Model;
 
 namespace Utilities.Helpers
 {
@@ -14,13 +15,18 @@ namespace Utilities.Helpers
             get
             {
                 uriBuilder.Path = Path;
+                uriBuilder.Query = GetQueryParams();
                 return uriBuilder.ToString();
             }
         }
 
+
+
         public string BaseUrl { get; set; }
         public string Path { get; set; }
         public string QueryParams { get; set; }
+        public bool FilterByCode { get; set; }
+        public string CountryCode { get; set; }
 
         public ApiHelper(string baseUrl)
         {
@@ -51,7 +57,15 @@ namespace Utilities.Helpers
             url = url ?? Url;
 
             var data = await GetAsJsonAsync(url);
-            return JsonConvert.DeserializeObject<List<T>>(data);
+            return JsonConvert.DeserializeObject<List<T>>(data, MatchConverter.Settings);
+        }
+
+        private string GetQueryParams()
+        {
+
+            return FilterByCode && !string.IsNullOrEmpty(CountryCode) ? $"country?fifa_code={CountryCode}" : "";
+
         }
     }
+
 }

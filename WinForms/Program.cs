@@ -29,16 +29,28 @@ namespace WinForms
         private static void ReadPreferences()
         {
             var preferences = FileHelper.ReadPreferences<StartPreferences>();
-            if (preferences.Any())
-            {
-                //initially set preferences
-                Utils.SetApplicationSettings(preferences.First());
-                Application.Run(new MainForm());
-            }
-            else
+            Utils.SetApplicationSettings(preferences);
+
+            //main preferences
+            if (preferences.LeagueId == 0 || preferences.LanguageId == 0)
             {
                 Application.Run(new Preferences());
+
             }
+
+            //favorite team
+            if (preferences.FavoriteTeamId == 0 || string.IsNullOrEmpty(preferences.FavoriteTeamCode))
+            {
+                Application.Run(new FavoriteTeam());
+            }
+
+            //favorite players
+            if(preferences.FavoritePlayers == null || !preferences.FavoritePlayers.Any())
+            {
+                Application.Run(new FavoritePlayers());
+            }
+
+            Application.Run(new MainForm());
 
         }
     }
