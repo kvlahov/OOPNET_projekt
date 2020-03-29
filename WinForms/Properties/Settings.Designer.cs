@@ -49,7 +49,7 @@ namespace WinForms.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Calibri, 14pt")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Calibri, 12pt")]
         public global::System.Drawing.Font DefaultFont {
             get {
                 return ((global::System.Drawing.Font)(this["DefaultFont"]));
