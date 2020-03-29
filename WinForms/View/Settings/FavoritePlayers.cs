@@ -25,6 +25,7 @@ namespace WinForms.View.Settings
         {
             LbFavoritesCount.Text = PnFavoritePlayers.Controls.Count.ToString();
 
+            PnAllPlayers.AllowDrop = true;
             PnAllPlayers.DragEnter += PnFavoritePlayers_DragEnter;
             PnAllPlayers.DragDrop += PnFavoritePlayers_DragDrop;
         }
@@ -70,7 +71,8 @@ namespace WinForms.View.Settings
             playerControl.IsSelected = true;
             playerControl.SelectControl();
 
-            PnFavoritePlayers.Controls.Add(playerControl);
+            var target = sender as Panel;
+            target.Controls.Add(playerControl);
 
             LbFavoritesCount.Text = PnFavoritePlayers.Controls.Count.ToString();
 
