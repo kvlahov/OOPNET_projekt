@@ -10,11 +10,11 @@ namespace WinForms
     public partial class Form1 : Form
     {
         private readonly string baseURL = "https://api.punkapi.com/v2/beers";
+
         public Form1()
         {
             InitializeComponent();
             //InitListView();
-
         }
 
         private void InitListView()

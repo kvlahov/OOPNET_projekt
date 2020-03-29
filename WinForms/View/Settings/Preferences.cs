@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
 using Utilities.Helpers;
@@ -47,7 +46,7 @@ namespace WinForms.View.Settings
 
             AcceptButton = BtnConfirm;
             CancelButton = BtnCancel;
-        }       
+        }
 
         private void BindData()
         {
@@ -78,10 +77,6 @@ namespace WinForms.View.Settings
             prefs.LanguageId = selectedLanguage;
 
             WritePreferencesAndClose(prefs);
-
-
         }
-
-        
     }
 }

@@ -10,6 +10,7 @@ namespace Utilities.Helpers
     public class ApiHelper
     {
         private readonly UriBuilder uriBuilder;
+
         public string Url
         {
             get
@@ -19,8 +20,6 @@ namespace Utilities.Helpers
                 return uriBuilder.ToString();
             }
         }
-
-
 
         public string BaseUrl { get; set; }
         public string Path { get; set; }
@@ -46,7 +45,6 @@ namespace Utilities.Helpers
                 if (response.IsSuccessStatusCode)
                 {
                     return await response.Content.ReadAsStringAsync();
-
                 }
                 return null;
             }
@@ -62,10 +60,7 @@ namespace Utilities.Helpers
 
         private string GetQueryParams()
         {
-
             return FilterByCode && !string.IsNullOrEmpty(CountryCode) ? $"country?fifa_code={CountryCode}" : "";
-
         }
     }
-
 }

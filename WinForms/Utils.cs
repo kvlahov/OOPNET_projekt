@@ -13,6 +13,7 @@ namespace WinForms
                 case (int)Leagues.WomanLeague:
                     apiUrl = ResourcesHelper.WomenLeagueBaseUrl;
                     break;
+
                 default:
                     apiUrl = ResourcesHelper.MenLeagueBaseUrl;
                     break;

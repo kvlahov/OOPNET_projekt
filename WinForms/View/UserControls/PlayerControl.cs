@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Diagnostics;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using Utilities.Model;
@@ -9,6 +9,7 @@ namespace WinForms.View
     public partial class PlayerControl : UserControl
     {
         private Player _model;
+
         public Player Model
         {
             get => _model;
@@ -27,6 +28,7 @@ namespace WinForms.View
         }
 
         private bool _isFavoritePlayer;
+
         public bool IsFavoritePlayer
         {
             get => _isFavoritePlayer;
@@ -37,14 +39,23 @@ namespace WinForms.View
             }
         }
 
+        private readonly Dictionary<bool, Color> selectionColor;
+
         public PlayerControl(Player player = null)
         {
-            this.ControlAdded += PlayerControl_ControlAdded;
+            ControlAdded += PlayerControl_ControlAdded;
             ControlRemoved += PlayerControl_ControlRemoved;
 
             InitializeComponent();
 
             Model = player;
+            DefaultColor = BackColor;
+
+            selectionColor = new Dictionary<bool, Color>
+            {
+                {false, DefaultColor},
+                {true, Color.Yellow}
+            };
         }
 
         private void BindModel()
@@ -73,34 +84,43 @@ namespace WinForms.View
         //
         // Events
         //
-        public bool IsSelected { get; set; }
-        private void PlayerControl_MouseDown(object sender, MouseEventArgs e)
+        private bool _isSelected;
+
+        public bool IsSelected
         {
-            if(e.Button == MouseButtons.Left)
+            get => _isSelected;
+            set
             {
-                if (e.Clicks == 1)
-                {
-                    this.DoDragDrop(this, DragDropEffects.Move);
-                } else
-                {
-                    SelectControl();
-                }
+                _isSelected = value;
+                BackColor = selectionColor[_isSelected];
             }
         }
 
-        public void SelectControl()
+        public Action PreSelectionHandler { get; set; } = () => { };
+
+        private void PlayerControl_MouseDown(object sender, MouseEventArgs e)
         {
-            if (IsSelected)
+            if (e.Button == MouseButtons.Left)
             {
-                IsSelected = false;
-                BackColor = Color.White;
+                if (e.Clicks == 1)
+                {
+                    DoDragDrop(this, DragDropEffects.Move);
+                }
             }
-            else
+            else if (e.Button == MouseButtons.Right)
             {
-                IsSelected = true;
-                BackColor = Color.Yellow;
+                PreSelectionHandler();
+                ToggleControlSelection();
             }
         }
+
+        public Color DefaultColor { get; set; }
+
+        public void ToggleControlSelection()
+        {
+            IsSelected = !IsSelected;
+        }
+
         private void PlayerControl_ControlRemoved(object sender, ControlEventArgs e)
         {
             e.Control.MouseDown -= PlayerControl_MouseDown;
@@ -112,13 +132,12 @@ namespace WinForms.View
                     control.MouseDown -= PlayerControl_MouseDown;
                 }
             }
-            //e.Control.MouseDown -= PlayerControl_MouseDown;
         }
 
         private void PlayerControl_ControlAdded(object sender, ControlEventArgs e)
         {
             e.Control.MouseDown += PlayerControl_MouseDown;
-            if(e.Control is Panel)
+            if (e.Control is Panel)
             {
                 var pane = e.Control as Panel;
                 foreach (Control control in pane.Controls)
@@ -126,8 +145,6 @@ namespace WinForms.View
                     control.MouseDown += PlayerControl_MouseDown;
                 }
             }
-            //e.Control.MouseDown += PlayerControl_MouseDown;
         }
     }
-
 }

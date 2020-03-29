@@ -1,12 +1,10 @@
 ﻿namespace Utilities.Model
 {
-
-    using System;
-    using System.Collections.Generic;
-
-    using System.Globalization;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
 
     public partial class Match
     {
@@ -272,23 +270,31 @@
             {
                 case "goal":
                     return TypeOfEvent.Goal;
+
                 case "goal-own":
                     return TypeOfEvent.GoalOwn;
+
                 case "goal-penalty":
                     return TypeOfEvent.GoalPenalty;
+
                 case "substitution-in":
                     return TypeOfEvent.SubstitutionIn;
+
                 case "substitution-out":
                     return TypeOfEvent.SubstitutionOut;
+
                 case "yellow-card":
                     return TypeOfEvent.YellowCard;
+
                 case "red-card":
                     return TypeOfEvent.RedCard;
+
                 case "yellow-card-second":
                     return TypeOfEvent.YellowCardSecond;
             }
             throw new Exception("Cannot unmarshal type TypeOfEvent");
         }
+
         public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
         {
             if (untypedValue == null)
@@ -302,18 +308,23 @@
                 case TypeOfEvent.Goal:
                     serializer.Serialize(writer, "goal");
                     return;
+
                 case TypeOfEvent.GoalOwn:
                     serializer.Serialize(writer, "goal-own");
                     return;
+
                 case TypeOfEvent.GoalPenalty:
                     serializer.Serialize(writer, "goal-penalty");
                     return;
+
                 case TypeOfEvent.SubstitutionIn:
                     serializer.Serialize(writer, "substitution-in");
                     return;
+
                 case TypeOfEvent.SubstitutionOut:
                     serializer.Serialize(writer, "substitution-out");
                     return;
+
                 case TypeOfEvent.YellowCard:
                     serializer.Serialize(writer, "yellow-card");
                     return;
@@ -336,10 +347,13 @@
             {
                 case "Defender":
                     return Position.Defender;
+
                 case "Forward":
                     return Position.Forward;
+
                 case "Goalie":
                     return Position.Goalie;
+
                 case "Midfield":
                     return Position.Midfield;
             }
@@ -359,12 +373,15 @@
                 case Position.Defender:
                     serializer.Serialize(writer, "Defender");
                     return;
+
                 case Position.Forward:
                     serializer.Serialize(writer, "Forward");
                     return;
+
                 case Position.Goalie:
                     serializer.Serialize(writer, "Goalie");
                     return;
+
                 case Position.Midfield:
                     serializer.Serialize(writer, "Midfield");
                     return;
