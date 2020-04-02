@@ -33,19 +33,15 @@
             // 
             // PnContainer
             // 
-            this.PnContainer.AllowDrop = true;
             this.PnContainer.AutoScroll = true;
-            this.PnContainer.AutoSize = true;
-            this.PnContainer.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.PnContainer.BackColor = System.Drawing.Color.WhiteSmoke;
             this.PnContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PnContainer.Location = new System.Drawing.Point(0, 0);
             this.PnContainer.Name = "PnContainer";
             this.PnContainer.Size = new System.Drawing.Size(506, 417);
             this.PnContainer.TabIndex = 0;
-            this.PnContainer.WrapContents = false;
-            this.PnContainer.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.PnContainer_ControlNumberChanged);
-            this.PnContainer.ControlRemoved += new System.Windows.Forms.ControlEventHandler(this.PnContainer_ControlNumberChanged);
+            this.PnContainer.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.PnContainer_ControlAdded);
+            this.PnContainer.ControlRemoved += new System.Windows.Forms.ControlEventHandler(this.PnContainer_ControlRemoved);
             this.PnContainer.DragDrop += new System.Windows.Forms.DragEventHandler(this.PnContainer_DragDrop);
             this.PnContainer.DragEnter += new System.Windows.Forms.DragEventHandler(this.PnContainer_DragEnter);
             // 
@@ -57,7 +53,6 @@
             this.Name = "PlayerListControl";
             this.Size = new System.Drawing.Size(506, 417);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

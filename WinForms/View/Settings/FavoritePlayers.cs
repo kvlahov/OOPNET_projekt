@@ -18,41 +18,103 @@ namespace WinForms.View.Settings
         public FavoritePlayers()
         {
             InitializeComponent();
-            //InitAllPlayersControl();
 
-            PbAllPlayers.FillDataAsync();
+            PnAllPlayers.FillDataAsync();
 
-            PnFavoritePlayers.SetCountChangeHandler(() =>
-            {
-                LbFavoritesCount.Text = PnFavoritePlayers.ItemCount.ToString();
-            });
+            AddEventHandlers();
+
         }
 
-        //private UserControls.PlayerListControl PnAllPlayers;
-        private void InitAllPlayersControl()
+        private void AddEventHandlers()
         {
-            //SuspendLayout();
-            //this.PnAllPlayers = new WinForms.View.UserControls.PlayerListControl(true);
+            //favorite players
+            PnFavoritePlayers.SetCountChangeHandler(count =>
+            {
+                LbFavoritesCount.Text = count.ToString();
+                PnFavoritePlayers.AllowDrop = count < 3;
 
-            //this.PnAllPlayers.ItemCount = 0;
-            //this.PnAllPlayers.Location = new System.Drawing.Point(731, 98);
-            //this.PnAllPlayers.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            //this.PnAllPlayers.Name = "PnAllPlayers";
-            //this.PnAllPlayers.Size = new System.Drawing.Size(533, 323);
-            //this.PnAllPlayers.TabIndex = 17;
-            //this.Controls.Add(this.PnAllPlayers);
+                //BtnRemoveFavoritePlayer.Enabled = count != 0;
+                if (count == 0 || count >= 3)
+                {
+                    BtnRemoveFavoritePlayer.Enabled = false;
+                }
+            });
 
-            //this.ResumeLayout(false);
-            //this.PerformLayout();
+            //because pane is empty, trigger event to disable buttons
+            PnFavoritePlayers.TriggerCountChange();
+
+            PnFavoritePlayers.PlayerSelectedHandler = player =>
+            {
+                BtnRemoveFavoritePlayer.Enabled = true;
+            };
+
+            PnFavoritePlayers.PlayerUnselectedHandler = player =>
+            {
+                BtnRemoveFavoritePlayer.Enabled = false;
+            };
+
+
+            //all players
+            PnAllPlayers.SetCountChangeHandler(count =>
+            {
+                if (count == 0)
+                {
+                    BtnAddFavoritePlayer.Enabled = false;
+                }
+            });
+
+            PnAllPlayers.PlayerSelectedHandler = player =>
+            {
+                if (PnFavoritePlayers.ItemCount < 3)
+                {
+                    BtnAddFavoritePlayer.Enabled = true;
+                }
+                else
+                {
+                    BtnAddFavoritePlayer.Enabled = false;
+                }
+            };
+
+            PnAllPlayers.PlayerUnselectedHandler = player =>
+            {
+                BtnAddFavoritePlayer.Enabled = false;
+            };
         }
 
         //
         // Events
         //
-
         private void FavoritePlayers_Load(object sender, EventArgs e)
         {
-            
+            LbFavoritesCount.Text = PnFavoritePlayers.ItemCount.ToString();
+        }
+
+        private void BtnAddFavoritePlayer_Click(object sender, EventArgs e)
+        {
+            if (PnAllPlayers.SelectedPlayer == null)
+            {
+                MessageBox.Show("Please select player!", "Warning");
+                return;
+            }
+            var player = PnAllPlayers.SelectedPlayer;
+            //first remove to unsubscribe from all events
+            PnAllPlayers.RemovePlayer(player);
+            PnFavoritePlayers.AddPlayer(player);
+
+        }
+
+        private void BtnRemoveFavoritePlayer_Click(object sender, EventArgs e)
+        {
+            if (PnFavoritePlayers.SelectedPlayer == null)
+            {
+                MessageBox.Show("Please select player!", "Warning");
+                return;
+            }
+
+            var player = PnFavoritePlayers.SelectedPlayer;
+            //first remove to unsubscribe from all events
+            PnFavoritePlayers.RemovePlayer(player);
+            PnAllPlayers.AddPlayer(player);
         }
     }
 }

@@ -38,8 +38,32 @@ namespace WinForms.View
                 LbIsFavoritePlayer.Visible = _isFavoritePlayer;
             }
         }
+        private bool _isSelected;
+
+        public bool IsSelected
+        {
+            get => _isSelected;
+            set
+            {
+                _isSelected = value;
+                BackColor = selectionColor[_isSelected];
+
+                if(value)
+                {
+                    PlayerSelected(this);
+                } else
+                {
+                    PlayerUnSelected(this);
+                }
+            }
+        }
 
         private readonly Dictionary<bool, Color> selectionColor;
+
+        //handlers
+        public Action PreSelectionHandler { get; set; } = () => { };
+        public event Action<PlayerControl> PlayerSelected;
+        public event Action<PlayerControl> PlayerUnSelected;
 
         public PlayerControl(Player player = null)
         {
@@ -84,19 +108,7 @@ namespace WinForms.View
         //
         // Events
         //
-        private bool _isSelected;
-
-        public bool IsSelected
-        {
-            get => _isSelected;
-            set
-            {
-                _isSelected = value;
-                BackColor = selectionColor[_isSelected];
-            }
-        }
-
-        public Action PreSelectionHandler { get; set; } = () => { };
+       
 
         private void PlayerControl_MouseDown(object sender, MouseEventArgs e)
         {
@@ -109,7 +121,10 @@ namespace WinForms.View
             }
             else if (e.Button == MouseButtons.Right)
             {
-                PreSelectionHandler();
+                if (!IsSelected)
+                {
+                    PreSelectionHandler();
+                }
                 ToggleControlSelection();
             }
         }

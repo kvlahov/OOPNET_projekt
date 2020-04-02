@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FavoritePlayers));
             this.label1 = new System.Windows.Forms.Label();
             this.LbSelectedTeam = new System.Windows.Forms.Label();
             this.BtnSave = new System.Windows.Forms.Button();
@@ -39,7 +38,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.LbFavoritesCount = new System.Windows.Forms.Label();
             this.PnFavoritePlayers = new WinForms.View.UserControls.PlayerListControl();
-            this.PbAllPlayers = new WinForms.View.UserControls.PlayerListControl();
+            this.PnAllPlayers = new WinForms.View.UserControls.PlayerListControl();
             this.SuspendLayout();
             // 
             // label1
@@ -80,6 +79,7 @@
             this.BtnAddFavoritePlayer.TabIndex = 5;
             this.BtnAddFavoritePlayer.Text = "<<";
             this.BtnAddFavoritePlayer.UseVisualStyleBackColor = true;
+            this.BtnAddFavoritePlayer.Click += new System.EventHandler(this.BtnAddFavoritePlayer_Click);
             // 
             // BtnRemoveFavoritePlayer
             // 
@@ -90,6 +90,7 @@
             this.BtnRemoveFavoritePlayer.TabIndex = 6;
             this.BtnRemoveFavoritePlayer.Text = ">>";
             this.BtnRemoveFavoritePlayer.UseVisualStyleBackColor = true;
+            this.BtnRemoveFavoritePlayer.Click += new System.EventHandler(this.BtnRemoveFavoritePlayer_Click);
             // 
             // label2
             // 
@@ -131,6 +132,8 @@
             // 
             // PnFavoritePlayers
             // 
+            this.PnFavoritePlayers.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.PnFavoritePlayers.AutoSize = true;
             this.PnFavoritePlayers.ItemCount = 0;
             this.PnFavoritePlayers.Location = new System.Drawing.Point(13, 98);
@@ -141,20 +144,22 @@
             // 
             // PbAllPlayers
             // 
-            this.PbAllPlayers.AutoSize = true;
-            this.PbAllPlayers.ItemCount = 0;
-            this.PbAllPlayers.Location = new System.Drawing.Point(731, 98);
-            this.PbAllPlayers.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.PbAllPlayers.Name = "PbAllPlayers";
-            this.PbAllPlayers.Size = new System.Drawing.Size(541, 323);
-            this.PbAllPlayers.TabIndex = 17;
+            this.PnAllPlayers.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.PnAllPlayers.AutoSize = true;
+            this.PnAllPlayers.ItemCount = 0;
+            this.PnAllPlayers.Location = new System.Drawing.Point(731, 98);
+            this.PnAllPlayers.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.PnAllPlayers.Name = "PbAllPlayers";
+            this.PnAllPlayers.Size = new System.Drawing.Size(541, 323);
+            this.PnAllPlayers.TabIndex = 17;
             // 
             // FavoritePlayers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 29F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1280, 517);
-            this.Controls.Add(this.PbAllPlayers);
+            this.Controls.Add(this.PnAllPlayers);
             this.Controls.Add(this.PnFavoritePlayers);
             this.Controls.Add(this.LbFavoritesCount);
             this.Controls.Add(this.label4);
@@ -187,6 +192,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label LbFavoritesCount;
         private UserControls.PlayerListControl PnFavoritePlayers;
-        private UserControls.PlayerListControl PbAllPlayers;
+        private UserControls.PlayerListControl PnAllPlayers;
     }
 }
