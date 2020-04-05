@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Utilities.Helpers;
 using Utilities.POCO;
+using WinForms.Resources.Views;
 
 namespace WinForms.View.Settings
 {
@@ -12,6 +13,7 @@ namespace WinForms.View.Settings
         public Preferences(bool showConfirmCancelButtons = false)
         {
             InitializeComponent();
+            InitLabels();
             BindData();
 
             if (showConfirmCancelButtons)
@@ -22,6 +24,18 @@ namespace WinForms.View.Settings
             {
                 ShowSaveButton();
             }
+        }
+
+        private void InitLabels()
+        {
+            RbMenLeague.Text = FormResources.MenLeague;
+            RbWomenLeague.Text = FormResources.WomenLeague;
+            LbLanguageTitle.Text = FormResources.Language;
+            GbLanguage.Text = FormResources.ChooseLanguage;
+            GbLeague.Text = FormResources.ChooseLeague;
+            BtnSave.Text = FormResources.Save;
+            BtnCancel.Text = FormResources.Cancel;
+            BtnConfirm.Text = FormResources.Confirm;
         }
 
         private void ShowSaveButton()

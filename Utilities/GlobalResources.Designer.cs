@@ -70,6 +70,15 @@ namespace Utilities {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to PlayerImages.
+        /// </summary>
+        internal static string ImagesFolder {
+            get {
+                return ResourceManager.GetString("ImagesFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to https://world-cup-json-2018.herokuapp.com/.
         /// </summary>
         internal static string MenLeagueApiUrl {

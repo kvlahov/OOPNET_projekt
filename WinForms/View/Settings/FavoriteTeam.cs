@@ -4,20 +4,30 @@ using System.Linq;
 using Utilities.Helpers;
 using Utilities.Model;
 using Utilities.POCO;
+using WinForms.Resources.Views;
 
 namespace WinForms.View.Settings
 {
     public partial class FavoriteTeam : BaseForm
     {
-        private StartPreferences preferences;
+        private readonly StartPreferences preferences;
 
         public FavoriteTeam()
         {
             InitializeComponent();
 
+            InitLabels();
+
             preferences = FileHelper.ReadPreferences<StartPreferences>();
 
             BindDataAsync();
+        }
+
+        private void InitLabels()
+        {
+            LbChooseTeam.Text = FormResources.FavoriteTeam;
+            LbLeagueTitle.Text = FormResources.League;
+            BtnSave.Text = FormResources.Save;
         }
 
         private async void BindDataAsync()
@@ -34,9 +44,9 @@ namespace WinForms.View.Settings
             CbTeams.DisplayMember = "";
             CbTeams.DataSource = teams;
 
-            if (preferences.FavoriteTeamCode != null)
+            if (preferences.FavoriteTeam != null)
             {
-                CbTeams.SelectedItem = CbTeams.Items.Cast<Team>().FirstOrDefault(m => m.Id == preferences.FavoriteTeamId);
+                CbTeams.SelectedItem = CbTeams.Items.Cast<Team>().FirstOrDefault(m => m.Id == preferences.FavoriteTeam.Id);
             }
 
             //var teams
@@ -45,10 +55,9 @@ namespace WinForms.View.Settings
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
-            var selected = CbTeams.SelectedItem as Team;
+            var selectedTeam = CbTeams.SelectedItem as Team;
 
-            preferences.FavoriteTeamId = selected.Id;
-            preferences.FavoriteTeamCode = selected.FifaCode;
+            preferences.FavoriteTeam = selectedTeam;
 
             WritePreferencesAndClose(preferences);
 

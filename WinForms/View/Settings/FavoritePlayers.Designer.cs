@@ -28,27 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.LbSelectedTeamTitle = new System.Windows.Forms.Label();
             this.LbSelectedTeam = new System.Windows.Forms.Label();
             this.BtnSave = new System.Windows.Forms.Button();
             this.BtnAddFavoritePlayer = new System.Windows.Forms.Button();
             this.BtnRemoveFavoritePlayer = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.LbFavoritePlayersTitle = new System.Windows.Forms.Label();
+            this.LbAllPlayersTitle = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.LbFavoritesCount = new System.Windows.Forms.Label();
             this.PnFavoritePlayers = new WinForms.View.UserControls.PlayerListControl();
             this.PnAllPlayers = new WinForms.View.UserControls.PlayerListControl();
             this.SuspendLayout();
             // 
-            // label1
+            // LbSelectedTeamTitle
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 10);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(159, 29);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Selected team:";
+            this.LbSelectedTeamTitle.AutoSize = true;
+            this.LbSelectedTeamTitle.Location = new System.Drawing.Point(10, 10);
+            this.LbSelectedTeamTitle.Name = "LbSelectedTeamTitle";
+            this.LbSelectedTeamTitle.Size = new System.Drawing.Size(159, 29);
+            this.LbSelectedTeamTitle.TabIndex = 0;
+            this.LbSelectedTeamTitle.Text = "Selected team:";
             // 
             // LbSelectedTeam
             // 
@@ -92,25 +92,25 @@
             this.BtnRemoveFavoritePlayer.UseVisualStyleBackColor = true;
             this.BtnRemoveFavoritePlayer.Click += new System.EventHandler(this.BtnRemoveFavoritePlayer_Click);
             // 
-            // label2
+            // LbFavoritePlayersTitle
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 65);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(169, 29);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Favorite players";
+            this.LbFavoritePlayersTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.LbFavoritePlayersTitle.AutoSize = true;
+            this.LbFavoritePlayersTitle.Location = new System.Drawing.Point(6, 65);
+            this.LbFavoritePlayersTitle.Name = "LbFavoritePlayersTitle";
+            this.LbFavoritePlayersTitle.Size = new System.Drawing.Size(169, 29);
+            this.LbFavoritePlayersTitle.TabIndex = 7;
+            this.LbFavoritePlayersTitle.Text = "Favorite players";
             // 
-            // label3
+            // LbAllPlayersTitle
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(726, 65);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(115, 29);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "All players";
+            this.LbAllPlayersTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.LbAllPlayersTitle.AutoSize = true;
+            this.LbAllPlayersTitle.Location = new System.Drawing.Point(726, 65);
+            this.LbAllPlayersTitle.Name = "LbAllPlayersTitle";
+            this.LbAllPlayersTitle.Size = new System.Drawing.Size(115, 29);
+            this.LbAllPlayersTitle.TabIndex = 8;
+            this.LbAllPlayersTitle.Text = "All players";
             // 
             // label4
             // 
@@ -132,6 +132,7 @@
             // 
             // PnFavoritePlayers
             // 
+            this.PnFavoritePlayers.AllowDrop = true;
             this.PnFavoritePlayers.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.PnFavoritePlayers.AutoSize = true;
@@ -142,15 +143,16 @@
             this.PnFavoritePlayers.Size = new System.Drawing.Size(540, 323);
             this.PnFavoritePlayers.TabIndex = 16;
             // 
-            // PbAllPlayers
+            // PnAllPlayers
             // 
+            this.PnAllPlayers.AllowDrop = true;
             this.PnAllPlayers.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.PnAllPlayers.AutoSize = true;
             this.PnAllPlayers.ItemCount = 0;
             this.PnAllPlayers.Location = new System.Drawing.Point(731, 98);
             this.PnAllPlayers.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.PnAllPlayers.Name = "PbAllPlayers";
+            this.PnAllPlayers.Name = "PnAllPlayers";
             this.PnAllPlayers.Size = new System.Drawing.Size(541, 323);
             this.PnAllPlayers.TabIndex = 17;
             // 
@@ -163,13 +165,13 @@
             this.Controls.Add(this.PnFavoritePlayers);
             this.Controls.Add(this.LbFavoritesCount);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.LbAllPlayersTitle);
+            this.Controls.Add(this.LbFavoritePlayersTitle);
             this.Controls.Add(this.BtnRemoveFavoritePlayer);
             this.Controls.Add(this.BtnAddFavoritePlayer);
             this.Controls.Add(this.BtnSave);
             this.Controls.Add(this.LbSelectedTeam);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.LbSelectedTeamTitle);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FavoritePlayers";
             this.Padding = new System.Windows.Forms.Padding(10);
@@ -182,13 +184,13 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label LbSelectedTeamTitle;
         private System.Windows.Forms.Label LbSelectedTeam;
         private System.Windows.Forms.Button BtnSave;
         private System.Windows.Forms.Button BtnAddFavoritePlayer;
         private System.Windows.Forms.Button BtnRemoveFavoritePlayer;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label LbFavoritePlayersTitle;
+        private System.Windows.Forms.Label LbAllPlayersTitle;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label LbFavoritesCount;
         private UserControls.PlayerListControl PnFavoritePlayers;

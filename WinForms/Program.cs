@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 using Utilities.Helpers;
 using Utilities.POCO;
@@ -19,6 +21,8 @@ namespace WinForms
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("hr-HR");
+
             ReadPreferences();
         }
 
@@ -34,7 +38,7 @@ namespace WinForms
             }
 
             //favorite team
-            if (preferences.FavoriteTeamId == 0 || string.IsNullOrEmpty(preferences.FavoriteTeamCode))
+            if (preferences.FavoriteTeam == null)
             {
                 Application.Run(new FavoriteTeam());
             }

@@ -117,11 +117,70 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="emptyPlayer" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\emptyPlayer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="AllPlayers" xml:space="preserve">
+    <value>All players</value>
   </data>
-  <data name="loading_gif" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\loading_gif.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="AwayTeam" xml:space="preserve">
+    <value>Away team</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="ChooseLanguage" xml:space="preserve">
+    <value>Choose language</value>
+  </data>
+  <data name="ChooseLeague" xml:space="preserve">
+    <value>Choose league</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="Count" xml:space="preserve">
+    <value>Count</value>
+  </data>
+  <data name="FavoritePlayers" xml:space="preserve">
+    <value>Favorite players</value>
+  </data>
+  <data name="FavoriteTeam" xml:space="preserve">
+    <value>Choose favorite team</value>
+  </data>
+  <data name="GoalsNumber" xml:space="preserve">
+    <value>Goals scored</value>
+  </data>
+  <data name="HomeTeam" xml:space="preserve">
+    <value>Home team</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>Image</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="League" xml:space="preserve">
+    <value>League</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="MenLeague" xml:space="preserve">
+    <value>Men's league</value>
+  </data>
+  <data name="PlayerName" xml:space="preserve">
+    <value>Player name</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="SelectedTeam" xml:space="preserve">
+    <value>Selected team</value>
+  </data>
+  <data name="VisitorNumber" xml:space="preserve">
+    <value>Number of visitors</value>
+  </data>
+  <data name="WomenLeague" xml:space="preserve">
+    <value>Women's league</value>
+  </data>
+  <data name="YellowCardNumber" xml:space="preserve">
+    <value>Yellow cards</value>
   </data>
 </root>

@@ -15,9 +15,18 @@ namespace Utilities.Helpers
         {
             get
             {
-                uriBuilder.Path = Path;
-                uriBuilder.Query = GetQueryParams();
+                SetupUri();
                 return uriBuilder.ToString();
+            }
+        }
+
+        private void SetupUri()
+        {
+            uriBuilder.Path = Path ?? "";
+            if(FilterByCode)
+            {
+                uriBuilder.Path = "matches/country";
+                uriBuilder.Query = $"fifa_code={CountryCode}";
             }
         }
 
@@ -56,11 +65,6 @@ namespace Utilities.Helpers
 
             var data = await GetAsJsonAsync(url);
             return JsonConvert.DeserializeObject<List<T>>(data, MatchConverter.Settings);
-        }
-
-        private string GetQueryParams()
-        {
-            return FilterByCode && !string.IsNullOrEmpty(CountryCode) ? $"country?fifa_code={CountryCode}" : "";
         }
     }
 }

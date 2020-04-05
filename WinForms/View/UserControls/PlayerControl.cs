@@ -6,6 +6,7 @@ using Utilities.Model;
 
 namespace WinForms.View
 {
+    [Serializable]
     public partial class PlayerControl : UserControl
     {
         private Player _model;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
 using Utilities.Helpers;
@@ -31,11 +32,22 @@ namespace WinForms.View.UserControls
             }
         }
 
-        public PlayerControl SelectedPlayer { get; set; }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public List<PlayerControl> SelectedPlayers { get; set; }
+
         //handlers
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         private Action<int> CountChangeHandler;
+
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Action<PlayerControl> PlayerSelectedHandler { get; set; }
+
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Action<PlayerControl> PlayerUnselectedHandler { get; set; }
+
+        //events
+        public event Action<PlayerControl> PlayerControlAdded;
+        public event Action<PlayerControl> PlayerControlRemoved;
 
         public PlayerListControl()
         {
@@ -45,6 +57,8 @@ namespace WinForms.View.UserControls
 
             CountChangeHandler = (ItemCount) => { };
             ItemCount = 0;
+
+            SelectedPlayers = new List<PlayerControl>();
         }
 
         public void SetCountChangeHandler(Action<int> handler)
@@ -63,9 +77,8 @@ namespace WinForms.View.UserControls
 
             var helper = new ApiHelper(settings.ApiUrl)
             {
-                Path = "matches",
                 FilterByCode = true,
-                CountryCode = settings.FavoriteTeam
+                CountryCode = settings.FavoriteTeam.FifaCode
             };
 
             var matches = await helper.GetDataList<Match>();
@@ -75,7 +88,6 @@ namespace WinForms.View.UserControls
 
             var playerControls = players.Select(p => new PlayerControl(p)).ToList();
 
-            //playerControls.ForEach(c => SubscribeToEvents(c));
             //control added event will subscribe
             PnContainer.Controls.AddRange(playerControls.ToArray());
         }
@@ -83,37 +95,26 @@ namespace WinForms.View.UserControls
         private void SubscribeToEvents(PlayerControl playerControl)
         {
 
-            //before new control is selected, unselect the one that is selected
-            playerControl.PreSelectionHandler = () =>
-            {
-                var selected = PnContainer.Controls.Cast<PlayerControl>().FirstOrDefault(pc => pc.IsSelected);
+            playerControl.PlayerSelected += PlayerControl_PlayerSelected;
 
-                if (selected != null)
-                {
-                    selected.IsSelected = false;
-                }
-            };
+            playerControl.PlayerUnSelected += PlayerControl_PlayerUnSelected;
 
             //subscribe outside handler
             playerControl.PlayerSelected += PlayerSelectedHandler;
             playerControl.PlayerUnSelected += PlayerUnselectedHandler;
 
-            playerControl.PlayerSelected += PlayerControl_PlayerSelected;
-
-            playerControl.PlayerUnSelected += PlayerControl_PlayerUnSelected;
-
-
         }
 
         private void UnsubscribeFromEvents(PlayerControl playerControl)
         {
+            playerControl.PlayerSelected -= PlayerControl_PlayerSelected;
+
+            playerControl.PlayerUnSelected -= PlayerControl_PlayerUnSelected;
+
             //unsubscribe outside handler
             playerControl.PlayerSelected -= PlayerSelectedHandler;
             playerControl.PlayerUnSelected -= PlayerUnselectedHandler;
 
-            playerControl.PlayerSelected -= PlayerControl_PlayerSelected;
-
-            playerControl.PlayerUnSelected -= PlayerControl_PlayerUnSelected;
         }
 
         internal void AddPlayer(PlayerControl player)
@@ -155,25 +156,21 @@ namespace WinForms.View.UserControls
             CountChangeHandler(ItemCount);
         }
 
-        private void PlayerControl_PlayerUnSelected(PlayerControl obj)
+        private void PlayerControl_PlayerUnSelected(PlayerControl player)
         {
-            SelectedPlayer = null;
+            SelectedPlayers.Remove(player);
         }
 
         private void PlayerControl_PlayerSelected(PlayerControl player)
         {
-            SelectedPlayer = player;
+            SelectedPlayers.Add(player);
         }
-        #endregion
-
         private void PnContainer_ControlAdded(object sender, ControlEventArgs e)
         {
             if (e.Control is PlayerControl playerControl)
             {
                 SubscribeToEvents(playerControl);
-
-                //if it was previously selected, unselect it
-                playerControl.IsSelected = false;
+                PlayerControlAdded?.Invoke(playerControl);
             }
 
             UpdateItemCount();
@@ -183,16 +180,25 @@ namespace WinForms.View.UserControls
         {
             if (e.Control is PlayerControl playerControl)
             {
+                //if it was previously selected, unselect it
                 playerControl.IsSelected = false;
                 UnsubscribeFromEvents(playerControl);
+                
+                PlayerControlRemoved?.Invoke(playerControl);
 
                 if (playerControl.IsSelected)
                 {
-                    SelectedPlayer = null;
+                    SelectedPlayers.Remove(playerControl);
                 }
 
             }
             UpdateItemCount();
+        }
+        #endregion
+
+        public List<Player> GetPlayers()
+        {
+            return PnContainer.Controls.Cast<PlayerControl>().Select(c => c.Model).ToList();
         }
     }
 }

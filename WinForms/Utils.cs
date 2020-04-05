@@ -19,14 +19,14 @@ namespace WinForms
                     break;
             }
 
-            var language = ((Languages)preferences.LanguageId).ToString();
+            var language = (Languages)preferences.LanguageId == Languages.English ? "en" : "hr-HR";
 
             var settings = Properties.Settings.Default;
 
             settings.Language = language;
             settings.ApiUrl = apiUrl;
 
-            settings.FavoriteTeam = preferences.FavoriteTeamCode;
+            settings.FavoriteTeam = preferences.FavoriteTeam;
 
             //Settings.Default.Save();
         }
