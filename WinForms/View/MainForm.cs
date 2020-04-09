@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Text;
+using Utilities.Helpers;
+using Utilities.POCO;
 using WinForms.View.Settings;
 
 namespace WinForms.View
@@ -9,6 +11,8 @@ namespace WinForms.View
         public MainForm()
         {
             InitializeComponent();
+            var prefs = FileHelper.ReadPreferences<StartPreferences>();
+            Utils.SetApplicationSettings(prefs);
         }
 
         private void MiPreferences_Click(object sender, EventArgs e)
@@ -45,6 +49,12 @@ namespace WinForms.View
         {
             var rankingsForm = new Rankings();
             rankingsForm.ShowDialog(this);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            var imageUploadForm = new UploadPictures();
+            imageUploadForm.ShowDialog(this);
         }
     }
 }

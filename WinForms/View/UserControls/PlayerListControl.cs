@@ -74,17 +74,15 @@ namespace WinForms.View.UserControls
         public async void FillDataAsync()
         {
             var settings = Properties.Settings.Default;
+            var teamCode = settings.FavoriteTeam.FifaCode;
 
             var helper = new ApiHelper(settings.ApiUrl)
             {
                 FilterByCode = true,
-                CountryCode = settings.FavoriteTeam.FifaCode
+                CountryCode = teamCode
             };
 
-            var matches = await helper.GetDataList<Match>();
-
-            var stats = matches.First().HomeTeamStatistics;
-            var players = stats.StartingEleven.Union(stats.Substitutes).ToList();
+            var players = await DataHelper.GetAllPlayersAsync(helper);
 
             var playerControls = players.Select(p => new PlayerControl(p)).ToList();
 

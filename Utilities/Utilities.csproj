@@ -45,12 +45,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions.cs" />
     <Compile Include="GlobalResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>GlobalResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ApiHelper.cs" />
+    <Compile Include="Helpers\DataHelper.cs" />
     <Compile Include="Helpers\FIleHelper.cs" />
     <Compile Include="Model\MatchModels.cs" />
     <Compile Include="Model\Team.cs" />

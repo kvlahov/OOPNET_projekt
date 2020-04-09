@@ -10,10 +10,14 @@ namespace WinForms.View.Settings
 {
     public partial class Preferences : BaseForm
     {
+        private StartPreferences preferences;
         public Preferences(bool showConfirmCancelButtons = false)
         {
             InitializeComponent();
             InitLabels();
+
+            preferences = FileHelper.ReadPreferences<StartPreferences>();
+
             BindData();
 
             if (showConfirmCancelButtons)
@@ -74,10 +78,24 @@ namespace WinForms.View.Settings
             CbLanguage.DisplayMember = "Value";
             CbLanguage.ValueMember = "Key";
 
-            CbLanguage.SelectedIndex = 0;
+            if(preferences.LanguageId != 0 && (Languages)preferences.LanguageId == Languages.Croatian)
+            {
+                CbLanguage.SelectedIndex = 1;
+            } else
+            {
+                CbLanguage.SelectedIndex = 0;
+            }
 
             RbMenLeague.Tag = (int)Leagues.MenLeague;
             RbWomenLeague.Tag = (int)Leagues.WomanLeague;
+
+            if(preferences.LeagueId != 0 && (Leagues)preferences.LeagueId == Leagues.WomanLeague)
+            {
+                RbMenLeague.Checked = true;
+            } else
+            {
+                RbWomenLeague.Checked = true;
+            }
         }
 
         private void BtnSave_Click(object sender, EventArgs e)

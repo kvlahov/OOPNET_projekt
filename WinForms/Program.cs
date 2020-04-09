@@ -21,8 +21,6 @@ namespace WinForms
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo("hr-HR");
-
             ReadPreferences();
         }
 

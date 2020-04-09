@@ -72,6 +72,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FormResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="View\UploadPictures.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\UploadPictures.Designer.cs">
+      <DependentUpon>UploadPictures.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\UserControls\TransparentPictureBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -152,6 +158,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Rankings.resx">
       <DependentUpon>Rankings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\UploadPictures.resx">
+      <DependentUpon>UploadPictures.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\UserControls\PlayerControl.resx">
       <DependentUpon>PlayerControl.cs</DependentUpon>

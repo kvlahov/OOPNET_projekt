@@ -14,11 +14,21 @@ namespace Utilities.Helpers
         {
             get
             {
-                var root = GetSolutionPath();
-
-                var path = Path.Combine(root, ResourcesHelper.FilesDir, ResourcesHelper.PreferencesFileName);
+                var path = Path.Combine(SolutionPath, ResourcesHelper.FilesDir, ResourcesHelper.PreferencesFileName);
                 return path;
             }
+        }
+
+        public static string SolutionPath
+        {
+            get
+            {
+                var root = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+
+                //solution folder
+                return Directory.GetParent(root).Parent.Parent.FullName;
+            }
+
         }
 
         public static void WriteToFile<T>(T data, string path)
@@ -49,14 +59,13 @@ namespace Utilities.Helpers
 
         public static string GetImagesPath()
         {
-            var root = GetSolutionPath();
             var imagesFolder = GlobalResources.ImagesFolder;
             var league = (Leagues)ReadPreferences<StartPreferences>().LeagueId;
             var teamCode = ReadPreferences<StartPreferences>().FavoriteTeam.FifaCode;
 
             var leagueSubfolder = league == Leagues.MenLeague ? Leagues.MenLeague.ToString() : Leagues.WomanLeague.ToString();
 
-            var path = Path.Combine(root, imagesFolder, leagueSubfolder, teamCode);
+            var path = Path.Combine(SolutionPath, imagesFolder, leagueSubfolder, teamCode);
 
             //create if doesnt exist
             Directory.CreateDirectory(path);
@@ -72,12 +81,12 @@ namespace Utilities.Helpers
                 .ToList();
         }
 
-        private static string GetSolutionPath()
+        public static void CopyImageFromPath(string sourcePath, string fileNameWithoutExtension)
         {
-            var root = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            var extension = Path.GetExtension(sourcePath);
+            var destionationPath = Path.Combine(GetImagesPath(), $"{fileNameWithoutExtension}{extension}");
 
-            //solution folder
-           return Directory.GetParent(root).Parent.Parent.FullName;
+            File.Copy(sourcePath, destionationPath, true);
         }
     }
 }

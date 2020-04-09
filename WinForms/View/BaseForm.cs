@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Globalization;
+using System.Threading;
 using System.Windows.Forms;
 using Utilities.Helpers;
 using Utilities.POCO;
@@ -10,6 +12,12 @@ namespace WinForms.View
         public BaseForm()
         {
             SetDefaults();
+            SetCulture();
+        }
+
+        private void SetCulture()
+        {
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(Properties.Settings.Default.Language);
         }
 
         private void SetDefaults()
