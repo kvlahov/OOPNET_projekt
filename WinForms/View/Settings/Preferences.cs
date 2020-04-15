@@ -1,5 +1,7 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
 using Utilities.Helpers;
@@ -11,7 +13,7 @@ namespace WinForms.View.Settings
     public partial class Preferences : BaseForm
     {
         private StartPreferences preferences;
-        public Preferences(bool showConfirmCancelButtons = false)
+        public Preferences()
         {
             InitializeComponent();
             InitLabels();
@@ -19,14 +21,15 @@ namespace WinForms.View.Settings
             preferences = FileHelper.ReadPreferences<StartPreferences>();
 
             BindData();
+            ShowSaveButton();
 
+        }
+
+        public Preferences(bool showConfirmCancelButtons) : this()
+        {
             if (showConfirmCancelButtons)
             {
                 ShowConfirmCancelButtons();
-            }
-            else
-            {
-                ShowSaveButton();
             }
         }
 

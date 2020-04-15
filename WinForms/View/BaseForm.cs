@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Globalization;
+using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using Utilities.Helpers;
@@ -9,10 +11,19 @@ namespace WinForms.View
 {
     public class BaseForm : Form
     {
+
+        public event Action UserClosesApplication;
+        public BaseForm NextForm { get; set; }
         public BaseForm()
         {
+            InitEvents();
             SetDefaults();
             SetCulture();
+        }
+
+        private void InitEvents()
+        {
+            FormClosing += BaseForm_FormClosing;
         }
 
         private void SetCulture()
@@ -36,12 +47,20 @@ namespace WinForms.View
 
                 Utils.SetApplicationSettings(prefs);
                 this.Close();
+                NextForm.Show();
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error occured!");
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void BaseForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (new StackTrace().GetFrames().All(x => x.GetMethod().Name != "Close"))
+                UserClosesApplication?.Invoke();
         }
     }
 }

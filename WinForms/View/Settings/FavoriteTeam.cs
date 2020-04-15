@@ -10,17 +10,12 @@ namespace WinForms.View.Settings
 {
     public partial class FavoriteTeam : BaseForm
     {
-        private readonly StartPreferences preferences;
+        private StartPreferences preferences;
 
         public FavoriteTeam()
         {
             InitializeComponent();
 
-            InitLabels();
-
-            preferences = FileHelper.ReadPreferences<StartPreferences>();
-
-            BindDataAsync();
         }
 
         private void InitLabels()
@@ -62,6 +57,15 @@ namespace WinForms.View.Settings
             WritePreferencesAndClose(preferences);
 
             Close();
+        }
+
+        private void FavoriteTeam_Load(object sender, EventArgs e)
+        {
+            preferences = FileHelper.ReadPreferences<StartPreferences>();
+
+            InitLabels();
+
+            BindDataAsync();
         }
     }
 }

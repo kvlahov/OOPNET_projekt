@@ -5,6 +5,7 @@ using System.Threading;
 using System.Windows.Forms;
 using Utilities.Helpers;
 using Utilities.POCO;
+using WinForms.Controller;
 using WinForms.View;
 using WinForms.View.Settings;
 
@@ -28,26 +29,39 @@ namespace WinForms
         {
             var preferences = FileHelper.ReadPreferences<StartPreferences>();
             Utils.SetApplicationSettings(preferences);
+            
+            var formsToShow = Enumerable.Empty<BaseForm>().ToList();
 
             //main preferences
             if (preferences.LeagueId == 0 || preferences.LanguageId == 0)
             {
-                Application.Run(new Preferences());
+                formsToShow.Add(new Preferences());
+
+                //Application.Run(new PreferencesWindowState());
             }
 
             //favorite team
             if (preferences.FavoriteTeam == null)
             {
-                Application.Run(new FavoriteTeam());
+                formsToShow.Add(new FavoriteTeam());
+                //Application.Run(new FavoriteTeam());
             }
 
             //favorite players
             if (preferences.FavoritePlayers == null || !preferences.FavoritePlayers.Any())
             {
-                Application.Run(new FavoritePlayers());
+                formsToShow.Add(new FavoritePlayers());
+                //Application.Run(new FavoritePlayers());
             }
 
-            Application.Run(new MainForm());
+            formsToShow.Add(new MainForm());
+
+            var controller = new ApplicationWorkflowController(() => Application.ExitThread());
+
+            controller.ChainForms(formsToShow.ToArray());
+            controller.Start();
+
+            //Application.Run(new MainForm());
         }
     }
 }

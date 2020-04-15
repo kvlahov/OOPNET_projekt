@@ -19,16 +19,10 @@ namespace WinForms.View.Settings
     public partial class FavoritePlayers : BaseForm
     {
         private const int FAVORITE_PLAYER_MAX = 3;
-        private readonly StartPreferences preferences;
+        private StartPreferences preferences;
         public FavoritePlayers()
         {
             InitializeComponent();
-            InitLabels();
-            preferences = FileHelper.ReadPreferences<StartPreferences>();
-            PnAllPlayers.FillDataAsync();
-
-            AddEventHandlers();
-
         }
 
         private void InitLabels()
@@ -134,6 +128,12 @@ namespace WinForms.View.Settings
         //
         private void FavoritePlayers_Load(object sender, EventArgs e)
         {
+            InitLabels();
+            preferences = FileHelper.ReadPreferences<StartPreferences>();
+            PnAllPlayers.FillDataAsync();
+
+            AddEventHandlers();
+
             LbFavoritesCount.Text = PnFavoritePlayers.ItemCount.ToString();
             LbSelectedTeam.Text = preferences.FavoriteTeam.FifaCode;
         }

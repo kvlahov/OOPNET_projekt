@@ -19,7 +19,7 @@ namespace WinForms
                     break;
             }
 
-            var language = (Languages)preferences.LanguageId == Languages.English ? "en" : "hr-HR";
+            var language = (Languages)preferences.LanguageId == Languages.Croatian ? "hr-HR" : "en";
 
             var settings = Properties.Settings.Default;
 

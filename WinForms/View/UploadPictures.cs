@@ -25,7 +25,6 @@ namespace WinForms.View
         public UploadPictures()
         {
             InitializeComponent();
-            SetInitialStateAsync();
         }
 
         private async void SetInitialStateAsync()
@@ -179,6 +178,11 @@ namespace WinForms.View
         private void BtnSave_Click(object sender, EventArgs e)
         {
             playersImagesPath.ToList().ForEach(kv => FileHelper.CopyImageFromPath(kv.Value, kv.Key.ToLower().Replace(" ", "_")));
+        }
+
+        private void UploadPictures_Load(object sender, EventArgs e)
+        {
+            SetInitialStateAsync();
         }
     }
 }

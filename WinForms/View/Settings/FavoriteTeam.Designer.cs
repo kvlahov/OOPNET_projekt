@@ -40,7 +40,7 @@
             this.CbTeams.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CbTeams.FormattingEnabled = true;
             this.CbTeams.Location = new System.Drawing.Point(28, 126);
-            this.CbTeams.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CbTeams.Margin = new System.Windows.Forms.Padding(4);
             this.CbTeams.Name = "CbTeams";
             this.CbTeams.Size = new System.Drawing.Size(271, 37);
             this.CbTeams.TabIndex = 0;
@@ -58,7 +58,7 @@
             // BtnSave
             // 
             this.BtnSave.Location = new System.Drawing.Point(33, 265);
-            this.BtnSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BtnSave.Margin = new System.Windows.Forms.Padding(4);
             this.BtnSave.Name = "BtnSave";
             this.BtnSave.Size = new System.Drawing.Size(267, 94);
             this.BtnSave.TabIndex = 2;
@@ -95,9 +95,10 @@
             this.Controls.Add(this.BtnSave);
             this.Controls.Add(this.LbChooseTeam);
             this.Controls.Add(this.CbTeams);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FavoriteTeam";
             this.Text = "FavoriteTeam";
+            this.Load += new System.EventHandler(this.FavoriteTeam_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

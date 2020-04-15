@@ -11,22 +11,10 @@
   },
   "FavoritePlayers": [
     {
-      "name": "Samantha MEWIS",
+      "name": "Alyssa NAEHER",
       "captain": false,
-      "shirt_number": 3,
-      "position": 3
-    },
-    {
-      "name": "Kelley O HARA",
-      "captain": false,
-      "shirt_number": 5,
-      "position": 0
-    },
-    {
-      "name": "Abby DAHLKEMPER",
-      "captain": false,
-      "shirt_number": 7,
-      "position": 0
+      "shirt_number": 1,
+      "position": 2
     }
   ]
 }
