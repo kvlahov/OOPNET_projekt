@@ -33,10 +33,11 @@ namespace WinForms.Controller
             for (int i = 0; i < forms.Length - 1; i++)
             {
                 forms[i].NextForm = forms[i + 1];
-                forms[i].UserClosesApplication += OnApplicationExit;
                 Forms.Add(forms[i]);
             }
             Forms.Add(forms.Last());
+
+            Forms.ForEach(f => f.UserClosesApplication += OnApplicationExit);
         }
 
         public void Start()
@@ -44,7 +45,6 @@ namespace WinForms.Controller
             Forms.First().Show();
             Application.Run();
         }
-
 
     }
 }

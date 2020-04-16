@@ -137,5 +137,41 @@ namespace WinForms.View
 
             PbLoadingMatches.Visible = false;
         }
+
+        private void BtnPrintPlayerStats_Click(object sender, EventArgs e)
+        {
+            bitmapToPrint = GetDataGridViewBitmap(DgPlayerStats);
+            PrintPreviewDialog.ShowDialog();
+        }
+
+        private Bitmap bitmapToPrint;
+        private void BtnPrintMatchStats_Click(object sender, EventArgs e)
+        {
+            bitmapToPrint = GetDataGridViewBitmap(DgMatchesStats);
+            PrintPreviewDialog.ShowDialog();
+        }
+
+        private Bitmap GetDataGridViewBitmap(DataGridView dataGridView)
+        {
+            var oldHeight = dataGridView.Height;
+            dataGridView.Dock = DockStyle.None;
+
+            dataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+            dataGridView.Rows.Cast<DataGridViewRow>().ToList().ForEach(r => r.Height = 45);
+
+            dataGridView.Height = dataGridView.RowCount * dataGridView.RowTemplate.Height * 2;
+
+            var bmp = new Bitmap(dataGridView.Width, dataGridView.Height);
+            dataGridView.DrawToBitmap(bmp, new Rectangle(0, 0, dataGridView.Width, dataGridView.Height));
+            dataGridView.Height = oldHeight;
+            dataGridView.Dock = DockStyle.Fill;
+            dataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            return bmp;
+        }
+
+        private void PrintDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            e.Graphics.DrawImage(bitmapToPrint, 0, 0);
+        }
     }
 }
