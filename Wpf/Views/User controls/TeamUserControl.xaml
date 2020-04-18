@@ -1,0 +1,79 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:p = "clr-namespace:Wpf.Resources"
+             xmlns:local="clr-namespace:Wpf.Views.User_controls"
+             xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="Wpf.Views.User_controls.TeamUserControl"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="400              ">
+
+    <UserControl.Resources>
+        <Style TargetType="Label">
+            <Setter Property="Width" Value="100" />
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="MinWidth" Value="160" />
+        </Style>
+        <Style TargetType="GroupBox">
+            <Setter Property="BorderThickness" Value="0.5"/>
+        </Style>
+    </UserControl.Resources>
+
+    <Border Padding="20" Background="#FFC1B4A6">
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="{x:Static p:StringResources.teamName}" FontWeight="Bold"/>
+                <TextBlock VerticalAlignment="Center" Text="Test"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="{x:Static p:StringResources.fifaCode}" FontWeight="Bold"/>
+                <TextBlock VerticalAlignment="Center" Text="Test"/>
+            </StackPanel>
+            <GroupBox Header="{x:Static p:StringResources.matches}" >
+                <GroupBox.BorderBrush>
+                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                        <GradientStop Color="Black" Offset="1"/>
+                        <GradientStop Color="#FF00A1FF"/>
+                    </LinearGradientBrush>
+                </GroupBox.BorderBrush>
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="{x:Static p:StringResources.played}" FontWeight="Bold"/>
+                        <TextBlock VerticalAlignment="Center" Text="Test"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="{x:Static p:StringResources.won}" FontWeight="Bold"/>
+                        <TextBlock VerticalAlignment="Center" Text="Test"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="{x:Static p:StringResources.lost}" FontWeight="Bold"/>
+                        <TextBlock VerticalAlignment="Center" Text="Test"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="{x:Static p:StringResources.draw}" FontWeight="Bold"/>
+                        <TextBlock VerticalAlignment="Center" Text="Test"/>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="{x:Static p:StringResources.goals}">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label FontWeight="Bold" Content="{x:Static p:StringResources.scored}"/>
+                        <TextBlock VerticalAlignment="Center" Text="Test"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="{x:Static p:StringResources.taken}" FontWeight="Bold"/>
+                        <TextBlock VerticalAlignment="Center" Text="Test"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="{x:Static p:StringResources.difference}" FontWeight="Bold"/>
+                        <TextBlock VerticalAlignment="Center" Text="Test"/>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+
+        </StackPanel>
+    </Border>
+</UserControl>

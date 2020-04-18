@@ -117,7 +117,85 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="appearance" xml:space="preserve">
+    <value>Appearance</value>
+  </data>
+  <data name="cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
   <data name="chooseLanguage" xml:space="preserve">
     <value>Choose language:</value>
+  </data>
+  <data name="chooseLeague" xml:space="preserve">
+    <value>Choose league:</value>
+  </data>
+  <data name="chooseResolution" xml:space="preserve">
+    <value>Choose resolution</value>
+  </data>
+  <data name="difference" xml:space="preserve">
+    <value>Difference</value>
+  </data>
+  <data name="draw" xml:space="preserve">
+    <value>Draw</value>
+  </data>
+  <data name="favoriteTeam" xml:space="preserve">
+    <value>Favorite team</value>
+  </data>
+  <data name="fifaCode" xml:space="preserve">
+    <value>Fifa code</value>
+  </data>
+  <data name="fullScreen" xml:space="preserve">
+    <value>Fullscreen</value>
+  </data>
+  <data name="goals" xml:space="preserve">
+    <value>Goals</value>
+  </data>
+  <data name="langCroatian" xml:space="preserve">
+    <value>Croatian</value>
+  </data>
+  <data name="langEnglish" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="lost" xml:space="preserve">
+    <value>Lost</value>
+  </data>
+  <data name="matches" xml:space="preserve">
+    <value>Matches</value>
+  </data>
+  <data name="menLeague" xml:space="preserve">
+    <value>Men's league</value>
+  </data>
+  <data name="opposingTeam" xml:space="preserve">
+    <value>Opposing team</value>
+  </data>
+  <data name="played" xml:space="preserve">
+    <value>Total played</value>
+  </data>
+  <data name="save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="scored" xml:space="preserve">
+    <value>Scored</value>
+  </data>
+  <data name="startPreferences" xml:space="preserve">
+    <value>Start preferences</value>
+  </data>
+  <data name="taken" xml:space="preserve">
+    <value>Taken</value>
+  </data>
+  <data name="teamName" xml:space="preserve">
+    <value>Team name</value>
+  </data>
+  <data name="teamOverview" xml:space="preserve">
+    <value>Team overview</value>
+  </data>
+  <data name="viewDetails" xml:space="preserve">
+    <value>View details</value>
+  </data>
+  <data name="womenLeague" xml:space="preserve">
+    <value>Women's league</value>
+  </data>
+  <data name="won" xml:space="preserve">
+    <value>Won</value>
   </data>
 </root>
