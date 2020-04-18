@@ -60,7 +60,17 @@ namespace WinForms.View
         private void BaseForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (new StackTrace().GetFrames().All(x => x.GetMethod().Name != "Close"))
-                UserClosesApplication?.Invoke();
+            {
+                var res = MessageBox.Show("Are you sure you want to close the application?", "Closing application", MessageBoxButtons.OKCancel);
+                if(res == DialogResult.OK)
+                {
+                    UserClosesApplication?.Invoke();
+                } 
+                else
+                {
+                    e.Cancel = true;
+                }
+            }
         }
     }
 }
