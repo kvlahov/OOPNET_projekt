@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinForms", "WinForms\WinFor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities", "Utilities\Utilities.csproj", "{92869A9A-2821-4158-B11E-E958ADE25AC0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wpf", "Wpf\Wpf.csproj", "{A297A4CD-64F4-45B7-86ED-1AD81B6A6E1F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{92869A9A-2821-4158-B11E-E958ADE25AC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92869A9A-2821-4158-B11E-E958ADE25AC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92869A9A-2821-4158-B11E-E958ADE25AC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A297A4CD-64F4-45B7-86ED-1AD81B6A6E1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A297A4CD-64F4-45B7-86ED-1AD81B6A6E1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A297A4CD-64F4-45B7-86ED-1AD81B6A6E1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A297A4CD-64F4-45B7-86ED-1AD81B6A6E1F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
