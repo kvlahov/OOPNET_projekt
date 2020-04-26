@@ -56,6 +56,7 @@
     <Compile Include="Helpers\FIleHelper.cs" />
     <Compile Include="Model\MatchModels.cs" />
     <Compile Include="Model\Team.cs" />
+    <Compile Include="Model\TeamResult.cs" />
     <Compile Include="POCO\PreferenecesEnums.cs" />
     <Compile Include="POCO\StartPreferences.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

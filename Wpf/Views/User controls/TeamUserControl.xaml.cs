@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Wpf.ViewModels;
 
 namespace Wpf.Views.User_controls
 {
@@ -23,6 +24,11 @@ namespace Wpf.Views.User_controls
         public TeamUserControl()
         {
             InitializeComponent();
+        }
+
+        public void SetDataContext(TeamViewModel viewModel)
+        {
+            DataContext = viewModel;
         }
     }
 }

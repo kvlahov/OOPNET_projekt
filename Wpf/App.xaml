@@ -4,4 +4,11 @@
              xmlns:local="clr-namespace:Wpf"
              xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="Wpf.App"
              StartupUri="Views/TeamOverviewWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Simple Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
 </Application>

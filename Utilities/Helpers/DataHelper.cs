@@ -28,5 +28,26 @@ namespace Utilities.Helpers
 
             return team.StartingEleven.Union(team.Substitutes);
         }
+
+        public static async Task<TeamResult> GetTeamResult(string leagueUrl, string fifaCode)
+        {
+            var helper = new ApiHelper(leagueUrl)
+            {
+                Path = "teams/results"
+            };
+
+            var results = await helper.GetDataList<TeamResult>();
+            return results.FirstOrDefault(t => t.FifaCode == fifaCode);
+        }
+
+        public static async Task<IEnumerable<Team>> GetTeams(string leagueUrl)
+        {
+            var helper = new ApiHelper(leagueUrl)
+            {
+                Path = "teams"
+            };
+
+            return await helper.GetDataList<Team>();
+        }
     }
 }

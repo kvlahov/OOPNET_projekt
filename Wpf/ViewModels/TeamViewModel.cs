@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Wpf.ViewModels
 {
-    class TeamViewModel
+    public class TeamViewModel
     {
         public string Name { get; set; }
         public string FifaCode { get; set; }

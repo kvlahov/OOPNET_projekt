@@ -25,11 +25,11 @@
         <StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="{x:Static p:StringResources.teamName}" FontWeight="Bold"/>
-                <TextBlock VerticalAlignment="Center" Text="Test"/>
+                <TextBlock VerticalAlignment="Center" Text="{Binding Name}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="{x:Static p:StringResources.fifaCode}" FontWeight="Bold"/>
-                <TextBlock VerticalAlignment="Center" Text="Test"/>
+                <TextBlock VerticalAlignment="Center" Text="{Binding FifaCode}"/>
             </StackPanel>
             <GroupBox Header="{x:Static p:StringResources.matches}" >
                 <GroupBox.BorderBrush>
@@ -41,19 +41,19 @@
                 <StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label Content="{x:Static p:StringResources.played}" FontWeight="Bold"/>
-                        <TextBlock VerticalAlignment="Center" Text="Test"/>
+                        <TextBlock VerticalAlignment="Center" Text="{Binding MatchesPlayed}"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label Content="{x:Static p:StringResources.won}" FontWeight="Bold"/>
-                        <TextBlock VerticalAlignment="Center" Text="Test"/>
+                        <TextBlock VerticalAlignment="Center" Text="{Binding MatchesWon}"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label Content="{x:Static p:StringResources.lost}" FontWeight="Bold"/>
-                        <TextBlock VerticalAlignment="Center" Text="Test"/>
+                        <TextBlock VerticalAlignment="Center" Text="{Binding MatchesLost}"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label Content="{x:Static p:StringResources.draw}" FontWeight="Bold"/>
-                        <TextBlock VerticalAlignment="Center" Text="Test"/>
+                        <TextBlock VerticalAlignment="Center" Text="{Binding MatchesDraw}"/>
                     </StackPanel>
                 </StackPanel>
             </GroupBox>
@@ -61,15 +61,15 @@
                 <StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label FontWeight="Bold" Content="{x:Static p:StringResources.scored}"/>
-                        <TextBlock VerticalAlignment="Center" Text="Test"/>
+                        <TextBlock VerticalAlignment="Center" Text="{Binding GoalsScored}"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label Content="{x:Static p:StringResources.taken}" FontWeight="Bold"/>
-                        <TextBlock VerticalAlignment="Center" Text="Test"/>
+                        <TextBlock VerticalAlignment="Center" Text="{Binding GoalsTaken}"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label Content="{x:Static p:StringResources.difference}" FontWeight="Bold"/>
-                        <TextBlock VerticalAlignment="Center" Text="Test"/>
+                        <TextBlock VerticalAlignment="Center" Text="{Binding GoalsDifference}"/>
                     </StackPanel>
                 </StackPanel>
             </GroupBox>

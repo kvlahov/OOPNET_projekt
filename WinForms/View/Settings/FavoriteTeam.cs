@@ -28,12 +28,9 @@ namespace WinForms.View.Settings
         private async void BindDataAsync()
         {
             var baseUrl = Properties.Settings.Default.ApiUrl;
-            LbLeague.Text = baseUrl;
+            LbLeague.Text = baseUrl;            
 
-            var helper = new ApiHelper(baseUrl);
-            helper.Path = "teams";
-
-            var teams = await helper.GetDataList<Team>();
+            var teams = await DataHelper.GetTeams(baseUrl);
 
             CbTeams.ValueMember = "Id";
             CbTeams.DisplayMember = "";
@@ -43,9 +40,6 @@ namespace WinForms.View.Settings
             {
                 CbTeams.SelectedItem = CbTeams.Items.Cast<Team>().FirstOrDefault(m => m.Id == preferences.FavoriteTeam.Id);
             }
-
-            //var teams
-            //CbTeams.DataSource
         }
 
         private void BtnSave_Click(object sender, EventArgs e)

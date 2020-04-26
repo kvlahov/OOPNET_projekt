@@ -5,8 +5,9 @@
         xmlns:p = "clr-namespace:Wpf.Resources"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Wpf.Views"
+        xmlns:vm="clr-namespace:Wpf.ViewModels"
         mc:Ignorable="d"
-        Title="{x:Static p:StringResources.teamOverview}" Height="450" Width="500">
+        Title="{x:Static p:StringResources.teamOverview}" Height="450" Width="500" Loaded="Window_Loaded">
     <Border Padding="10 20">
         <StackPanel>
             <Grid>
@@ -17,13 +18,31 @@
 
                 <StackPanel Margin="0 0 5 0">
                     <TextBlock Text="{x:Static p:StringResources.favoriteTeam}"></TextBlock>
-                    <ComboBox Name="CbFavoriteTeam"/>
+                    <ComboBox Name="CbFavoriteTeam" 
+                               ItemsSource="{Binding AllTeams, Mode=OneWay}"
+                               SelectedIndex="{Binding SelectedFavoriteTeamIndex}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock>
+                                    <Run Text="{Binding Country}"/>
+                                    <Run Text=" ("/>
+                                    <Run Text="{Binding FifaCode}"/>
+                                    <Run Text=") "/>
+                                </TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
                     <Button Padding="5" Margin="0 5 0 0" Content="{x:Static p:StringResources.viewDetails}"/>
                 </StackPanel>
                 <StackPanel Margin="5 0 0 0" Grid.Column="2">
                     <TextBlock Text="{x:Static p:StringResources.opposingTeam}"></TextBlock>
-                    <ComboBox Name="CbOpposingTeam"/>
-                    <Button Padding="5" Margin="0 5 0 0" Content="{x:Static p:StringResources.viewDetails}"/>
+                    <ComboBox Name="CbOpposingTeam"
+                              ItemsSource="{Binding OpposingTeams}">
+                        <DataTemplate>
+                            
+                        </DataTemplate>
+                    </ComboBox>
+                    <Button Padding="5" Margin="0 5 0 0" Content="{x:Static p:StringResources.viewDetails}" Click="Button_Click"/>
                 </StackPanel>
             </Grid>
 
