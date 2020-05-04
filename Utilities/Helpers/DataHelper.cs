@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Utilities.Model;
@@ -48,6 +49,56 @@ namespace Utilities.Helpers
             };
 
             return await helper.GetDataList<Team>();
+        }
+
+        public static async Task<Dictionary<Team, ISet<Team>>> GetMatchPairings(string leagueUrl)
+        {
+            var helper = new ApiHelper(leagueUrl)
+            {
+                Path = "matches"
+            };
+
+            //each entry represents one pairing
+            var matches = await helper.GetDataList<Match>();
+            var matchPairings = new Dictionary<Team, ISet<Team>>();
+
+            matches.Select(m => new
+            {
+                HomeTeam = new Team { Country = m.HomeTeam.Country, FifaCode = m.HomeTeam.Code },
+                AwayTeam = new Team { Country = m.AwayTeam.Country, FifaCode = m.AwayTeam.Code }
+            })
+            .ToList()
+            .ForEach(p =>
+            {
+                AddToPairingsDictionary(matchPairings, p.HomeTeam, p.AwayTeam);
+            });
+
+            return matchPairings;
+        }
+
+        
+
+        private static void AddToPairingsDictionary(Dictionary<Team, ISet<Team>> matchPairings, Team firstTeam, Team secondTeam)
+        {
+            //add first team to dictionary or update it's entry
+            if (matchPairings.ContainsKey(firstTeam))
+            {
+                matchPairings[firstTeam].Add(secondTeam);
+            }
+            else
+            {
+                matchPairings[firstTeam] = new SortedSet<Team> { secondTeam };
+            }
+
+            //then add second
+            if (matchPairings.ContainsKey(secondTeam))
+            {
+                matchPairings[secondTeam].Add(firstTeam);
+            }
+            else
+            {
+                matchPairings[secondTeam] = new SortedSet<Team> { firstTeam };
+            }
         }
     }
 }

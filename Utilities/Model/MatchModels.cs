@@ -77,7 +77,7 @@
         public DateTimeOffset? LastScoreUpdateAt { get; set; }
     }
 
-    public partial class MatchTeam
+    public partial class MatchTeam : IComparable<MatchTeam>
     {
         [JsonProperty("country")]
         public string Country { get; set; }
@@ -90,6 +90,21 @@
 
         [JsonProperty("penalties")]
         public long Penalties { get; set; }
+
+        public int CompareTo(MatchTeam other) => Code.CompareTo(other.Code);
+
+        public override bool Equals(object obj)
+        {
+            if(obj is MatchTeam other)
+            {
+                return other.Code == this.Code;
+            }
+
+            return false;
+        }
+
+        public override int GetHashCode() => Code.GetHashCode();
+        
     }
 
     public partial class TeamEvent

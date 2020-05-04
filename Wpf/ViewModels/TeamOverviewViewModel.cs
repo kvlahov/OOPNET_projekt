@@ -12,12 +12,25 @@ namespace Wpf.ViewModels
     {
         public ObservableCollection<Team> AllTeams { get; set; }
         public ObservableCollection<Team> OpposingTeams { get; set; }
+        public Dictionary<Team, ISet<Team>> TeamMatches { get; set; }
 
         private Team _selectedFavoriteTeam;
         public Team SelectedFavoriteTeam
         {
             get { return _selectedFavoriteTeam; }
-            set { SetProperty(ref _selectedFavoriteTeam, value); }
+            set {
+                FillOpposingTeams(value);
+                SetProperty(ref _selectedFavoriteTeam, value); 
+            }
+        }
+
+        private void FillOpposingTeams(Team selectedTeam)
+        {
+            OpposingTeams.Clear();
+
+            TeamMatches[selectedTeam].ToList().ForEach(t => OpposingTeams.Add(t));
+
+            SelectedOpposingTeamIndex = 0;
         }
 
         private int _selectedFavoriteTeamIndex;
@@ -34,6 +47,13 @@ namespace Wpf.ViewModels
         {
             get { return _selectedOpposingTeam; }
             set { SetProperty(ref _selectedOpposingTeam, value); }
+        }
+
+        private int _selectedOpposingTeamIndex;
+        public int SelectedOpposingTeamIndex
+        {
+            get { return _selectedOpposingTeamIndex; }
+            set { SetProperty(ref _selectedOpposingTeamIndex, value); }
         }
     }
 }

@@ -20,7 +20,7 @@
                     <TextBlock Text="{x:Static p:StringResources.favoriteTeam}"></TextBlock>
                     <ComboBox Name="CbFavoriteTeam" 
                                ItemsSource="{Binding AllTeams, Mode=OneWay}"
-                               SelectedIndex="{Binding SelectedFavoriteTeamIndex}">
+                               SelectedItem="{Binding SelectedFavoriteTeam}">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock>
@@ -32,17 +32,27 @@
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
-                    <Button Padding="5" Margin="0 5 0 0" Content="{x:Static p:StringResources.viewDetails}"/>
+                    <Button Tag="favorite" Padding="5" Margin="0 5 0 0" Content="{x:Static p:StringResources.viewDetails}" Click="ViewDetails_Clicked"/>
                 </StackPanel>
                 <StackPanel Margin="5 0 0 0" Grid.Column="2">
                     <TextBlock Text="{x:Static p:StringResources.opposingTeam}"></TextBlock>
                     <ComboBox Name="CbOpposingTeam"
-                              ItemsSource="{Binding OpposingTeams}">
-                        <DataTemplate>
-                            
-                        </DataTemplate>
+                              ItemsSource="{Binding OpposingTeams}"
+                              SelectedItem="{Binding SelectedOpposingTeam, Mode=TwoWay}"
+                              SelectedIndex="{Binding SelectedOpposingTeamIndex}"
+                              IsSynchronizedWithCurrentItem="True">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock>
+                                    <Run Text="{Binding Country}"/>
+                                    <Run Text=" ("/>
+                                    <Run Text="{Binding FifaCode}"/>
+                                    <Run Text=") "/>
+                                </TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
                     </ComboBox>
-                    <Button Padding="5" Margin="0 5 0 0" Content="{x:Static p:StringResources.viewDetails}" Click="Button_Click"/>
+                    <Button Tag="opposing" Padding="5" Margin="0 5 0 0" Content="{x:Static p:StringResources.viewDetails}" Click="ViewDetails_Clicked"/>
                 </StackPanel>
             </Grid>
 

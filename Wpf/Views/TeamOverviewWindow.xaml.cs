@@ -29,34 +29,31 @@ namespace Wpf.Views
     {
         public TeamOverviewViewModel TeamOverviewViewModel { get; set; }
 
+        private string _apiUrl;
+
         public TeamOverviewWindow()
         {
             InitializeComponent();
-            TeamOverviewViewModel = new TeamOverviewViewModel();
-            DataContext = TeamOverviewViewModel;
 
-            TeamOverviewViewModel.AllTeams = new ObservableCollection<Team>();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            var teamControl = new TeamUserControl();
-            var dummy = new TeamViewModel
+            TeamOverviewViewModel = new TeamOverviewViewModel
             {
-                FifaCode = "Test",
-                GoalsScored = 5,
-                Name = "Test team",
-                MatchesDraw = 2,
-                GoalsDifference = 1,
-                GoalsTaken = 3,
-                MatchesLost = 2,
-                MatchesPlayed = 2,
-                MatchesWon = 6
-
+                AllTeams = new ObservableCollection<Team>(),
+                OpposingTeams = new ObservableCollection<Team>()
             };
 
-            teamControl.SetDataContext(dummy);
+            DataContext = TeamOverviewViewModel;
+        }
 
+
+        #region Helper Methods
+        private async Task<TeamViewModel> GetTeamViewModel(string teamFifaCode)
+        {
+            var result = await DataHelper.GetTeamResult(_apiUrl, teamFifaCode);
+            return new TeamViewModel(result);
+        }
+
+        private static void PrepareAndShowAnimatedDialog(TeamUserControl teamControl)
+        {
             var dialog = new Window
             {
                 Title = "Team user control",
@@ -79,20 +76,15 @@ namespace Wpf.Views
             dialog.ShowDialog();
         }
 
-        private async void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            await LoadTeams();
-        }
-
         private async Task LoadTeams()
         {
-            SetAppSettings();
-            var teams = await DataHelper.GetTeams(Settings.Default.ApiUrl);
+            var pairingsDict = await DataHelper.GetMatchPairings(_apiUrl);
+            TeamOverviewViewModel.TeamMatches = pairingsDict;
 
+            var teams = await DataHelper.GetTeams(_apiUrl);
             teams.OrderBy(t => t.Country).ToList().ForEach(TeamOverviewViewModel.AllTeams.Add);
 
             TeamOverviewViewModel.SelectedFavoriteTeam = Settings.Default.FavoriteTeam;
-            TeamOverviewViewModel.SelectedFavoriteTeamIndex = TeamOverviewViewModel.AllTeams.ToList().FindIndex(t => t.FifaCode == Settings.Default.FavoriteTeam.FifaCode);
         }
 
         private void SetAppSettings()
@@ -100,5 +92,28 @@ namespace Wpf.Views
             var prefs = FileHelper.ReadPreferences<StartPreferences>();
             Utils.SetApplicationSettings(prefs);
         }
+        #endregion
+
+        #region Events
+        private async void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            SetAppSettings();
+            _apiUrl = Settings.Default.ApiUrl;
+
+            await LoadTeams();
+        }
+        private async void ViewDetails_Clicked(object sender, RoutedEventArgs e)
+        {
+            var senderTag = ((Button)sender).Tag.ToString();
+            var teamFifaCode = senderTag == "favorite" ? TeamOverviewViewModel.SelectedFavoriteTeam.FifaCode : TeamOverviewViewModel.SelectedOpposingTeam.FifaCode;
+
+            var teamControl = new TeamUserControl();
+            var viewModel = await GetTeamViewModel(teamFifaCode);
+
+            teamControl.SetDataContext(viewModel);
+
+            PrepareAndShowAnimatedDialog(teamControl);
+        } 
+        #endregion
     }
 }
