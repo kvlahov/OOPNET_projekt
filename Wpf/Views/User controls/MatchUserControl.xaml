@@ -1,0 +1,183 @@
+﻿<UserControl x:Class="Wpf.Views.User_controls.MatchUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Wpf.Views.User_controls"
+             mc:Ignorable="d"
+             MinHeight="400"
+             MinWidth="800"
+             HorizontalAlignment="Stretch"
+	         VerticalAlignment="Stretch">
+    <UserControl.Resources>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
+        <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+        <Style x:Key="RoundedButton" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" CornerRadius="50" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Border BorderBrush="White" BorderThickness="3">
+        <Grid Background="#FF2A8E26">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Viewbox Grid.Column="3" MaxWidth="150" MaxHeight="150" MinWidth="100" MinHeight="100" Grid.ColumnSpan="3">
+                    <Ellipse Grid.Column="3" Stroke="White" Grid.ColumnSpan="3" StrokeThickness="3" MinWidth="100" MinHeight="100" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Height="100">
+                <Ellipse.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="1800.534"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Ellipse.RenderTransform>
+                </Ellipse>
+                </Viewbox>
+                <Path Grid.Column="4" Data="M399.5,0 L399.5,450.02778" Stretch="Fill" Stroke="White" StrokeThickness="3" Width="3" HorizontalAlignment="Center"/>
+                <Path Grid.Column="0" Stroke="White" Grid.ColumnSpan="2" StrokeThickness="3" Data="M1.7177835,1.5 L125.86079,1.5 L125.86079,242.786 L1.7177835,242.786 z M1.5,62.786 L46.5,62.786 L46.5,182.072 L1.5,182.072 z M128.21639,69.286 C145.65313,69.286 159.78839,92.791051 159.78839,121.786 159.78839,150.78095 145.65313,174.286 128.21639,174.286" HorizontalAlignment="Left" Margin="-3,0,0,0" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5"/>
+
+                <Path Grid.Column="6" Height="244.286" Stroke="White" Grid.ColumnSpan="3" StrokeThickness="3" Data="M1.7177835,1.5 L125.86079,1.5 L125.86079,242.786 L1.7177835,242.786 z M1.5,62.786 L46.5,62.786 L46.5,182.072 L1.5,182.072 z M128.21639,69.286 C145.65313,69.286 159.78839,92.791051 159.78839,121.786 159.78839,150.78095 145.65313,174.286 128.21639,174.286" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Margin="0,0,-3,0" HorizontalAlignment="Right">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleY="1" ScaleX="-1"/>
+                            <SkewTransform AngleY="0" AngleX="0"/>
+                            <RotateTransform Angle="0"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path Data="M26.5,1.5 C40.307119,1.5 51.5,12.692881 51.5,26.5" HorizontalAlignment="Left" Height="28" Stretch="Fill" Stroke="White" StrokeThickness="3" VerticalAlignment="Top" Width="28" RenderTransformOrigin="0.5,0.5" Margin="-2,-2,0,0" >
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleY="-1" ScaleX="1"/>
+                            <SkewTransform AngleY="0" AngleX="0"/>
+                            <RotateTransform Angle="0"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path Data="M26.5,1.5 C40.307119,1.5 51.5,12.692881 51.5,26.5" HorizontalAlignment="Left" Height="28" Stretch="Fill" Stroke="White" StrokeThickness="3" VerticalAlignment="Bottom" Width="28" RenderTransformOrigin="0.5,0.5" Margin="-2,0,0,-2" >
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleY="1" ScaleX="1"/>
+                            <SkewTransform AngleY="0" AngleX="0"/>
+                            <RotateTransform Angle="0"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path Data="M26.5,1.5 C40.307119,1.5 51.5,12.692881 51.5,26.5" HorizontalAlignment="Right" Height="28" Stretch="Fill" Stroke="White" StrokeThickness="3" VerticalAlignment="Top" Width="28" RenderTransformOrigin="0.5,0.5" Grid.Column="8" Margin="0,-2,-2,0" >
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleY="-1" ScaleX="-1"/>
+                            <SkewTransform AngleY="0" AngleX="0"/>
+                            <RotateTransform Angle="0"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path Data="M26.5,1.5 C40.307119,1.5 51.5,12.692881 51.5,26.5" HorizontalAlignment="Right" Height="28" Stretch="Fill" Stroke="White" StrokeThickness="3" VerticalAlignment="Bottom" Width="28" RenderTransformOrigin="0.5,0.5" Grid.Column="8" Margin="0,0,-2,-2" >
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleY="1" ScaleX="-1"/>
+                            <SkewTransform AngleY="0" AngleX="0"/>
+                            <RotateTransform Angle="0"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Ellipse Grid.Column="3" HorizontalAlignment="Center" Height="15" Margin="0" Stroke="White" StrokeThickness="3" VerticalAlignment="Center" Width="15" Fill="White" Grid.ColumnSpan="3"/>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Content="Player" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Width="51.444" Height="51" Style="{DynamicResource RoundedButton}" Background="#FF2C6BEB">
+                    <Button.Effect>
+                        <DropShadowEffect BlurRadius="20" Direction="269"/>
+                    </Button.Effect>
+                </Button>
+                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                    <Button Content="Player" HorizontalAlignment="Center" Margin="0 0 0 50" VerticalAlignment="Center" Width="51.444" Height="51" Style="{DynamicResource RoundedButton}" Background="#FF2C6BEB" Grid.Column="1">
+                        <Button.Effect>
+                            <DropShadowEffect BlurRadius="20" Direction="269"/>
+                        </Button.Effect>
+                    </Button>
+                    <Button Content="Player" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Width="51.444" Height="51" Style="{DynamicResource RoundedButton}" Background="#FF2C6BEB" Grid.Column="1">
+                        <Button.Effect>
+                            <DropShadowEffect BlurRadius="20" Direction="269"/>
+                        </Button.Effect>
+                    </Button>
+                </StackPanel>
+
+            </Grid>
+        </Grid>
+    </Border>
+</UserControl>

@@ -11,10 +11,22 @@
   },
   "FavoritePlayers": [
     {
-      "name": "Alyssa NAEHER",
+      "name": "Abby DAHLKEMPER",
       "captain": false,
-      "shirt_number": 1,
-      "position": 2
+      "shirt_number": 7,
+      "position": 0
+    },
+    {
+      "name": "Julie ERTZ",
+      "captain": false,
+      "shirt_number": 8,
+      "position": 3
+    },
+    {
+      "name": "Lindsey HORAN",
+      "captain": false,
+      "shirt_number": 9,
+      "position": 3
     }
   ]
 }

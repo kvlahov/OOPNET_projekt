@@ -113,7 +113,13 @@ namespace Wpf.Views
             teamControl.SetDataContext(viewModel);
 
             PrepareAndShowAnimatedDialog(teamControl);
-        } 
+        }
         #endregion
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new TestMatchControl();
+            dialog.ShowDialog();
+        }
     }
 }
