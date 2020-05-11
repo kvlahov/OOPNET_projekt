@@ -76,7 +76,15 @@ namespace Utilities.Helpers
             return matchPairings;
         }
 
-        
+        public static async Task<IEnumerable<Match>> GetMatches(string leagueUrl)
+        {
+            var helper = new ApiHelper(leagueUrl)
+            {
+                Path = "matches"
+            };
+
+            return await helper.GetDataList<Match>();
+        }
 
         private static void AddToPairingsDictionary(Dictionary<Team, ISet<Team>> matchPairings, Team firstTeam, Team secondTeam)
         {

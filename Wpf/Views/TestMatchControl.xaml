@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Wpf.Views"
         mc:Ignorable="d"
         Title="TestMatchControl" Height="450" Width="800">
-    <Grid>
-        <User_controls:MatchUserControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+    <Grid x:Name="Container">
+        <!--<User_controls:MatchUserControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>-->
     </Grid>
 </Window>

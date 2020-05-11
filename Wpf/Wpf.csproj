@@ -61,6 +61,7 @@
       <DependentUpon>StringResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Utils.cs" />
+    <Compile Include="ViewModels\PlayerViewModel.cs" />
     <Compile Include="ViewModels\TeamOverviewViewModel.cs" />
     <Compile Include="ViewModels\TeamViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />

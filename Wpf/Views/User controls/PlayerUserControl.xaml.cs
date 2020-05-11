@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Wpf.ViewModels;
 
 namespace Wpf.Views.User_controls
 {
@@ -20,9 +21,16 @@ namespace Wpf.Views.User_controls
     /// </summary>
     public partial class PlayerUserControl : UserControl
     {
+        public PlayerViewModel Player { get; set; }
         public PlayerUserControl()
         {
             InitializeComponent();
+        }
+
+        public PlayerUserControl(PlayerViewModel viewModel) : this()
+        {
+            Player = viewModel;
+            DataContext = Player;
         }
     }
 }

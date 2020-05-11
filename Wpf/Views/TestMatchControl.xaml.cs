@@ -11,6 +11,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Utilities.Helpers;
+using Wpf.Properties;
+using Wpf.ViewModels;
+using Wpf.Views.User_controls;
 
 namespace Wpf.Views
 {
@@ -22,6 +26,43 @@ namespace Wpf.Views
         public TestMatchControl()
         {
             InitializeComponent();
+            SetupMatchControl();
+        }
+
+        private async void SetupMatchControl()
+        {
+            var apiUrl = Settings.Default.ApiUrl;
+
+            var matches = await DataHelper.GetMatches(apiUrl);
+            var randomMatch = matches.First();
+            var rnd = new Random();
+            var homeTeam = randomMatch.HomeTeamStatistics.StartingEleven.Select(p => new PlayerViewModel
+            {
+                PlayerName = p.Name,
+                Position = p.Position,
+                PlayerNumber = (int)p.ShirtNumber,
+                IsCaptain = p.Captain,
+                IsHomeTeam = true,
+                NoOfYellowCards = rnd.Next(0, 1)
+            }).ToList();
+
+            var awayTeam = randomMatch.AwayTeamStatistics.StartingEleven.Select(p => new PlayerViewModel
+            {
+                PlayerName = p.Name,
+                Position = p.Position,
+                PlayerNumber = (int)p.ShirtNumber,
+                IsCaptain = p.Captain,
+                IsHomeTeam = false,
+                NoOfYellowCards = rnd.Next(0, 1)
+            }).ToList();
+
+            var matchControl = new MatchUserControl(homeTeam, awayTeam)
+            {
+                HorizontalAlignment = HorizontalAlignment.Stretch,
+                VerticalAlignment = VerticalAlignment.Stretch
+            };
+
+            Container.Children.Add(matchControl);
         }
     }
 }

@@ -99,69 +99,46 @@
                 </Grid>
                 <Grid x:Name="TeamGrid">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition x:Name="HomeGoalie" Width="*"/>
-                        <ColumnDefinition x:Name="HomeDefense" Width="*"/>
-                        <ColumnDefinition x:Name="HomeMid" Width="*"/>
-                        <ColumnDefinition x:Name="HomeForward" Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition x:Name="AwayForward" Width="*"/>
-                        <ColumnDefinition x:Name="AwayMid" Width="*"/>
-                        <ColumnDefinition x:Name="AwayDefense" Width="*"/>
-                        <ColumnDefinition x:Name="AwayGoalie" Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Button Content="Player" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Width="51.444" Height="51" Style="{DynamicResource RoundedButton}" Background="#FF2C6BEB">
-                        <Button.Effect>
-                            <DropShadowEffect BlurRadius="20" Direction="269"/>
-                        </Button.Effect>
-                    </Button>
-                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                        <Button Content="Player" HorizontalAlignment="Center" Margin="0 0 0 50" VerticalAlignment="Center" Width="51.444" Height="51" Style="{DynamicResource RoundedButton}" Background="#FF2C6BEB" Grid.Column="1">
-                            <Button.Effect>
-                                <DropShadowEffect BlurRadius="20" Direction="269"/>
-                            </Button.Effect>
-                        </Button>
-                        <Button Content="Player" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Width="51.444" Height="51" Style="{DynamicResource RoundedButton}" Background="#FF2C6BEB" Grid.Column="1">
-                            <Button.Effect>
-                                <DropShadowEffect BlurRadius="20" Direction="269"/>
-                            </Button.Effect>
-                        </Button>
-                    </StackPanel>
-                    <StackPanel Grid.Column="2" VerticalAlignment="Center">
-                        <Button Content="Player" HorizontalAlignment="Center" Margin="0 0 0 50" VerticalAlignment="Center" Width="51.444" Height="51" Style="{DynamicResource RoundedButton}" Background="#FF2C6BEB" Grid.Column="1">
-                            <Button.Effect>
-                                <DropShadowEffect BlurRadius="20" Direction="269"/>
-                            </Button.Effect>
-                        </Button>
-                        <Button Content="Player" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Width="51.444" Height="51" Style="{DynamicResource RoundedButton}" Background="#FF2C6BEB" Grid.Column="1">
-                            <Button.Effect>
-                                <DropShadowEffect BlurRadius="20" Direction="269"/>
-                            </Button.Effect>
-                        </Button>
+                    
+                    <StackPanel x:Name="HomeGoalie" Grid.Column="0" VerticalAlignment="Center">
+
                     </StackPanel>
 
-                    <StackPanel Grid.Column="3" VerticalAlignment="Center">
-                        <Button Content="Player" HorizontalAlignment="Center" Margin="0 0 0 50" VerticalAlignment="Center" Width="51.444" Height="51" Style="{DynamicResource RoundedButton}" Background="#FF2C6BEB" Grid.Column="1">
-                            <Button.Effect>
-                                <DropShadowEffect BlurRadius="20" Direction="269"/>
-                            </Button.Effect>
-                        </Button>
-                        <Button Content="Player" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Width="51.444" Height="51" Style="{DynamicResource RoundedButton}" Background="#FF2C6BEB" Grid.Column="1">
-                            <Button.Effect>
-                                <DropShadowEffect BlurRadius="20" Direction="269"/>
-                            </Button.Effect>
-                        </Button>
-                        <Button Content="Player" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Width="51.444" Height="51" Style="{DynamicResource RoundedButton}" Background="#FF2C6BEB" Grid.Column="1">
-                            <Button.Effect>
-                                <DropShadowEffect BlurRadius="20" Direction="269"/>
-                            </Button.Effect>
-                        </Button>
-                        <Button Content="Player" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Width="51.444" Height="51" Style="{DynamicResource RoundedButton}" Background="#FF2C6BEB" Grid.Column="1">
-                            <Button.Effect>
-                                <DropShadowEffect BlurRadius="20" Direction="269"/>
-                            </Button.Effect>
-                        </Button>
+                    <StackPanel x:Name="HomeDefense" Grid.Column="1" VerticalAlignment="Center">
+
+                    </StackPanel>
+                    <StackPanel x:Name="HomeMid" Grid.Column="2" VerticalAlignment="Center">
+
                     </StackPanel>
 
+                    <StackPanel x:Name="HomeForward"  Grid.Column="3" VerticalAlignment="Center">
+
+                    </StackPanel>
+
+                    <StackPanel x:Name="AwayForward" Grid.Column="4" VerticalAlignment="Center">
+
+                    </StackPanel>
+                    <StackPanel x:Name="AwayMid" Grid.Column="5" VerticalAlignment="Center">
+
+                    </StackPanel>
+
+                    <StackPanel x:Name="AwayDefense" Grid.Column="6" VerticalAlignment="Center">
+
+                    </StackPanel>
+
+                    <StackPanel x:Name="AwayGoalie" Grid.Column="7" VerticalAlignment="Center">
+
+                    </StackPanel>
                 </Grid>
 
             </Grid>
