@@ -76,6 +76,9 @@
     <Compile Include="Views\User controls\MatchUserControl.xaml.cs">
       <DependentUpon>MatchUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\User controls\PlayerUserControl.xaml.cs">
+      <DependentUpon>PlayerUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\User controls\TeamUserControl.xaml.cs">
       <DependentUpon>TeamUserControl.xaml</DependentUpon>
     </Compile>
@@ -108,6 +111,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\User controls\MatchUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\User controls\PlayerUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
