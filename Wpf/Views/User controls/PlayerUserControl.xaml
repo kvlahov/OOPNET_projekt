@@ -220,7 +220,7 @@
             </Grid>
         </Button>
         <Viewbox Grid.Row="1" StretchDirection="UpOnly">
-            <TextBlock x:Name="PlayerName" Style="{StaticResource PlayerNameColor}" Text="{Binding PlayerName}" FontFamily="{Binding FontFamily, ElementName=PlayerNumber}">
+            <TextBlock x:Name="PlayerName" Style="{StaticResource PlayerNameColor}" Text="{Binding ShortenedPlayerName}" FontFamily="{Binding FontFamily, ElementName=PlayerNumber}">
                 <TextBlock.Effect>
                     <DropShadowEffect BlurRadius="2" ShadowDepth="0"/>
                 </TextBlock.Effect>

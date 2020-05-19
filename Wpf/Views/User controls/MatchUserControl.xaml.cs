@@ -23,9 +23,6 @@ namespace Wpf.Views.User_controls
     /// </summary>
     public partial class MatchUserControl : UserControl
     {
-        //public List<PlayerViewModel> HomeTeam { get; set; }
-        //public List<PlayerViewModel> AwayTeam { get; set; }
-
         private Dictionary<Position, Panel> homeTeamColumnPosition;
         private Dictionary<Position, Panel> awayTeamColumnPosition;
 
@@ -37,9 +34,6 @@ namespace Wpf.Views.User_controls
 
         public MatchUserControl(List<PlayerViewModel> homeTeam, List<PlayerViewModel> awayTeam) : this()
         {
-            //HomeTeam = homeTeam;
-            //AwayTeam = awayTeam;
-
             SetHomeTeam(homeTeam);
             SetAwayTeam(awayTeam);
         }
@@ -65,30 +59,33 @@ namespace Wpf.Views.User_controls
 
         public void SetHomeTeam(List<PlayerViewModel> homeTeam)
         {
-            var homeTeamControls = homeTeam.Select(p => new PlayerUserControl(p)).ToList();
-            var random = new Random();
-            homeTeamControls.ForEach(c =>
-            {
-                c.Click += PlayerControlClick;
-                homeTeamColumnPosition[c.Player.Position].Children.Add(c);
-                AnimationUtilities.AnimateProperty(0, 1, c, OpacityProperty, random.Next(1, 5));
-            });
+            AddTeamControls(homeTeam, homeTeamColumnPosition);
         }
 
         public void SetAwayTeam(List<PlayerViewModel> awayTeam)
         {
-            var awayTeamControls = awayTeam.Select(p => new PlayerUserControl(p)).ToList();
-            awayTeamControls.ForEach(c =>
+            AddTeamControls(awayTeam, awayTeamColumnPosition);
+        }
+
+        private void AddTeamControls(List<PlayerViewModel> team, Dictionary<Position, Panel> teamColumnPositions)
+        {
+            var random = new Random();
+
+            var homeTeamControls = team.Select(p => new PlayerUserControl(p)).ToList();
+            homeTeamControls.ForEach(c =>
             {
-                c.Click += PlayerControlClick;
-                awayTeamColumnPosition[c.Player.Position].Children.Add(c);
-                AnimationUtilities.AnimateProperty(0, 1, c, OpacityProperty, 5);
+                c.Click += (sender, e) => ShowPlayerOverviewControl(c);
+                teamColumnPositions[c.Player.Position].Children.Add(c);
+                AnimationUtilities.AnimateProperty(0, 1, c, OpacityProperty, random.Next(1, 5));
             });
         }
 
-        private void PlayerControlClick(object sender, RoutedEventArgs e)
+        private void ShowPlayerOverviewControl(PlayerUserControl control)
         {
-            throw new NotImplementedException();
+            //TODO
+            //load player image
+            var playerOverview = new PlayerOverviewControl(control.Player);
+            PlayerOverviewContainer.Children.Add(playerOverview);
         }
     }
 }

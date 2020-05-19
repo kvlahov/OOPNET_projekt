@@ -137,7 +137,9 @@
 
                     </UniformGrid>
                 </Grid>
-
+                <Grid x:Name="PlayerOverviewContainer" Height="600" Width="400">
+                    
+                </Grid>
             </Grid>
         </Border>
     </ScrollViewer>
