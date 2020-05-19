@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Utilities.Model;
+using Wpf.Utilities;
 using Wpf.ViewModels;
 
 namespace Wpf.Views.User_controls
@@ -22,8 +23,8 @@ namespace Wpf.Views.User_controls
     /// </summary>
     public partial class MatchUserControl : UserControl
     {
-        public List<PlayerViewModel> HomeTeam { get; set; }
-        public List<PlayerViewModel> AwayTeam { get; set; }
+        //public List<PlayerViewModel> HomeTeam { get; set; }
+        //public List<PlayerViewModel> AwayTeam { get; set; }
 
         private Dictionary<Position, Panel> homeTeamColumnPosition;
         private Dictionary<Position, Panel> awayTeamColumnPosition;
@@ -36,12 +37,11 @@ namespace Wpf.Views.User_controls
 
         public MatchUserControl(List<PlayerViewModel> homeTeam, List<PlayerViewModel> awayTeam) : this()
         {
-            HomeTeam = homeTeam;
-            AwayTeam = awayTeam;
+            //HomeTeam = homeTeam;
+            //AwayTeam = awayTeam;
 
             SetHomeTeam(homeTeam);
             SetAwayTeam(awayTeam);
-
         }
 
         private void SetupTeamColumnPositions()
@@ -63,24 +63,32 @@ namespace Wpf.Views.User_controls
             };
         }
 
-        private void SetHomeTeam(List<PlayerViewModel> homeTeam)
+        public void SetHomeTeam(List<PlayerViewModel> homeTeam)
         {
             var homeTeamControls = homeTeam.Select(p => new PlayerUserControl(p)).ToList();
-            homeTeamControls.ForEach(c => {
-                c.Width = 75;
-                c.Height = 75;
+            var random = new Random();
+            homeTeamControls.ForEach(c =>
+            {
+                c.Click += PlayerControlClick;
                 homeTeamColumnPosition[c.Player.Position].Children.Add(c);
+                AnimationUtilities.AnimateProperty(0, 1, c, OpacityProperty, random.Next(1, 5));
             });
-
-            //var btn = new Button();
-            //btn.Content = "Testis";
-            //TeamGrid.Children.Add(btn);
         }
 
-        private void SetAwayTeam(List<PlayerViewModel> awayTeam)
+        public void SetAwayTeam(List<PlayerViewModel> awayTeam)
         {
             var awayTeamControls = awayTeam.Select(p => new PlayerUserControl(p)).ToList();
-            awayTeamControls.ForEach(c => awayTeamColumnPosition[c.Player.Position].Children.Add(c));
+            awayTeamControls.ForEach(c =>
+            {
+                c.Click += PlayerControlClick;
+                awayTeamColumnPosition[c.Player.Position].Children.Add(c);
+                AnimationUtilities.AnimateProperty(0, 1, c, OpacityProperty, 5);
+            });
+        }
+
+        private void PlayerControlClick(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

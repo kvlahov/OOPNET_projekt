@@ -23,9 +23,6 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Border Grid.Column="4" Grid.ColumnSpan="1" BorderThickness="3" Background="Red">
-
-                    </Border>
                     <Viewbox Grid.Column="4" MinWidth="100" MinHeight="100" MaxHeight="150" MaxWidth="150" Grid.ColumnSpan="1" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <Ellipse Grid.Column="3" Stroke="White" Grid.ColumnSpan="3" StrokeThickness="3" Width="100" Height="100" Stretch="UniformToFill"/>
                     </Viewbox>
@@ -109,36 +106,36 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    
-                    <StackPanel x:Name="HomeGoalie" Grid.Column="0" VerticalAlignment="Center">
 
-                    </StackPanel>
+                    <UniformGrid x:Name="HomeGoalie" Grid.Column="0" Columns="1">
 
-                    <StackPanel x:Name="HomeDefense" Grid.Column="1" VerticalAlignment="Center">
+                    </UniformGrid>
 
-                    </StackPanel>
-                    <StackPanel x:Name="HomeMid" Grid.Column="2" VerticalAlignment="Center">
+                    <UniformGrid x:Name="HomeDefense" Columns="1" Grid.Column="1">
 
-                    </StackPanel>
+                    </UniformGrid>
+                    <UniformGrid x:Name="HomeMid" Grid.Column="2" Columns="1">
 
-                    <StackPanel x:Name="HomeForward"  Grid.Column="3" VerticalAlignment="Center">
+                    </UniformGrid>
 
-                    </StackPanel>
+                    <UniformGrid x:Name="HomeForward"  Grid.Column="3" Columns="1">
 
-                    <StackPanel x:Name="AwayForward" Grid.Column="4" VerticalAlignment="Center">
+                    </UniformGrid>
 
-                    </StackPanel>
-                    <StackPanel x:Name="AwayMid" Grid.Column="5" VerticalAlignment="Center">
+                    <UniformGrid x:Name="AwayForward" Grid.Column="4" Columns="1">
 
-                    </StackPanel>
+                    </UniformGrid>
+                    <UniformGrid x:Name="AwayMid" Grid.Column="5" Columns="1">
 
-                    <StackPanel x:Name="AwayDefense" Grid.Column="6" VerticalAlignment="Center">
+                    </UniformGrid>
 
-                    </StackPanel>
+                    <UniformGrid x:Name="AwayDefense" Grid.Column="6" Columns="1">
 
-                    <StackPanel x:Name="AwayGoalie" Grid.Column="7" VerticalAlignment="Center">
+                    </UniformGrid>
 
-                    </StackPanel>
+                    <UniformGrid x:Name="AwayGoalie" Grid.Column="7" Columns="1">
+
+                    </UniformGrid>
                 </Grid>
 
             </Grid>

@@ -60,7 +60,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>StringResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\AnimationUtilities.cs" />
     <Compile Include="Utils.cs" />
+    <Compile Include="ValueConverters\BooleanToStyleConverter.cs" />
     <Compile Include="ViewModels\PlayerViewModel.cs" />
     <Compile Include="ViewModels\TeamOverviewViewModel.cs" />
     <Compile Include="ViewModels\TeamViewModel.cs" />
@@ -76,6 +78,9 @@
     </Compile>
     <Compile Include="Views\User controls\MatchUserControl.xaml.cs">
       <DependentUpon>MatchUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\User controls\PlayerOverviewControl.xaml.cs">
+      <DependentUpon>PlayerOverviewControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\User controls\PlayerUserControl.xaml.cs">
       <DependentUpon>PlayerUserControl.xaml</DependentUpon>
@@ -112,6 +117,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\User controls\MatchUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\User controls\PlayerOverviewControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -16,10 +16,10 @@ namespace Wpf.ViewModels
 			set { SetProperty(ref _playerNumber, value); }
 		}
 
-		private string _playerName;
+		private string _playerName = "blabla";
 		public string PlayerName
 		{
-			get { return _playerName; }
+			get { return GetFormatedPlayerName(_playerName); }
 			set { SetProperty(ref _playerName, value); }
 		}
 
@@ -30,7 +30,7 @@ namespace Wpf.ViewModels
 			set { SetProperty(ref _isCaptain, value); }
 		}
 
-		private bool _isHomeTeam;
+		private bool _isHomeTeam = true;
 		public bool IsHomeTeam
 		{
 			get { return _isHomeTeam; }
@@ -51,5 +51,11 @@ namespace Wpf.ViewModels
 			set { SetProperty(ref _noOfYellowCards, value); }
 		}
 
+		private string GetFormatedPlayerName(string playerName)
+		{
+			var nameArray = playerName.Split(new char[] { ' ' }, 2);
+			var textInfo = System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo;
+			return nameArray.Length == 2 ? $"{nameArray[0].First()}. {textInfo.ToTitleCase(nameArray[1].ToLower())}" : playerName;
+		}
 	}
 }

@@ -9,6 +9,14 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Simple Styles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            <Color x:Key="Red">#e84118</Color>
+            <Color x:Key="White">#f5f6fa</Color>
+            <Color x:Key="Gray">#7f8fa6</Color>
+            <Color x:Key="Blue">#273c75</Color>
+            <Color x:Key="Dark">#353b48</Color>
+            <Color x:Key="Yellow">#fbc531</Color>
+            <Color x:Key="Gold">#e1b12c</Color>
+            <FontFamily x:Key="MainFont">Leelawadee UI</FontFamily>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

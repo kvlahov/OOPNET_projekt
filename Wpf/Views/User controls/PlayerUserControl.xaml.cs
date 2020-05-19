@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -21,6 +22,7 @@ namespace Wpf.Views.User_controls
     /// </summary>
     public partial class PlayerUserControl : UserControl
     {
+        public event RoutedEventHandler Click;
         public PlayerViewModel Player { get; set; }
         public PlayerUserControl()
         {
@@ -31,6 +33,13 @@ namespace Wpf.Views.User_controls
         {
             Player = viewModel;
             DataContext = Player;
+
+            BtnPlayer.Click += BtnPlayer_Click;
+        }
+
+        private void BtnPlayer_Click(object sender, RoutedEventArgs e)
+        {
+            Click?.Invoke(sender, e);
         }
     }
 }
