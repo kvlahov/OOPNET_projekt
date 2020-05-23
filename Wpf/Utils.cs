@@ -1,4 +1,6 @@
-﻿using Utilities.Helpers;
+﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using Utilities.Helpers;
 using Utilities.POCO;
 
 namespace Wpf
@@ -27,6 +29,12 @@ namespace Wpf
             settings.ApiUrl = apiUrl;
 
             settings.FavoriteTeam = preferences.FavoriteTeam;
+        }
+
+        public static TValue GetValueIfExists<TKey, TValue>(this IDictionary<TKey, TValue> dict, TKey key, TValue defaultValue)
+        {
+            var keyExists = dict.TryGetValue(key, out TValue dictValue);
+            return keyExists ? dictValue : defaultValue;
         }
     }
 }

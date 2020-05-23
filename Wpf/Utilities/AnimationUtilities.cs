@@ -11,7 +11,7 @@ namespace Wpf.Utilities
     static class AnimationUtilities
     {
         private static Storyboard storyBoard = new Storyboard();
-        public static void AnimateProperty(double from, double to, DependencyObject target, object property, int duration)
+        public static void AnimateProperty(double from, double to, DependencyObject target, object property, float duration)
         {
             var doubleAnimation = new DoubleAnimation
             {
@@ -27,6 +27,24 @@ namespace Wpf.Utilities
             Storyboard.SetTargetProperty(doubleAnimation, new PropertyPath(property));
 
             storyBoard.Begin();
+
+        }
+
+        public static AnimationTimeline PrepareAnimation(double from, double to, DependencyObject target, object property, float duration)
+        {
+            var doubleAnimation = new DoubleAnimation
+            {
+                From = from,
+                To = to,
+                EasingFunction = new CircleEase(),
+                Duration = new Duration(TimeSpan.FromSeconds(duration)),
+
+            };
+
+            Storyboard.SetTarget(doubleAnimation, target);
+            Storyboard.SetTargetProperty(doubleAnimation, new PropertyPath(property));
+
+            return doubleAnimation;
 
         }
     }

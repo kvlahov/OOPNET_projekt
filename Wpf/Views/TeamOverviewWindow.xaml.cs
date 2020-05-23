@@ -101,6 +101,7 @@ namespace Wpf.Views
             _apiUrl = Settings.Default.ApiUrl;
 
             await LoadTeams();
+            BtnShowField.IsEnabled = true;
         }
         private async void ViewDetails_Clicked(object sender, RoutedEventArgs e)
         {
@@ -116,9 +117,10 @@ namespace Wpf.Views
         }
         #endregion
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void BtnShowField_Click(object sender, RoutedEventArgs e)
         {
-            var dialog = new TestMatchControl();
+            var match = await DataHelper.GetMatchInformation(_apiUrl,TeamOverviewViewModel.SelectedFavoriteTeam, TeamOverviewViewModel.SelectedOpposingTeam);
+            var dialog = new TestMatchControl(match);
             dialog.ShowDialog();
         }
     }

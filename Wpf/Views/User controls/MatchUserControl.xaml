@@ -137,7 +137,7 @@
 
                     </UniformGrid>
                 </Grid>
-                <Grid x:Name="PlayerOverviewContainer" Height="600" Width="400">
+                <Grid x:Name="PlayerOverviewContainer" Height="600" Width="500">
                     
                 </Grid>
             </Grid>

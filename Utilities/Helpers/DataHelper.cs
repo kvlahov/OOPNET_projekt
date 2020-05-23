@@ -108,5 +108,24 @@ namespace Utilities.Helpers
                 matchPairings[secondTeam] = new SortedSet<Team> { firstTeam };
             }
         }
+
+        public static async Task<Match> GetMatchInformation(string leagueUrl, Team firstTeam, Team secondTeam)
+        {
+            var helper = new ApiHelper(leagueUrl)
+            {
+                FilterByCode = true,
+                CountryCode = firstTeam.FifaCode
+            };
+
+            var matches = await helper.GetDataList<Match>();
+
+            bool isHomeTeam(Match match, Team team) => match.HomeTeamCountry == team.Country;
+            bool isAwayTeam(Match match, Team team) => match.AwayTeamCountry == team.Country;
+
+            bool matchCondition(Match m) => (isHomeTeam(m, firstTeam) && isAwayTeam(m, secondTeam))
+                || (isHomeTeam(m, secondTeam) && isAwayTeam(m, firstTeam));
+
+            return matches.FirstOrDefault(m => matchCondition(m));
+        }
     }
 }

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Utilities.Helpers;
+using Utilities.Model;
 using Wpf.Properties;
 using Wpf.ViewModels;
 using Wpf.Views.User_controls;
@@ -23,10 +24,13 @@ namespace Wpf.Views
     /// </summary>
     public partial class TestMatchControl : Window
     {
-        public TestMatchControl()
+        public Match Match { get; private set; }
+        public TestMatchControl(Match match)
         {
+            Match = match;
             InitializeComponent();
             SetupMatchControl();
+
         }
 
         private async void SetupMatchControl()
@@ -39,34 +43,61 @@ namespace Wpf.Views
 
             Container.Children.Add(matchControl);
 
-            var apiUrl = Settings.Default.ApiUrl;
-            var matches = await DataHelper.GetMatches(apiUrl);
+            var playerStats = GetPlayerStats(Match);
 
-            var rnd = new Random();
-            var randomMatch = matches.ElementAt(rnd.Next(0, matches.Count()));
-
-            var homeTeam = randomMatch.HomeTeamStatistics.StartingEleven.Select(p => new PlayerViewModel
+            var homeTeam = Match.HomeTeamStatistics.StartingEleven.Select(p => new PlayerViewModel(p)
             {
-                PlayerName = p.Name,
-                Position = p.Position,
-                PlayerNumber = (int)p.ShirtNumber,
-                IsCaptain = p.Captain,
                 IsHomeTeam = true,
-                NoOfYellowCards = rnd.Next(0, 3)
+                NoOfYellowCards = playerStats[p.Name].yellowCards,
+                NoOfGoals = playerStats[p.Name].goals
             }).ToList();
 
-            var awayTeam = randomMatch.AwayTeamStatistics.StartingEleven.Select(p => new PlayerViewModel
+            var awayTeam = Match.AwayTeamStatistics.StartingEleven.Select(p => new PlayerViewModel(p)
             {
-                PlayerName = p.Name,
-                Position = p.Position,
-                PlayerNumber = (int)p.ShirtNumber,
-                IsCaptain = p.Captain,
                 IsHomeTeam = false,
-                NoOfYellowCards = rnd.Next(0, 5)
+                NoOfYellowCards = playerStats[p.Name].yellowCards,
+                NoOfGoals = playerStats[p.Name].goals
             }).ToList();
 
             matchControl.SetHomeTeam(homeTeam);
             matchControl.SetAwayTeam(awayTeam);
+        }
+
+        private Dictionary<string, (int yellowCards, int goals)> GetPlayerStats(Match match)
+        {
+            var events = match.HomeTeamEvents.Concat(match.AwayTeamEvents);
+            
+            var goalTypes = new TypeOfEvent[] { TypeOfEvent.Goal, TypeOfEvent.GoalPenalty, TypeOfEvent.GoalOwn };
+            var playerGoals = GetEventOccurence(goalTypes, events);
+
+            var yellowCardTypes = new TypeOfEvent[] { TypeOfEvent.YellowCard, TypeOfEvent.YellowCardSecond };
+            var playerYellowCards = GetEventOccurence(yellowCardTypes, events);
+
+            var result = match.HomeTeamStatistics.StartingEleven
+                .Concat(match.AwayTeamStatistics.StartingEleven)
+                .ToDictionary(p => p.Name, p => (playerYellowCards.GetValueIfExists(p.Name, 0), playerGoals.GetValueIfExists(p.Name, 0)));
+
+            return result;
+        }
+
+        private static Dictionary<string, int> GetEventOccurence(IEnumerable<TypeOfEvent> typeOfEvents, IEnumerable<TeamEvent> events)
+        {
+            var playerGoals = new Dictionary<string, int>();
+            events
+                .Where(e => typeOfEvents.Contains(e.TypeOfEvent))
+                .ToList()
+                .ForEach(e =>
+                {
+                    if (playerGoals.ContainsKey(e.Player))
+                    {
+                        playerGoals[e.Player]++;
+                    }
+                    else
+                    {
+                        playerGoals.Add(e.Player, 1);
+                    }
+                });
+            return playerGoals;
         }
     }
 }
