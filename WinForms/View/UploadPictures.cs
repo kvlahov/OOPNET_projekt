@@ -22,9 +22,14 @@ namespace WinForms.View
         private Dictionary<string, string> playersImagesPath;
         private Dictionary<string, Image> originalFilesAndImages;
 
+        private IEnumerable<Player> allPlayers;
+        private IEnumerable<Player> startingEleven;
+
         public UploadPictures()
         {
             InitializeComponent();
+            allPlayers = Enumerable.Empty<Player>();
+            startingEleven = Enumerable.Empty<Player>();
         }
 
         private async void SetInitialStateAsync()
@@ -34,14 +39,16 @@ namespace WinForms.View
             visibleImageIndex = -1;
             DisableControls();
 
-            var helper = new ApiHelper(settings.ApiUrl)
-            {
-                FilterByCode = true,
-                CountryCode = settings.FavoriteTeam.FifaCode
-            };
+            var allPlayersTask = DataHelper.GetAllPlayersAsync(settings.ApiUrl, settings.FavoriteTeam.FifaCode);
+            var startingElevenTask = DataHelper.GetStartingEleven(settings.ApiUrl, settings.FavoriteTeam.FifaCode);
 
-            var players = await DataHelper.GetAllPlayersAsync(helper);
-            CbPlayers.Items.AddRange(players.ToArray());
+            var res = await Task.WhenAll(allPlayersTask, startingElevenTask);
+            allPlayers = res[0];
+            startingEleven = res[1];
+
+            CbStartingEleven.Enabled = true;
+
+            CbPlayers.Items.AddRange(allPlayers.ToArray());
 
             //disable all buttons untill images are uploaded
         }
@@ -109,7 +116,7 @@ namespace WinForms.View
         private void BtnImageRight_Click(object sender, EventArgs e)
         {
             PbPlayer.Image = originalFilesAndImages.Values.ToList()[++visibleImageIndex];
-            
+
             ImageChanged();
 
             //disable if last image
@@ -125,7 +132,7 @@ namespace WinForms.View
         private void ImageChanged()
         {
             var selectedImagePath = originalFilesAndImages.Keys.ToList()[visibleImageIndex];
-            if(playersImagesPath.ContainsValue(selectedImagePath))
+            if (playersImagesPath.ContainsValue(selectedImagePath))
             {
                 var playerName = playersImagesPath.First(kv => kv.Value == selectedImagePath).Key;
                 CbPlayers.SelectedItem = CbPlayers.Items.Cast<Player>().First(p => p.Name == playerName);
@@ -149,7 +156,7 @@ namespace WinForms.View
             if (playersImagesPath.ContainsKey(playerName))
             {
                 bool shouldUpdate = ShowAlert(playerName);
-                if(shouldUpdate)
+                if (shouldUpdate)
                 {
                     playersImagesPath[playerName] = imagePath;
                 }
@@ -177,12 +184,38 @@ namespace WinForms.View
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
-            playersImagesPath.ToList().ForEach(kv => FileHelper.CopyImageFromPath(kv.Value, kv.Key.ToLower().Replace(" ", "_")));
+            var favoriteTeamCode = settings.FavoriteTeam.FifaCode;
+            var league = settings.League;
+
+            try
+            {
+                playersImagesPath.ToList().ForEach(kv => FileHelper.CopyImageFromPath(kv.Value, kv.Key.ToLower().Replace(" ", "_"), league, favoriteTeamCode));
+                MessageBox.Show("Succesfully saved", "Success", MessageBoxButtons.OK);
+                Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error while saving", "Error", MessageBoxButtons.OK);
+                throw;
+            }
         }
 
         private void UploadPictures_Load(object sender, EventArgs e)
         {
             SetInitialStateAsync();
+        }
+
+        private void CbStartingEleven_CheckedChanged(object sender, EventArgs e)
+        {
+            CbPlayers.Items.Clear();
+            if (CbStartingEleven.Checked)
+            {
+                CbPlayers.Items.AddRange(startingEleven.ToArray());
+            } 
+            else
+            {
+                CbPlayers.Items.AddRange(allPlayers.ToArray());
+            }
         }
     }
 }

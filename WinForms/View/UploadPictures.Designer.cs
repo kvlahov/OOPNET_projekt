@@ -36,6 +36,7 @@
             this.BtnImageLeft = new System.Windows.Forms.Button();
             this.BtnImageRight = new System.Windows.Forms.Button();
             this.BtnTagPlayer = new System.Windows.Forms.Button();
+            this.CbStartingEleven = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.PbPlayer)).BeginInit();
             this.SuspendLayout();
             // 
@@ -95,7 +96,7 @@
             // 
             // BtnImageLeft
             // 
-            this.BtnImageLeft.Location = new System.Drawing.Point(67, 328);
+            this.BtnImageLeft.Location = new System.Drawing.Point(67, 374);
             this.BtnImageLeft.Name = "BtnImageLeft";
             this.BtnImageLeft.Size = new System.Drawing.Size(63, 57);
             this.BtnImageLeft.TabIndex = 5;
@@ -105,7 +106,7 @@
             // 
             // BtnImageRight
             // 
-            this.BtnImageRight.Location = new System.Drawing.Point(136, 328);
+            this.BtnImageRight.Location = new System.Drawing.Point(136, 374);
             this.BtnImageRight.Name = "BtnImageRight";
             this.BtnImageRight.Size = new System.Drawing.Size(63, 57);
             this.BtnImageRight.TabIndex = 6;
@@ -115,7 +116,7 @@
             // 
             // BtnTagPlayer
             // 
-            this.BtnTagPlayer.Location = new System.Drawing.Point(54, 259);
+            this.BtnTagPlayer.Location = new System.Drawing.Point(54, 305);
             this.BtnTagPlayer.Name = "BtnTagPlayer";
             this.BtnTagPlayer.Size = new System.Drawing.Size(161, 43);
             this.BtnTagPlayer.TabIndex = 7;
@@ -123,11 +124,24 @@
             this.BtnTagPlayer.UseVisualStyleBackColor = true;
             this.BtnTagPlayer.Click += new System.EventHandler(this.BtnTagPlayer_Click);
             // 
+            // CbStartingEleven
+            // 
+            this.CbStartingEleven.AutoSize = true;
+            this.CbStartingEleven.Enabled = false;
+            this.CbStartingEleven.Location = new System.Drawing.Point(21, 244);
+            this.CbStartingEleven.Name = "CbStartingEleven";
+            this.CbStartingEleven.Size = new System.Drawing.Size(235, 33);
+            this.CbStartingEleven.TabIndex = 8;
+            this.CbStartingEleven.Text = "Only starting eleven";
+            this.CbStartingEleven.UseVisualStyleBackColor = true;
+            this.CbStartingEleven.CheckedChanged += new System.EventHandler(this.CbStartingEleven_CheckedChanged);
+            // 
             // UploadPictures
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 29F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1004, 715);
+            this.Controls.Add(this.CbStartingEleven);
             this.Controls.Add(this.BtnTagPlayer);
             this.Controls.Add(this.BtnImageRight);
             this.Controls.Add(this.BtnImageLeft);
@@ -156,5 +170,6 @@
         private System.Windows.Forms.Button BtnImageLeft;
         private System.Windows.Forms.Button BtnImageRight;
         private System.Windows.Forms.Button BtnTagPlayer;
+        private System.Windows.Forms.CheckBox CbStartingEleven;
     }
 }

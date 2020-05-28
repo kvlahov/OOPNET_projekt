@@ -18,9 +18,20 @@ namespace Wpf.ViewModels
         public Team SelectedFavoriteTeam
         {
             get { return _selectedFavoriteTeam; }
-            set {
+            set
+            {
                 FillOpposingTeams(value);
-                SetProperty(ref _selectedFavoriteTeam, value); 
+                SetProperty(ref _selectedFavoriteTeam, value);
+            }
+        }
+
+        private bool _dataLoaded = false;
+        public bool IsDataLoaded
+        {
+            get { return _dataLoaded; }
+            set
+            {
+                SetProperty(ref _dataLoaded, value);
             }
         }
 

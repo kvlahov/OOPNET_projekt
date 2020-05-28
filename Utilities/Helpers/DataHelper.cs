@@ -1,23 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.UI.WebControls;
 using Utilities.Model;
 
 namespace Utilities.Helpers
 {
     public class DataHelper
     {
-        public static async Task<IEnumerable<Player>> GetAllPlayersAsync(ApiHelper apiHelper)
+        public static async Task<IEnumerable<Player>> GetAllPlayersAsync(string leagueUrl, string fifaCode)
         {
-            var matches = await apiHelper.GetDataList<Match>();
-            var countryCode = apiHelper.CountryCode;
+            var helper = new ApiHelper(leagueUrl)
+            {
+                FilterByCode = true,
+                CountryCode = fifaCode
+            };
+
+            var matches = await helper.GetDataList<Match>();
 
             var team = matches.Select(m =>
             {
-                if (m.HomeTeam.Code == countryCode)
+                if (m.HomeTeam.Code == fifaCode)
                 {
                     return m.HomeTeamStatistics;
                 }
@@ -28,6 +35,31 @@ namespace Utilities.Helpers
             }).First();
 
             return team.StartingEleven.Union(team.Substitutes);
+        }
+
+        public static async Task<IEnumerable<Player>> GetStartingEleven(string leagueUrl, string fifaCode)
+        {
+            var helper = new ApiHelper(leagueUrl)
+            {
+                FilterByCode = true,
+                CountryCode = fifaCode
+            };
+
+            var matches = await helper.GetDataList<Match>();
+
+            var team = matches.Select(m =>
+            {
+                if (m.HomeTeam.Code == fifaCode)
+                {
+                    return m.HomeTeamStatistics;
+                }
+                else
+                {
+                    return m.AwayTeamStatistics;
+                }
+            }).First();
+
+            return team.StartingEleven;
         }
 
         public static async Task<TeamResult> GetTeamResult(string leagueUrl, string fifaCode)

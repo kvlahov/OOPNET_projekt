@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Wpf.Views.User_controls"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
              mc:Ignorable="d"
              HorizontalAlignment="Stretch"
 	         VerticalAlignment="Stretch">
@@ -138,7 +139,29 @@
                     </UniformGrid>
                 </Grid>
                 <Grid x:Name="PlayerOverviewContainer" Height="600" Width="500">
-                    
+
+                </Grid>
+                
+                <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="106.5" Margin="100,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="500"/>
+                <Button Padding="20" HorizontalAlignment="Left" Height="64" Margin="327,69.53,0,0" VerticalAlignment="Top" Width="59">
+                    <fa:ImageAwesome Icon="AngleDoubleDown"></fa:ImageAwesome>
+                </Button>
+
+                <Grid Name="LoadingScreen" d:IsHidden="True">
+                    <Grid.Background>
+                        <SolidColorBrush Color="#7F353B48"/>
+                    </Grid.Background>
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock Text="Loading..." FontSize="48" FontStyle="Italic" FontFamily="{DynamicResource MainFont}">
+                            <TextBlock.Foreground>
+                                <SolidColorBrush Color="{DynamicResource Yellow}"/>
+                            </TextBlock.Foreground></TextBlock>
+                        <fa:ImageAwesome Name="Loader" Icon="CircleOutlineNotch" Spin="True" SpinDuration="2" Height="40" >
+                            <fa:ImageAwesome.Foreground>
+                                <SolidColorBrush Color="{DynamicResource Gold}"/>
+                            </fa:ImageAwesome.Foreground>
+                        </fa:ImageAwesome>
+                    </StackPanel>
                 </Grid>
             </Grid>
         </Border>

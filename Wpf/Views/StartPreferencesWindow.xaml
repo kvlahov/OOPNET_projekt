@@ -42,7 +42,7 @@
 
                 <GroupBox Header="{x:Static p:StringResources.appearance}" Height="Auto">
                     <StackPanel>
-                        <RadioButton GroupName="Appearance" Content="{x:Static p:StringResources.fullScreen}"/>
+                        <RadioButton GroupName="Appearance" Content="{x:Static p:StringResources.fullScreen}" IsChecked="True"/>
 
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -70,7 +70,7 @@
                     </StackPanel>
                 </GroupBox>
             </StackPanel>
-            <Button Grid.Row="1" Padding="5" Content="{x:Static p:StringResources.save}"/>
+            <Button Grid.Row="1" Padding="5" Content="{x:Static p:StringResources.save}" Click="BtnSave_Click"/>
         </Grid>
 
     </Border>

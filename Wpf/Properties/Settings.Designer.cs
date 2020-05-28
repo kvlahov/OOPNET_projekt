@@ -26,7 +26,6 @@ namespace Wpf.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("en")]
         public string ApiUrl {
             get {
                 return ((string)(this["ApiUrl"]));
@@ -38,7 +37,7 @@ namespace Wpf.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("en")]
         public string Language {
             get {
                 return ((string)(this["Language"]));
@@ -56,6 +55,17 @@ namespace Wpf.Properties {
             }
             set {
                 this["FavoriteTeam"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::Utilities.POCO.Leagues League {
+            get {
+                return ((global::Utilities.POCO.Leagues)(this["League"]));
+            }
+            set {
+                this["League"] = value;
             }
         }
     }

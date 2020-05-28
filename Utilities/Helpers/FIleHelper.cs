@@ -57,12 +57,9 @@ namespace Utilities.Helpers
             return ReadFromFile<T>(PreferencesPath);
         }
 
-        public static string GetImagesPath()
+        public static string GetImagesPath(Leagues league, string teamCode)
         {
             var imagesFolder = GlobalResources.ImagesFolder;
-            var league = (Leagues)ReadPreferences<StartPreferences>().LeagueId;
-            var teamCode = ReadPreferences<StartPreferences>().FavoriteTeam.FifaCode;
-
             var leagueSubfolder = league == Leagues.MenLeague ? Leagues.MenLeague.ToString() : Leagues.WomanLeague.ToString();
 
             var path = Path.Combine(SolutionPath, imagesFolder, leagueSubfolder, teamCode);
@@ -81,10 +78,10 @@ namespace Utilities.Helpers
                 .ToList();
         }
 
-        public static void CopyImageFromPath(string sourcePath, string fileNameWithoutExtension)
+        public static void CopyImageFromPath(string sourcePath, string fileNameWithoutExtension, Leagues league, string teamCode)
         {
             var extension = Path.GetExtension(sourcePath);
-            var destionationPath = Path.Combine(GetImagesPath(), $"{fileNameWithoutExtension}{extension}");
+            var destionationPath = Path.Combine(GetImagesPath(league, teamCode), $"{fileNameWithoutExtension}{extension}");
 
             File.Copy(sourcePath, destionationPath, true);
         }

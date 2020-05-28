@@ -17,6 +17,7 @@ using Utilities.Helpers;
 using Utilities.Model;
 using Utilities.POCO;
 using Wpf.Properties;
+using Wpf.View;
 using Wpf.ViewModels;
 using Wpf.Views.User_controls;
 
@@ -78,13 +79,19 @@ namespace Wpf.Views
 
         private async Task LoadTeams()
         {
-            var pairingsDict = await DataHelper.GetMatchPairings(_apiUrl);
+            var matchPairingsTask = DataHelper.GetMatchPairings(_apiUrl);
+            var allTeamsTask = DataHelper.GetTeams(_apiUrl);
+
+            var pairingsDict = await matchPairingsTask;
             TeamOverviewViewModel.TeamMatches = pairingsDict;
 
-            var teams = await DataHelper.GetTeams(_apiUrl);
+            var teams = await allTeamsTask;
             teams.OrderBy(t => t.Country).ToList().ForEach(TeamOverviewViewModel.AllTeams.Add);
 
             TeamOverviewViewModel.SelectedFavoriteTeam = Settings.Default.FavoriteTeam;
+            TeamOverviewViewModel.IsDataLoaded = true;
+
+            //Loader.Visibility = Visibility.Collapsed;
         }
 
         private void SetAppSettings()
@@ -117,10 +124,15 @@ namespace Wpf.Views
         }
         #endregion
 
-        private async void BtnShowField_Click(object sender, RoutedEventArgs e)
+        private void BtnShowField_Click(object sender, RoutedEventArgs e)
         {
-            var match = await DataHelper.GetMatchInformation(_apiUrl,TeamOverviewViewModel.SelectedFavoriteTeam, TeamOverviewViewModel.SelectedOpposingTeam);
-            var dialog = new TestMatchControl(match);
+            var dialog = new TestMatchControl(_apiUrl, TeamOverviewViewModel.SelectedFavoriteTeam, TeamOverviewViewModel.SelectedOpposingTeam);
+            dialog.ShowDialog();
+        }
+
+        private void BtnSettings_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new StartPreferencesWindow();
             dialog.ShowDialog();
         }
     }

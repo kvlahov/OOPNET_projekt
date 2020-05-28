@@ -24,17 +24,10 @@ namespace Wpf.Views
     /// </summary>
     public partial class TestMatchControl : Window
     {
-        public Match Match { get; private set; }
-        public TestMatchControl(Match match)
+        public TestMatchControl(string leagueUrl, Team firstTeam, Team secondTeam)
         {
-            Match = match;
             InitializeComponent();
-            SetupMatchControl();
 
-        }
-
-        private async void SetupMatchControl()
-        {
             var matchControl = new MatchUserControl
             {
                 HorizontalAlignment = HorizontalAlignment.Stretch,
@@ -43,30 +36,44 @@ namespace Wpf.Views
 
             Container.Children.Add(matchControl);
 
-            var playerStats = GetPlayerStats(Match);
+            Task.Run(async () =>
+            {
+                var match = await DataHelper.GetMatchInformation(leagueUrl, firstTeam, secondTeam);
+                SetupMatchControl(match, matchControl);
+            });
+        }
 
-            var homeTeam = Match.HomeTeamStatistics.StartingEleven.Select(p => new PlayerViewModel(p)
+        private void SetupMatchControl(Match match, MatchUserControl matchControl)
+        {
+            var playerStats = GetPlayerStats(match);
+
+            var homeTeam = match.HomeTeamStatistics.StartingEleven.Select(p => new PlayerViewModel(p)
             {
                 IsHomeTeam = true,
                 NoOfYellowCards = playerStats[p.Name].yellowCards,
                 NoOfGoals = playerStats[p.Name].goals
             }).ToList();
 
-            var awayTeam = Match.AwayTeamStatistics.StartingEleven.Select(p => new PlayerViewModel(p)
+            var awayTeam = match.AwayTeamStatistics.StartingEleven.Select(p => new PlayerViewModel(p)
             {
                 IsHomeTeam = false,
                 NoOfYellowCards = playerStats[p.Name].yellowCards,
                 NoOfGoals = playerStats[p.Name].goals
             }).ToList();
 
-            matchControl.SetHomeTeam(homeTeam);
-            matchControl.SetAwayTeam(awayTeam);
+
+            Dispatcher.Invoke(() =>
+            {
+                matchControl.SetPlayerImages(match.HomeTeam.Code, match.AwayTeam.Code);
+                matchControl.SetHomeTeam(homeTeam);
+                matchControl.SetAwayTeam(awayTeam);
+            });
         }
 
         private Dictionary<string, (int yellowCards, int goals)> GetPlayerStats(Match match)
         {
             var events = match.HomeTeamEvents.Concat(match.AwayTeamEvents);
-            
+
             var goalTypes = new TypeOfEvent[] { TypeOfEvent.Goal, TypeOfEvent.GoalPenalty, TypeOfEvent.GoalOwn };
             var playerGoals = GetEventOccurence(goalTypes, events);
 

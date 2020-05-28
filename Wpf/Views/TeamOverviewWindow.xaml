@@ -4,24 +4,112 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:p = "clr-namespace:Wpf.Resources"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
         xmlns:local="clr-namespace:Wpf.Views"
         xmlns:vm="clr-namespace:Wpf.ViewModels"
         mc:Ignorable="d"
         Title="{x:Static p:StringResources.teamOverview}" Height="450" Width="500" Loaded="Window_Loaded">
-    <Border Padding="10 20">
+    <Window.Background>
+        <SolidColorBrush Color="{DynamicResource White}"/>
+    </Window.Background>
+    <Window.Resources>
+        <Style x:Name="DisableWhileDataLoads" TargetType="Button">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsDataLoaded}" Value="true">
+                    <Setter Property="IsEnabled" Value="true"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <ControlTemplate x:Key="SettingsButton" TargetType="{x:Type ButtonBase}">
+            <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="Button.IsDefaulted" Value="True">
+                    <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" TargetName="border">
+                        <Setter.Value>
+                            <SolidColorBrush Color="{StaticResource Dark}"/>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="BorderBrush" TargetName="border">
+                        <Setter.Value>
+                            <SolidColorBrush Color="{DynamicResource Dark}"/>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" TargetName="border" Value="#FFC4E5F6"/>
+                    <Setter Property="BorderBrush" TargetName="border" Value="#FF2C628B"/>
+                </Trigger>
+                <Trigger Property="ToggleButton.IsChecked" Value="True">
+                    <Setter Property="Background" TargetName="border" Value="#FFBCDDEE"/>
+                    <Setter Property="BorderBrush" TargetName="border" Value="#FF245A83"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" TargetName="border" Value="#FFF4F4F4"/>
+                    <Setter Property="BorderBrush" TargetName="border" Value="#FFADB2B5"/>
+                    <Setter Property="Foreground" Value="#FF838383"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+        <!--<SolidColorBrush x:Key="{x:Static SystemColors.ControlTextBrushKey }" Color="{StaticResource Wh}"/>-->
+    </Window.Resources>
+    <Window.DataContext>
+        <vm:TeamOverviewViewModel/>
+    </Window.DataContext>
+    <Border Padding="10 0 10 20">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Grid>
+            <StackPanel HorizontalAlignment="Right" Margin="0 10">
+                <Button x:Name="BtnSettings" Cursor="Hand" Template="{DynamicResource SettingsButton}" Click="BtnSettings_Click">
+                    <Button.Background>
+                        <SolidColorBrush Color="{DynamicResource White}"/>
+                    </Button.Background>
+                    <Button.BorderBrush>
+                        <SolidColorBrush Color="{DynamicResource White}"/>
+                    </Button.BorderBrush>
+                    <fa:ImageAwesome x:Name="imageAwesome" Icon="Cog" Width="20">
+                        <fa:ImageAwesome.Style>
+                            <Style TargetType="fa:ImageAwesome">
+                                <Setter Property="Foreground">
+                                    <Setter.Value>
+                                        <SolidColorBrush Color="{DynamicResource Dark}"/>
+
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Foreground">
+                                            <Setter.Value>
+                                                <SolidColorBrush Color="{DynamicResource White}"/>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </fa:ImageAwesome.Style>
+                    </fa:ImageAwesome>
+                </Button>
+            </StackPanel>
+            <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Margin="0 0 5 0">
-                    <TextBlock Text="{x:Static p:StringResources.favoriteTeam}"></TextBlock>
+                    <TextBlock Text="{x:Static p:StringResources.favoriteTeam}">
+                        <TextBlock.Foreground>
+                            <SolidColorBrush Color="#353b48"/>
+                        </TextBlock.Foreground></TextBlock>
                     <ComboBox Name="CbFavoriteTeam" 
                                ItemsSource="{Binding AllTeams, Mode=OneWay}"
                                SelectedItem="{Binding SelectedFavoriteTeam}">
@@ -36,8 +124,35 @@
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
-                    <Button Tag="favorite" Padding="5" Margin="0 5 0 0" Content="{x:Static p:StringResources.viewDetails}" Click="ViewDetails_Clicked"/>
+                    <Button Tag="favorite" Padding="5" Margin="0 5 0 0" Content="{x:Static p:StringResources.viewDetails}" Click="ViewDetails_Clicked" IsEnabled="{Binding IsDataLoaded}">
+                        <Button.BorderBrush>
+                            <SolidColorBrush Color="{DynamicResource Dark}"/>
+                        </Button.BorderBrush>
+                        <Button.Background>
+                            <SolidColorBrush Color="{DynamicResource Dark}"/>
+                        </Button.Background>
+                        <Button.Foreground>
+                            <SolidColorBrush Color="{DynamicResource White}"/>
+                        </Button.Foreground>
+                    </Button>
                 </StackPanel>
+
+                <fa:ImageAwesome Name="Loader" Grid.Row="1" Grid.Column="1" Icon="CircleOutlineNotch" Spin="True" SpinDuration="2" Height="30" >
+                    <fa:ImageAwesome.Foreground>
+                        <SolidColorBrush Color="{DynamicResource Dark}"/>
+
+                    </fa:ImageAwesome.Foreground>
+                    <fa:ImageAwesome.Style>
+                        <Style TargetType="fa:ImageAwesome">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsDataLoaded}" Value="true">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </fa:ImageAwesome.Style>
+                </fa:ImageAwesome>
+
                 <StackPanel Margin="5 0 0 0" Grid.Column="2">
                     <TextBlock Text="{x:Static p:StringResources.opposingTeam}"></TextBlock>
                     <ComboBox Name="CbOpposingTeam"
@@ -56,12 +171,22 @@
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
-                    <Button Tag="opposing" Padding="5" Margin="0 5 0 0" Content="{x:Static p:StringResources.viewDetails}" Click="ViewDetails_Clicked"/>
+                    <Button Tag="opposing" Padding="5" Margin="0 5 0 0" Content="{x:Static p:StringResources.viewDetails}" Click="ViewDetails_Clicked" IsEnabled="{Binding IsDataLoaded}">
+                        <Button.BorderBrush>
+                            <SolidColorBrush Color="{DynamicResource Dark}"/>
+                        </Button.BorderBrush>
+                        <Button.Foreground>
+                            <SolidColorBrush Color="{DynamicResource White}"/>
+                        </Button.Foreground>
+                        <Button.Background>
+                            <SolidColorBrush Color="{DynamicResource Dark}"/>
+                        </Button.Background>
+                    </Button>
                 </StackPanel>
-                
+
             </Grid>
-            <Grid Grid.Row="1" Margin="0 10 0 0">
-                <Button x:Name="BtnShowField" Content="Show Field" HorizontalAlignment="Left" Margin="62,28,0,0" VerticalAlignment="Top" Width="107" Height="35" Click="BtnShowField_Click" IsEnabled="False"/>
+            <Grid Grid.Row="2" Margin="0 10 0 0">
+                <Button x:Name="BtnShowField" Content="Show Field" HorizontalAlignment="Left" Margin="62,28,0,0" VerticalAlignment="Top" Width="107" Height="35" Click="BtnShowField_Click" IsEnabled="{Binding IsDataLoaded}"/>
             </Grid>
 
         </Grid>

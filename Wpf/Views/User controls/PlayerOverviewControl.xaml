@@ -71,7 +71,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <Storyboard x:Key="changeColor" AutoReverse="True">
+        <Storyboard x:Key="changeColor">
             <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="BtnClose">
                 <EasingColorKeyFrame KeyTime="0" Value="{StaticResource Gray}">
                     <EasingColorKeyFrame.EasingFunction>
@@ -85,13 +85,22 @@
                 </EasingColorKeyFrame>
             </ColorAnimationUsingKeyFrames>
         </Storyboard>
+        <Storyboard x:Key="changeColor_Reverse">
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="BtnClose">
+                <SplineColorKeyFrame KeyTime="0" Value="#f5f6fa"/>
+                <SplineColorKeyFrame KeyTime="0:0:0.3" Value="#7f8fa6"/>
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
     </UserControl.Resources>
     <UserControl.DataContext>
         <ViewModels:PlayerViewModel/>
     </UserControl.DataContext>
     <UserControl.Triggers>
         <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="BtnClose">
-            <BeginStoryboard Storyboard="{StaticResource changeColor}"/>
+            <BeginStoryboard x:Name="changeColor_BeginStoryboard" Storyboard="{StaticResource changeColor}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="UIElement.MouseLeave" SourceName="BtnClose">
+            <BeginStoryboard x:Name="changeColor_Reverse_BeginStoryboard" Storyboard="{StaticResource changeColor_Reverse}"/>
         </EventTrigger>
     </UserControl.Triggers>
     <UserControl.Background>
@@ -103,7 +112,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            
+
             <Button x:Name="BtnClose" Style="{DynamicResource CloseButton}" HorizontalAlignment="Right" VerticalAlignment="Center" Click="BtnClose_Click" Width="30" Cursor="Hand"/>
 
             <Grid Grid.Row="1">
@@ -120,7 +129,7 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <Image Grid.RowSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="emptyPlayer.png"/>
+                <Image Name="PlayerImage" Grid.RowSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="emptyPlayer.png"/>
 
                 <TextBlock Grid.Column="1" Text="{Binding PlayerName}" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontWeight="SemiBold" TextWrapping="Wrap"/>
                 <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Position}" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20"/>

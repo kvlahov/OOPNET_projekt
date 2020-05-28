@@ -40,7 +40,11 @@ namespace WinForms.View
 
         private void InitPlayerPictures(List<PlayerStatsViewModel> playerStats)
         {
-            var images = FileHelper.GetAllImagesFromPath(FileHelper.GetImagesPath());
+            var settings = Properties.Settings.Default;
+            var favoriteTeamCode = settings.FavoriteTeam.FifaCode;
+            var league = settings.League;
+
+            var images = FileHelper.GetAllImagesFromPath(FileHelper.GetImagesPath(league, favoriteTeamCode));
             var playerImages = images.ToDictionary(
                 path => Path.GetFileNameWithoutExtension(path).Replace('_', ' '),
                 path => Image.FromFile(path));

@@ -1,16 +1,17 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Wpf.Properties" GeneratedClassName="Settings">
+  <Profiles />
   <Settings>
     <Setting Name="ApiUrl" Type="(Web Service URL)" Scope="User">
-      <Value Profile="(Default)">en</Value>
-    </Setting>
-    <Setting Name="Language" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="Language" Type="System.String" Scope="User">
+      <Value Profile="(Default)">en</Value>
+    </Setting>
     <Setting Name="FavoriteTeam" Type="Utilities.Model.Team" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="League" Type="Utilities.POCO.Leagues" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
   </Settings>

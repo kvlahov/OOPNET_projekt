@@ -27,7 +27,7 @@ namespace Wpf
 
             settings.Language = language;
             settings.ApiUrl = apiUrl;
-
+            settings.League = (Leagues)preferences.LeagueId;
             settings.FavoriteTeam = preferences.FavoriteTeam;
         }
 

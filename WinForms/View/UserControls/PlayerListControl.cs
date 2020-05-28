@@ -76,13 +76,7 @@ namespace WinForms.View.UserControls
             var settings = Properties.Settings.Default;
             var teamCode = settings.FavoriteTeam.FifaCode;
 
-            var helper = new ApiHelper(settings.ApiUrl)
-            {
-                FilterByCode = true,
-                CountryCode = teamCode
-            };
-
-            var players = await DataHelper.GetAllPlayersAsync(helper);
+            var players = await DataHelper.GetAllPlayersAsync(settings.ApiUrl, teamCode);
 
             var playerControls = players.Select(p => new PlayerControl(p)).ToList();
 

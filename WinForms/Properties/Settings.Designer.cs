@@ -25,19 +25,6 @@ namespace WinForms.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("en")]
-        public string ApiUrl {
-            get {
-                return ((string)(this["ApiUrl"]));
-            }
-            set {
-                this["ApiUrl"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string Language {
             get {
@@ -65,6 +52,29 @@ namespace WinForms.Properties {
         public global::System.Drawing.Font DefaultFont {
             get {
                 return ((global::System.Drawing.Font)(this["DefaultFont"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        public string ApiUrl {
+            get {
+                return ((string)(this["ApiUrl"]));
+            }
+            set {
+                this["ApiUrl"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::Utilities.POCO.Leagues League {
+            get {
+                return ((global::Utilities.POCO.Leagues)(this["League"]));
+            }
+            set {
+                this["League"] = value;
             }
         }
     }
