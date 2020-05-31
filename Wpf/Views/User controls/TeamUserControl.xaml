@@ -5,75 +5,186 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:p = "clr-namespace:Wpf.Resources"
              xmlns:local="clr-namespace:Wpf.Views.User_controls"
+             xmlns:v="clr-namespace:Wpf.ViewModels"
              xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="Wpf.Views.User_controls.TeamUserControl"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="400              ">
 
     <UserControl.Resources>
         <Style TargetType="Label">
-            <Setter Property="Width" Value="100" />
+            <Setter Property="Foreground">
+                <Setter.Value>
+                    <SolidColorBrush Color="{DynamicResource Dark}"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Right"/>
+            <Setter Property="FontFamily" Value="{StaticResource MainFont}"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Margin" Value="0 0 10 0"/>
         </Style>
-        <Style TargetType="TextBox">
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground">
+                <Setter.Value>
+                    <SolidColorBrush Color="{DynamicResource Gold}"/>
+                </Setter.Value>
+            </Setter>
             <Setter Property="MinWidth" Value="160" />
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontFamily" Value="{StaticResource MainFont}"/>
+            <Setter Property="FontSize" Value="16"/>
         </Style>
         <Style TargetType="GroupBox">
             <Setter Property="BorderThickness" Value="0.5"/>
         </Style>
     </UserControl.Resources>
 
-    <Border Padding="20" Background="#FFC1B4A6">
-        <StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label Content="{x:Static p:StringResources.teamName}" FontWeight="Bold"/>
-                <TextBlock VerticalAlignment="Center" Text="{Binding Name}"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label Content="{x:Static p:StringResources.fifaCode}" FontWeight="Bold"/>
-                <TextBlock VerticalAlignment="Center" Text="{Binding FifaCode}"/>
-            </StackPanel>
-            <GroupBox Header="{x:Static p:StringResources.matches}" >
-                <GroupBox.BorderBrush>
-                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                        <GradientStop Color="Black" Offset="1"/>
-                        <GradientStop Color="#FF00A1FF"/>
-                    </LinearGradientBrush>
-                </GroupBox.BorderBrush>
-                <StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="{x:Static p:StringResources.played}" FontWeight="Bold"/>
-                        <TextBlock VerticalAlignment="Center" Text="{Binding MatchesPlayed}"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="{x:Static p:StringResources.won}" FontWeight="Bold"/>
-                        <TextBlock VerticalAlignment="Center" Text="{Binding MatchesWon}"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="{x:Static p:StringResources.lost}" FontWeight="Bold"/>
-                        <TextBlock VerticalAlignment="Center" Text="{Binding MatchesLost}"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="{x:Static p:StringResources.draw}" FontWeight="Bold"/>
-                        <TextBlock VerticalAlignment="Center" Text="{Binding MatchesDraw}"/>
-                    </StackPanel>
-                </StackPanel>
-            </GroupBox>
-            <GroupBox Header="{x:Static p:StringResources.goals}">
-                <StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <Label FontWeight="Bold" Content="{x:Static p:StringResources.scored}"/>
-                        <TextBlock VerticalAlignment="Center" Text="{Binding GoalsScored}"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="{x:Static p:StringResources.taken}" FontWeight="Bold"/>
-                        <TextBlock VerticalAlignment="Center" Text="{Binding GoalsTaken}"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="{x:Static p:StringResources.difference}" FontWeight="Bold"/>
-                        <TextBlock VerticalAlignment="Center" Text="{Binding GoalsDifference}"/>
-                    </StackPanel>
-                </StackPanel>
-            </GroupBox>
+    <Grid>
+        <Grid.Background>
+            <SolidColorBrush Color="{DynamicResource Gray}"/>
+        </Grid.Background>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Button x:Name="BtnClose" Grid.Row="0" Content="X" Width="30" HorizontalAlignment="Right" Margin="0" BorderBrush="{x:Null}" FontSize="16" Click="BtnClose_Click">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Foreground">
+                            <Setter.Value>
+                                <SolidColorBrush Color="{DynamicResource Dark}"/>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="Background">
+                            <Setter.Value>
+                                <SolidColorBrush Color="{DynamicResource Gray}"/>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border x:Name="Border" Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" TargetName="Border">
+                                                <Setter.Value>
+                                                    <SolidColorBrush Color="{DynamicResource Dark}"/>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground">
+                                    <Setter.Value>
+                                        <SolidColorBrush Color="{DynamicResource White}"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <!--<Setter Property="Background">
+                                    <Setter.Value>
+                                        <SolidColorBrush Color="{DynamicResource Dark}"/>
+                                    </Setter.Value>
+                                </Setter>-->
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Border Padding="20" Grid.Row="1">
+                
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="2*"/>
+                    </Grid.RowDefinitions>
 
-        </StackPanel>
-    </Border>
+                    <UniformGrid Columns="1">
+                        <Label Content="{x:Static p:StringResources.teamName}"/>
+                        <Label Content="{x:Static p:StringResources.fifaCode}"/>
+                    </UniformGrid>
+                    <UniformGrid Columns="1" Grid.Column="1">
+                        <TextBlock Text="{Binding Name}"/>
+                        <TextBlock Text="{Binding FifaCode}"/>
+                    </UniformGrid>
+
+                    <GroupBox Grid.Row="1" Header="{x:Static p:StringResources.matches}" Grid.ColumnSpan="2">
+                        <GroupBox.Foreground>
+                            <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionTextColorKey}}"/>
+                        </GroupBox.Foreground>
+                        <GroupBox.BorderBrush>
+                            <SolidColorBrush Color="{DynamicResource Dark}"/>
+                        </GroupBox.BorderBrush>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <UniformGrid Columns="1">
+                                <Label Content="{x:Static p:StringResources.played}">
+                                    <Label.Foreground>
+                                        <SolidColorBrush Color="{DynamicResource Dark}"/>
+                                    </Label.Foreground>
+                                </Label>
+                                <Label Content="{x:Static p:StringResources.won}"/>
+                                <Label Content="{x:Static p:StringResources.lost}"/>
+                                <Label Content="{x:Static p:StringResources.draw}"/>
+                            </UniformGrid>
+
+                            <UniformGrid Columns="1" Grid.Column="1">
+                                <TextBlock Text="{Binding MatchesWon}"/>
+                                <TextBlock Text="{Binding MatchesPlayed}"/>
+                                <TextBlock Text="{Binding MatchesLost}"/>
+                                <TextBlock Text="{Binding MatchesDraw}"/>
+                            </UniformGrid>
+
+                        </Grid>
+                    </GroupBox>
+
+
+                    <GroupBox Grid.Row="2" Header="{x:Static p:StringResources.goals}" Grid.ColumnSpan="2">
+                        <GroupBox.BorderBrush>
+                            <SolidColorBrush Color="{DynamicResource Gold}"/>
+                        </GroupBox.BorderBrush>
+                        <GroupBox.Foreground>
+                            <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionTextColorKey}}"/>
+                        </GroupBox.Foreground>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <UniformGrid Columns="1">
+                                <Label Content="{x:Static p:StringResources.scored}"/>
+                                <Label Content="{x:Static p:StringResources.taken}"/>
+                                <Label Content="{x:Static p:StringResources.difference}"/>
+                            </UniformGrid>
+
+
+                            <UniformGrid Columns="1" Grid.Column="1">
+                                <TextBlock Text="{Binding GoalsTaken}"/>
+                                <TextBlock Text="{Binding GoalsScored}" />
+                                <TextBlock Text="{Binding GoalsDifference}" />
+                            </UniformGrid>
+                        </Grid>
+                    </GroupBox>
+
+
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
 </UserControl>

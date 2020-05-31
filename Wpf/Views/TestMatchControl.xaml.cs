@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using Utilities.Helpers;
 using Utilities.Model;
 using Wpf.Properties;
+using Wpf.Utilities;
 using Wpf.ViewModels;
 using Wpf.Views.User_controls;
 
@@ -105,6 +106,12 @@ namespace Wpf.Views
                     }
                 });
             return playerGoals;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            var animation = AnimationUtilities.PrepareAnimation(10, Width, this, WidthProperty, 0.7f);
+            this.BeginAnimation(WidthProperty, animation);
         }
     }
 }

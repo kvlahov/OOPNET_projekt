@@ -186,7 +186,7 @@
 
             </Grid>
             <Grid Grid.Row="2" Margin="0 10 0 0">
-                <Button x:Name="BtnShowField" Content="Show Field" HorizontalAlignment="Left" Margin="62,28,0,0" VerticalAlignment="Top" Width="107" Height="35" Click="BtnShowField_Click" IsEnabled="{Binding IsDataLoaded}"/>
+                <Button x:Name="BtnShowField" Content="{x:Static p:StringResources.showField}" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top" Width="107" Height="35" Click="BtnShowField_Click" IsEnabled="{Binding IsDataLoaded}"/>
             </Grid>
 
         </Grid>

@@ -40,6 +40,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -59,14 +60,20 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Resources\StringResources.Designer.cs">
+      <DependentUpon>StringResources.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>StringResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\StringResources.hr-HR.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringResources.hr-HR.resx</DependentUpon>
     </Compile>
     <Compile Include="Utilities\AnimationUtilities.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="ValueConverters\BooleanToStyleConverter.cs" />
     <Compile Include="ValueConverters\EnumToBooleanConverter.cs" />
+    <Compile Include="ValueConverters\EnumToStringConverter.cs" />
     <Compile Include="ViewModels\PlayerViewModel.cs" />
     <Compile Include="ViewModels\StartPreferencesViewModel.cs" />
     <Compile Include="ViewModels\TeamOverviewViewModel.cs" />
@@ -93,16 +100,8 @@
     <Compile Include="Views\User controls\TeamUserControl.xaml.cs">
       <DependentUpon>TeamUserControl.xaml</DependentUpon>
     </Compile>
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Simple Styles.xaml">
@@ -159,6 +158,10 @@
     <EmbeddedResource Include="Resources\StringResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>StringResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\StringResources.hr-HR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringResources.hr-HR.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

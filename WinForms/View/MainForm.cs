@@ -11,7 +11,7 @@ namespace WinForms.View
         public MainForm()
         {
             InitializeComponent();
-            var prefs = FileHelper.ReadPreferences<StartPreferences>();
+            var prefs = FileHelper.ReadPreferences();
             Utils.SetApplicationSettings(prefs);
         }
 

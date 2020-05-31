@@ -29,6 +29,7 @@ namespace Wpf
             settings.ApiUrl = apiUrl;
             settings.League = (Leagues)preferences.LeagueId;
             settings.FavoriteTeam = preferences.FavoriteTeam;
+            settings.Resolution = preferences.Resolution;
         }
 
         public static TValue GetValueIfExists<TKey, TValue>(this IDictionary<TKey, TValue> dict, TKey key, TValue defaultValue)

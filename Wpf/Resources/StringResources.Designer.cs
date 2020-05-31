@@ -79,6 +79,15 @@ namespace Wpf.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Captain.
+        /// </summary>
+        public static string captain {
+            get {
+                return ResourceManager.GetString("captain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Choose language:.
         /// </summary>
         public static string chooseLanguage {
@@ -106,6 +115,15 @@ namespace Wpf.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Defender.
+        /// </summary>
+        public static string defender {
+            get {
+                return ResourceManager.GetString("defender", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Difference.
         /// </summary>
         public static string difference {
@@ -120,6 +138,42 @@ namespace Wpf.Resources {
         public static string draw {
             get {
                 return ResourceManager.GetString("draw", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        public static string error {
+            get {
+                return ResourceManager.GetString("error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error while saving..
+        /// </summary>
+        public static string errorWhileSaving {
+            get {
+                return ResourceManager.GetString("errorWhileSaving", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to exit the application?.
+        /// </summary>
+        public static string exitAppMessage {
+            get {
+                return ResourceManager.GetString("exitAppMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exiting.
+        /// </summary>
+        public static string exiting {
+            get {
+                return ResourceManager.GetString("exiting", resourceCulture);
             }
         }
         
@@ -142,11 +196,29 @@ namespace Wpf.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Forward.
+        /// </summary>
+        public static string forward {
+            get {
+                return ResourceManager.GetString("forward", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fullscreen.
         /// </summary>
         public static string fullScreen {
             get {
                 return ResourceManager.GetString("fullScreen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Goalie.
+        /// </summary>
+        public static string goalie {
+            get {
+                return ResourceManager.GetString("goalie", resourceCulture);
             }
         }
         
@@ -205,6 +277,33 @@ namespace Wpf.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Midfield.
+        /// </summary>
+        public static string midfield {
+            get {
+                return ResourceManager.GetString("midfield", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of goals scored.
+        /// </summary>
+        public static string noGoalsScored {
+            get {
+                return ResourceManager.GetString("noGoalsScored", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of yellow cards.
+        /// </summary>
+        public static string noYellowCards {
+            get {
+                return ResourceManager.GetString("noYellowCards", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Opposing team.
         /// </summary>
         public static string opposingTeam {
@@ -241,11 +340,38 @@ namespace Wpf.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show Field.
+        /// </summary>
+        public static string showField {
+            get {
+                return ResourceManager.GetString("showField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Start preferences.
         /// </summary>
         public static string startPreferences {
             get {
                 return ResourceManager.GetString("startPreferences", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Successfuly saved!.
+        /// </summary>
+        public static string succesfulySaved {
+            get {
+                return ResourceManager.GetString("succesfulySaved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Success.
+        /// </summary>
+        public static string success {
+            get {
+                return ResourceManager.GetString("success", resourceCulture);
             }
         }
         

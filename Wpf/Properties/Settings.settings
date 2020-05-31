@@ -14,5 +14,8 @@
     <Setting Name="League" Type="Utilities.POCO.Leagues" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="Resolution" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

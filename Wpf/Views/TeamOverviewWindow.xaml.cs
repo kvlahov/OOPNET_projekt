@@ -17,6 +17,7 @@ using Utilities.Helpers;
 using Utilities.Model;
 using Utilities.POCO;
 using Wpf.Properties;
+using Wpf.Utilities;
 using Wpf.View;
 using Wpf.ViewModels;
 using Wpf.Views.User_controls;
@@ -35,14 +36,6 @@ namespace Wpf.Views
         public TeamOverviewWindow()
         {
             InitializeComponent();
-
-            TeamOverviewViewModel = new TeamOverviewViewModel
-            {
-                AllTeams = new ObservableCollection<Team>(),
-                OpposingTeams = new ObservableCollection<Team>()
-            };
-
-            DataContext = TeamOverviewViewModel;
         }
 
 
@@ -57,19 +50,20 @@ namespace Wpf.Views
         {
             var dialog = new Window
             {
-                Title = "Team user control",
+                Title = "Team",
                 Content = teamControl,
-                SizeToContent = SizeToContent.WidthAndHeight
+                SizeToContent = SizeToContent.WidthAndHeight,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
 
-            //dialog.WindowStyle = WindowStyle.None;
-            //dialog.AllowsTransparency = true;
+            dialog.WindowStyle = WindowStyle.None;
+            dialog.AllowsTransparency = true;
 
             DoubleAnimation animFadeIn = new DoubleAnimation
             {
                 From = 0,
                 To = 1,
-                Duration = new Duration(TimeSpan.FromSeconds(2.0))
+                Duration = new Duration(TimeSpan.FromSeconds(0.3))
             };
 
             dialog.BeginAnimation(Window.OpacityProperty, animFadeIn);
@@ -88,15 +82,15 @@ namespace Wpf.Views
             var teams = await allTeamsTask;
             teams.OrderBy(t => t.Country).ToList().ForEach(TeamOverviewViewModel.AllTeams.Add);
 
-            TeamOverviewViewModel.SelectedFavoriteTeam = Settings.Default.FavoriteTeam;
-            TeamOverviewViewModel.IsDataLoaded = true;
+            var favoriteTeam = Settings.Default.FavoriteTeam;
 
-            //Loader.Visibility = Visibility.Collapsed;
+            TeamOverviewViewModel.SelectedFavoriteTeam = favoriteTeam ?? TeamOverviewViewModel.AllTeams.First();
+            TeamOverviewViewModel.IsDataLoaded = true;
         }
 
         private void SetAppSettings()
         {
-            var prefs = FileHelper.ReadPreferences<StartPreferences>();
+            var prefs = FileHelper.ReadPreferences();
             Utils.SetApplicationSettings(prefs);
         }
         #endregion
@@ -104,12 +98,21 @@ namespace Wpf.Views
         #region Events
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
             SetAppSettings();
-            _apiUrl = Settings.Default.ApiUrl;
-
-            await LoadTeams();
-            BtnShowField.IsEnabled = true;
+            SetResolution();
+            await SetInitialState();
         }
+
+        private async Task SetInitialState()
+        {
+            TeamOverviewViewModel = new TeamOverviewViewModel();
+            DataContext = TeamOverviewViewModel;
+
+            _apiUrl = Settings.Default.ApiUrl;
+            await LoadTeams();
+        }
+
         private async void ViewDetails_Clicked(object sender, RoutedEventArgs e)
         {
             var senderTag = ((Button)sender).Tag.ToString();
@@ -122,18 +125,57 @@ namespace Wpf.Views
 
             PrepareAndShowAnimatedDialog(teamControl);
         }
-        #endregion
 
         private void BtnShowField_Click(object sender, RoutedEventArgs e)
         {
-            var dialog = new TestMatchControl(_apiUrl, TeamOverviewViewModel.SelectedFavoriteTeam, TeamOverviewViewModel.SelectedOpposingTeam);
+            var dialog = new TestMatchControl(_apiUrl, TeamOverviewViewModel.SelectedFavoriteTeam, TeamOverviewViewModel.SelectedOpposingTeam)
+            {
+                //WindowState = this.WindowState,
+                Width = this.Width,
+                Height = this.Height,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen,
+            };
+
             dialog.ShowDialog();
         }
 
         private void BtnSettings_Click(object sender, RoutedEventArgs e)
         {
-            var dialog = new StartPreferencesWindow();
+            var dialog = new StartPreferencesWindow
+            {
+                DataContext = new StartPreferencesViewModel(FileHelper.ReadPreferences()),
+                ShowTeamOverviewWindow = false,
+                OnSaveAction = () => RefreshInitialState()
+            };
             dialog.ShowDialog();
+        }
+
+        #endregion
+
+        private void RefreshInitialState()
+        {
+            this.Close();
+            var w = new TeamOverviewWindow();
+            w.Show();
+
+        }
+
+        private void SetResolution()
+        {
+            var resolution = Settings.Default.Resolution;
+            if (string.IsNullOrEmpty(resolution)) return;
+
+            if (resolution == ResolutionEnum.Fullscreen.ToString())
+            {
+                WindowState = WindowState.Maximized;
+            }
+            else
+            {
+                WindowState = WindowState.Normal;
+                var size = resolution.Split('x').Select(s => Double.Parse(s)).ToArray();
+                Width = size[0];
+                Height = size[1];
+            }
         }
     }
 }

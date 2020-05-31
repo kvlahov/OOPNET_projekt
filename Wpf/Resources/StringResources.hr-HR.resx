@@ -118,126 +118,126 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="appearance" xml:space="preserve">
-    <value>Appearance</value>
+    <value>Prikaz</value>
   </data>
   <data name="cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Odustani</value>
   </data>
   <data name="captain" xml:space="preserve">
-    <value>Captain</value>
+    <value>Kapetan</value>
   </data>
   <data name="chooseLanguage" xml:space="preserve">
-    <value>Choose language:</value>
+    <value>Izaberi jezik:</value>
   </data>
   <data name="chooseLeague" xml:space="preserve">
-    <value>Choose league:</value>
+    <value>Izaberi ligu:</value>
   </data>
   <data name="chooseResolution" xml:space="preserve">
-    <value>Choose resolution</value>
+    <value>Izaberi rezoluciju:</value>
   </data>
   <data name="defender" xml:space="preserve">
-    <value>Defender</value>
+    <value>Obrana</value>
   </data>
   <data name="difference" xml:space="preserve">
-    <value>Difference</value>
+    <value>Razlika</value>
   </data>
   <data name="draw" xml:space="preserve">
-    <value>Draw</value>
+    <value>Nerješeno</value>
   </data>
   <data name="error" xml:space="preserve">
-    <value>Error</value>
+    <value>Greška</value>
   </data>
   <data name="errorWhileSaving" xml:space="preserve">
-    <value>Error while saving.</value>
+    <value>Greška pirlikom spremanja.</value>
   </data>
   <data name="exitAppMessage" xml:space="preserve">
-    <value>Are you sure you want to exit the application?</value>
+    <value>Jeste li sigurni da želite izaći iz aplikacije?</value>
   </data>
   <data name="exiting" xml:space="preserve">
-    <value>Exiting</value>
+    <value>Izlaz</value>
   </data>
   <data name="favoriteTeam" xml:space="preserve">
-    <value>Favorite team</value>
+    <value>Najdraži tim</value>
   </data>
   <data name="fifaCode" xml:space="preserve">
-    <value>Fifa code</value>
+    <value>Fifa kod</value>
   </data>
   <data name="forward" xml:space="preserve">
-    <value>Forward</value>
+    <value>Napad</value>
   </data>
   <data name="fullScreen" xml:space="preserve">
-    <value>Fullscreen</value>
+    <value>Puni ekran</value>
   </data>
   <data name="goalie" xml:space="preserve">
-    <value>Goalie</value>
+    <value>Golman</value>
   </data>
   <data name="goals" xml:space="preserve">
-    <value>Goals</value>
+    <value>Golovi</value>
   </data>
   <data name="langCroatian" xml:space="preserve">
-    <value>Croatian</value>
+    <value>Hrvatski</value>
   </data>
   <data name="langEnglish" xml:space="preserve">
-    <value>English</value>
+    <value>Engleski</value>
   </data>
   <data name="lost" xml:space="preserve">
-    <value>Lost</value>
+    <value>Izgubljeno</value>
   </data>
   <data name="matches" xml:space="preserve">
-    <value>Matches</value>
+    <value>Broj utakmica</value>
   </data>
   <data name="menLeague" xml:space="preserve">
-    <value>Men's league</value>
+    <value>Muška liga</value>
   </data>
   <data name="midfield" xml:space="preserve">
-    <value>Midfield</value>
+    <value>Vezni</value>
   </data>
   <data name="noGoalsScored" xml:space="preserve">
-    <value>Number of goals scored</value>
+    <value>Broj zabijenih golova</value>
   </data>
   <data name="noYellowCards" xml:space="preserve">
-    <value>Number of yellow cards</value>
+    <value>Broj žutih kartona</value>
   </data>
   <data name="opposingTeam" xml:space="preserve">
-    <value>Opposing team</value>
+    <value>Suprotni tim</value>
   </data>
   <data name="played" xml:space="preserve">
-    <value>Total played</value>
+    <value>Ukupno odigrano</value>
   </data>
   <data name="save" xml:space="preserve">
-    <value>Save</value>
+    <value>Pohrani</value>
   </data>
   <data name="scored" xml:space="preserve">
-    <value>Scored</value>
+    <value>Zabijenih</value>
   </data>
   <data name="showField" xml:space="preserve">
-    <value>Show Field</value>
+    <value>Prikaži polje</value>
   </data>
   <data name="startPreferences" xml:space="preserve">
-    <value>Start preferences</value>
+    <value>Početne postavke</value>
   </data>
   <data name="succesfulySaved" xml:space="preserve">
-    <value>Successfuly saved!</value>
+    <value>Uspješno spremljeno!</value>
   </data>
   <data name="success" xml:space="preserve">
-    <value>Success</value>
+    <value>Uspjeh</value>
   </data>
   <data name="taken" xml:space="preserve">
-    <value>Taken</value>
+    <value>Primljeno</value>
   </data>
   <data name="teamName" xml:space="preserve">
-    <value>Team name</value>
+    <value>Ime tima</value>
   </data>
   <data name="teamOverview" xml:space="preserve">
-    <value>Team overview</value>
+    <value>Pregedaj tim</value>
   </data>
   <data name="viewDetails" xml:space="preserve">
-    <value>View details</value>
+    <value>Pregledaj detalje</value>
   </data>
   <data name="womenLeague" xml:space="preserve">
-    <value>Women's league</value>
+    <value>Ženska liga</value>
   </data>
   <data name="won" xml:space="preserve">
-    <value>Won</value>
+    <value>Pobjeda</value>
   </data>
 </root>

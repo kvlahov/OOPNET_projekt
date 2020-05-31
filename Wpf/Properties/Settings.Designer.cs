@@ -68,5 +68,17 @@ namespace Wpf.Properties {
                 this["League"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Resolution {
+            get {
+                return ((string)(this["Resolution"]));
+            }
+            set {
+                this["Resolution"] = value;
+            }
+        }
     }
 }

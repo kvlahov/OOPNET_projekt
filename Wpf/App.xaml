@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Wpf"
              xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="Wpf.App"
-             StartupUri="Views/TeamOverviewWindow.xaml">
+             Startup="App_Startup">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

@@ -20,8 +20,12 @@ namespace Wpf.ViewModels
             get { return _selectedFavoriteTeam; }
             set
             {
-                FillOpposingTeams(value);
-                SetProperty(ref _selectedFavoriteTeam, value);
+                var isNewValueValid = AllTeams.FirstOrDefault(t => t.FifaCode == value.FifaCode) != null;
+                var newValue = isNewValueValid ? value : AllTeams.First();
+
+                FillOpposingTeams(newValue);
+                SetProperty(ref _selectedFavoriteTeam, newValue);
+
             }
         }
 
@@ -65,6 +69,13 @@ namespace Wpf.ViewModels
         {
             get { return _selectedOpposingTeamIndex; }
             set { SetProperty(ref _selectedOpposingTeamIndex, value); }
+        }
+
+        public TeamOverviewViewModel()
+        {
+            AllTeams = new ObservableCollection<Team>();
+            OpposingTeams = new ObservableCollection<Team>();
+            TeamMatches = new Dictionary<Team, ISet<Team>>();
         }
     }
 }

@@ -87,7 +87,7 @@ namespace Wpf.ViewModels
 
             var nameArray = playerName.Split(new char[] { ' ' }, 2);
             var textInfo = System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo;
-            return nameArray.Length == 2 ? $"{nameArray[0].First()}. {textInfo.ToTitleCase(nameArray[1].ToLower())}" : playerName;
+            return nameArray.Length == 2 ? $"{nameArray[0].First()}. {textInfo.ToTitleCase(nameArray[1].ToLower())}" : textInfo.ToTitleCase(playerName.ToLower());
         }
     }
 }

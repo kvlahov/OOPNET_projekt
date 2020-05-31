@@ -30,5 +30,11 @@ namespace Wpf.Views.User_controls
         {
             DataContext = viewModel;
         }
+
+        private void BtnClose_Click(object sender, RoutedEventArgs e)
+        {
+            var parent = (Window)this.Parent;
+            parent.Close();
+        }
     }
 }

@@ -18,7 +18,7 @@ namespace WinForms.View.Settings
             InitializeComponent();
             InitLabels();
 
-            preferences = FileHelper.ReadPreferences<StartPreferences>();
+            preferences = FileHelper.ReadPreferences();
 
             BindData();
             ShowSaveButton();
@@ -106,7 +106,7 @@ namespace WinForms.View.Settings
             var selectedLeague = (int)RbContainer.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked).Tag;
             var selectedLanguage = ((KeyValuePair<int, string>)CbLanguage.SelectedItem).Key;
 
-            var prefs = FileHelper.ReadPreferences<StartPreferences>();
+            var prefs = FileHelper.ReadPreferences();
 
             prefs.LeagueId = selectedLeague;
             prefs.LanguageId = selectedLanguage;

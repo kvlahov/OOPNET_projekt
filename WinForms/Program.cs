@@ -27,7 +27,7 @@ namespace WinForms
 
         private static void ReadPreferences()
         {
-            var preferences = FileHelper.ReadPreferences<StartPreferences>();
+            var preferences = FileHelper.ReadPreferences();
             Utils.SetApplicationSettings(preferences);
             
             var formsToShow = Enumerable.Empty<BaseForm>().ToList();
@@ -36,22 +36,18 @@ namespace WinForms
             if (preferences.LeagueId == 0 || preferences.LanguageId == 0)
             {
                 formsToShow.Add(new Preferences());
-
-                //Application.Run(new PreferencesWindowState());
             }
 
             //favorite team
             if (preferences.FavoriteTeam == null)
             {
                 formsToShow.Add(new FavoriteTeam());
-                //Application.Run(new FavoriteTeam());
             }
 
             //favorite players
             if (preferences.FavoritePlayers == null || !preferences.FavoritePlayers.Any())
             {
                 formsToShow.Add(new FavoritePlayers());
-                //Application.Run(new FavoritePlayers());
             }
 
             formsToShow.Add(new MainForm());
@@ -60,8 +56,6 @@ namespace WinForms
 
             controller.ChainForms(formsToShow.ToArray());
             controller.Start();
-
-            //Application.Run(new MainForm());
         }
     }
 }

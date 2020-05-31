@@ -9,4 +9,9 @@
     {
         English = 1, Croatian = 2
     }
+
+    public enum ResolutionEnum
+    {
+        Fullscreen
+    }
 }

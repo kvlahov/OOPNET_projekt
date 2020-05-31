@@ -3,11 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:p = "clr-namespace:Wpf.Resources"
+             xmlns:c="clr-namespace:Wpf.ValueConverters"
              xmlns:ViewModels="clr-namespace:Wpf.ViewModels"
              xmlns:local="clr-namespace:Wpf.Views.User_controls"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="400">
     <UserControl.Resources>
+        <c:EnumToStringConverter x:Key="EnumToStringConverter" />
         <SolidColorBrush x:Key="MainTextColor" Color="{DynamicResource White}"/>
         <Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="{StaticResource MainTextColor}"/>
@@ -132,16 +135,16 @@
                 <Image Name="PlayerImage" Grid.RowSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="emptyPlayer.png"/>
 
                 <TextBlock Grid.Column="1" Text="{Binding PlayerName}" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontWeight="SemiBold" TextWrapping="Wrap"/>
-                <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Position}" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20"/>
+                <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Position, Converter={StaticResource EnumToStringConverter}}" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20"/>
                 <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding PlayerNumber}" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20"/>
 
-                <TextBlock Grid.Row="3" Grid.Column="0" Text="Number of goals scored:" VerticalAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Right" TextAlignment="Right"/>
-                <TextBlock Grid.Row="4" Grid.Column="0" Text="Number of yellow cards:" HorizontalAlignment="Right" VerticalAlignment="Center" TextWrapping="Wrap" TextAlignment="Right"/>
+                <TextBlock Grid.Row="3" Grid.Column="0" Text="{x:Static p:StringResources.noGoalsScored}" VerticalAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Right" TextAlignment="Right"/>
+                <TextBlock Grid.Row="4" Grid.Column="0" Text="{x:Static p:StringResources.noYellowCards}" HorizontalAlignment="Right" VerticalAlignment="Center" TextWrapping="Wrap" TextAlignment="Right"/>
 
                 <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding NoOfGoals}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                 <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding NoOfYellowCards}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
-                <TextBlock Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="6" Text="Captain" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="26">
+                <TextBlock Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="6" Text="{x:Static p:StringResources.captain}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="26">
                     <TextBlock.Foreground>
                         <SolidColorBrush Color="{DynamicResource Gold}"/>
                     </TextBlock.Foreground>

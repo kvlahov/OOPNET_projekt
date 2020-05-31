@@ -129,7 +129,7 @@ namespace WinForms.View.Settings
         private void FavoritePlayers_Load(object sender, EventArgs e)
         {
             InitLabels();
-            preferences = FileHelper.ReadPreferences<StartPreferences>();
+            preferences = FileHelper.ReadPreferences();
             PnAllPlayers.FillDataAsync();
 
             AddEventHandlers();

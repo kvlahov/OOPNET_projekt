@@ -5,15 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:p = "clr-namespace:Wpf.Resources"
         xmlns:local="clr-namespace:Wpf.View"
-        xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="Wpf.View.StartPreferencesWindow"
+        xmlns:c="clr-namespace:Wpf.ValueConverters"
+        xmlns:ut="clr-namespace:Utilities.POCO;assembly=Utilities"
+        xmlns:System="clr-namespace:System;assembly=mscorlib" xmlns:ViewModels="clr-namespace:Wpf.ViewModels" x:Class="Wpf.View.StartPreferencesWindow"
         mc:Ignorable="d"
         Title="{x:Static p:StringResources.startPreferences}" Height="400" Width="400">
+    <Window.DataContext>
+        <ViewModels:StartPreferencesViewModel/>
+    </Window.DataContext>
     <Border Padding="30 10">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
+            <Grid.Resources>
+                <c:EnumToBooleanConverter x:Key="EnumToBoolConverter" />
+            </Grid.Resources>
             <StackPanel>
                 <StackPanel.Resources>
                     <Style TargetType="{x:Type GroupBox}">
@@ -26,45 +34,51 @@
 
                 <GroupBox Header="{x:Static p:StringResources.chooseLeague}" Height="Auto">
                     <StackPanel>
-                        <RadioButton GroupName="League" Content="{x:Static p:StringResources.menLeague}" IsChecked="True"/>
-                        <RadioButton GroupName="League" Content="{x:Static p:StringResources.womenLeague}"/>
+                        <RadioButton GroupName="League" Content="{x:Static p:StringResources.menLeague}" IsChecked="{Binding Path=League, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static ut:Leagues.MenLeague}}"/>
+                        <RadioButton GroupName="League" Content="{x:Static p:StringResources.womenLeague}" IsChecked="{Binding Path=League, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static ut:Leagues.WomanLeague}}"/>
                     </StackPanel>
                 </GroupBox>
 
                 <GroupBox Header="{x:Static p:StringResources.chooseLanguage}" Height="Auto">
                     <StackPanel>
                         <ComboBox>
-                            <ComboBoxItem Content="{x:Static p:StringResources.langEnglish}" IsSelected="True"/>
-                            <ComboBoxItem Content="{x:Static p:StringResources.langCroatian}"/>
+                            <ComboBoxItem Content="{x:Static p:StringResources.langEnglish}" IsSelected="{Binding Path=Language, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static ut:Languages.English}}"/>
+                            <ComboBoxItem Content="{x:Static p:StringResources.langCroatian}" IsSelected="{Binding Path=Language, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static ut:Languages.Croatian}}"/>
                         </ComboBox>
                     </StackPanel>
                 </GroupBox>
 
                 <GroupBox Header="{x:Static p:StringResources.appearance}" Height="Auto">
                     <StackPanel>
-                        <RadioButton GroupName="Appearance" Content="{x:Static p:StringResources.fullScreen}" IsChecked="True"/>
+                        <RadioButton GroupName="Appearance" Content="{x:Static p:StringResources.fullScreen}" IsChecked="{Binding IsFullscreen}"/>
 
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <RadioButton x:Name="RbChooseResolution" VerticalAlignment="Center" GroupName="Appearance" Content="{x:Static p:StringResources.chooseResolution}"/>
-                            <ComboBox Grid.Column="2" VerticalContentAlignment="Center">
+                            <RadioButton x:Name="RbChooseResolution" VerticalAlignment="Center" GroupName="Appearance" Content="{x:Static p:StringResources.chooseResolution}">
+                                <RadioButton.Style>
+                                    <Style TargetType="RadioButton">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsFullscreen}" Value="False">
+                                                <Setter Property="IsChecked" Value="True"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </RadioButton.Style>
+                            </RadioButton>
+                            <ComboBox Grid.Column="2" VerticalContentAlignment="Center" ItemsSource="{Binding ResolutionsDdl, Mode=OneTime}" SelectedItem="{Binding ResolutionString}">
                                 <ComboBox.Style>
-                                    <Style TargetType="ComboBox">
+                                    <Style TargetType="{x:Type ComboBox}">
                                         <Setter Property="IsEnabled" Value="false" />
                                         <Style.Triggers>
-                                            <DataTrigger Binding="{Binding ElementName=RbChooseResolution, Path=IsChecked}" Value="True">
+                                            <DataTrigger Binding="{Binding IsChecked, ElementName=RbChooseResolution}" Value="True">
                                                 <Setter Property="IsEnabled" Value="true" />
                                             </DataTrigger>
                                         </Style.Triggers>
                                     </Style>
                                 </ComboBox.Style>
-                                <ComboBoxItem Content="800x600"/>
-                                <ComboBoxItem Content="1280x720"/>
-                                <ComboBoxItem Content="1440x900"/>
-                                <ComboBoxItem Content="1600x900"/>
                             </ComboBox>
                         </Grid>
                     </StackPanel>

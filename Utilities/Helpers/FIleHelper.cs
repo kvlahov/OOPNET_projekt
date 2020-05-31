@@ -52,9 +52,9 @@ namespace Utilities.Helpers
             WriteToFile(data, PreferencesPath);
         }
 
-        public static T ReadPreferences<T>()
+        public static StartPreferences ReadPreferences()
         {
-            return ReadFromFile<T>(PreferencesPath);
+            return ReadFromFile<StartPreferences>(PreferencesPath);
         }
 
         public static string GetImagesPath(Leagues league, string teamCode)

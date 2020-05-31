@@ -55,7 +55,7 @@ namespace WinForms.View.Settings
 
         private void FavoriteTeam_Load(object sender, EventArgs e)
         {
-            preferences = FileHelper.ReadPreferences<StartPreferences>();
+            preferences = FileHelper.ReadPreferences();
 
             InitLabels();
 

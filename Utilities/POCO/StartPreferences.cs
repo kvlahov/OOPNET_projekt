@@ -11,5 +11,7 @@ namespace Utilities.POCO
         public Team FavoriteTeam { get; set; }
 
         public List<Player> FavoritePlayers { get; set; }
+
+        public string Resolution { get; set; }
     }
 }

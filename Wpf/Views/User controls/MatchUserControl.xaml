@@ -141,11 +141,6 @@
                 <Grid x:Name="PlayerOverviewContainer" Height="600" Width="500">
 
                 </Grid>
-                
-                <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="106.5" Margin="100,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="500"/>
-                <Button Padding="20" HorizontalAlignment="Left" Height="64" Margin="327,69.53,0,0" VerticalAlignment="Top" Width="59">
-                    <fa:ImageAwesome Icon="AngleDoubleDown"></fa:ImageAwesome>
-                </Button>
 
                 <Grid Name="LoadingScreen" d:IsHidden="True">
                     <Grid.Background>
