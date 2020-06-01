@@ -28,15 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.BtnUpload = new System.Windows.Forms.Button();
             this.BtnSave = new System.Windows.Forms.Button();
             this.PbPlayer = new System.Windows.Forms.PictureBox();
+            this.ImageContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.CbPlayers = new System.Windows.Forms.ComboBox();
             this.BtnImageLeft = new System.Windows.Forms.Button();
             this.BtnImageRight = new System.Windows.Forms.Button();
             this.BtnTagPlayer = new System.Windows.Forms.Button();
-            this.CbStartingEleven = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.PbPlayer)).BeginInit();
             this.SuspendLayout();
             // 
@@ -67,6 +68,7 @@
             // 
             this.PbPlayer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.PbPlayer.ContextMenuStrip = this.ImageContextMenuStrip;
             this.PbPlayer.Location = new System.Drawing.Point(276, 17);
             this.PbPlayer.Margin = new System.Windows.Forms.Padding(4);
             this.PbPlayer.Name = "PbPlayer";
@@ -74,6 +76,12 @@
             this.PbPlayer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.PbPlayer.TabIndex = 2;
             this.PbPlayer.TabStop = false;
+            // 
+            // ImageContextMenuStrip
+            // 
+            this.ImageContextMenuStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.ImageContextMenuStrip.Name = "contextMenuStrip1";
+            this.ImageContextMenuStrip.Size = new System.Drawing.Size(241, 37);
             // 
             // label1
             // 
@@ -124,24 +132,11 @@
             this.BtnTagPlayer.UseVisualStyleBackColor = true;
             this.BtnTagPlayer.Click += new System.EventHandler(this.BtnTagPlayer_Click);
             // 
-            // CbStartingEleven
-            // 
-            this.CbStartingEleven.AutoSize = true;
-            this.CbStartingEleven.Enabled = false;
-            this.CbStartingEleven.Location = new System.Drawing.Point(21, 244);
-            this.CbStartingEleven.Name = "CbStartingEleven";
-            this.CbStartingEleven.Size = new System.Drawing.Size(235, 33);
-            this.CbStartingEleven.TabIndex = 8;
-            this.CbStartingEleven.Text = "Only starting eleven";
-            this.CbStartingEleven.UseVisualStyleBackColor = true;
-            this.CbStartingEleven.CheckedChanged += new System.EventHandler(this.CbStartingEleven_CheckedChanged);
-            // 
             // UploadPictures
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 29F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1004, 715);
-            this.Controls.Add(this.CbStartingEleven);
             this.Controls.Add(this.BtnTagPlayer);
             this.Controls.Add(this.BtnImageRight);
             this.Controls.Add(this.BtnImageLeft);
@@ -170,6 +165,6 @@
         private System.Windows.Forms.Button BtnImageLeft;
         private System.Windows.Forms.Button BtnImageRight;
         private System.Windows.Forms.Button BtnTagPlayer;
-        private System.Windows.Forms.CheckBox CbStartingEleven;
+        private System.Windows.Forms.ContextMenuStrip ImageContextMenuStrip;
     }
 }

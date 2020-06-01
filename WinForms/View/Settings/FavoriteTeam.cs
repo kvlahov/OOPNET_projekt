@@ -15,7 +15,6 @@ namespace WinForms.View.Settings
         public FavoriteTeam()
         {
             InitializeComponent();
-
         }
 
         private void InitLabels()
@@ -28,7 +27,7 @@ namespace WinForms.View.Settings
         private async void BindDataAsync()
         {
             var baseUrl = Properties.Settings.Default.ApiUrl;
-            LbLeague.Text = baseUrl;            
+            LbLeague.Text = GetLeagueString(Properties.Settings.Default.League);            
 
             var teams = await DataHelper.GetTeams(baseUrl);
 

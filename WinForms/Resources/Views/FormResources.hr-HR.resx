@@ -132,11 +132,23 @@
   <data name="ChooseLeague" xml:space="preserve">
     <value>Odaberi ligu</value>
   </data>
+  <data name="closingApp" xml:space="preserve">
+    <value>Zatvaranje aplikacije</value>
+  </data>
+  <data name="closingAppMessage" xml:space="preserve">
+    <value>Jeste li sigurni da želite izaći iz aplikacije?</value>
+  </data>
   <data name="Confirm" xml:space="preserve">
     <value>Potvrdi</value>
   </data>
   <data name="Count" xml:space="preserve">
     <value>Broj odabraniih</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Greška</value>
+  </data>
+  <data name="ErrorSaving" xml:space="preserve">
+    <value>Greška prilikom spremanja</value>
   </data>
   <data name="FavoritePlayers" xml:space="preserve">
     <value>Najdraži igrači</value>
@@ -168,11 +180,29 @@
   <data name="PlayerName" xml:space="preserve">
     <value>Ime igrača</value>
   </data>
+  <data name="Preferences" xml:space="preserve">
+    <value>Postavke</value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>Spremi</value>
   </data>
   <data name="SelectedTeam" xml:space="preserve">
     <value>Odabrani tim</value>
+  </data>
+  <data name="ShowFavoriteTeam" xml:space="preserve">
+    <value>Prikaži najdraži tim</value>
+  </data>
+  <data name="ShowRankings" xml:space="preserve">
+    <value>Prikaži poretke</value>
+  </data>
+  <data name="SuccesfullySaved" xml:space="preserve">
+    <value>Uspješno spremljeno</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>Uspjeh</value>
+  </data>
+  <data name="UploadImages" xml:space="preserve">
+    <value>Prenesi slike</value>
   </data>
   <data name="VisitorNumber" xml:space="preserve">
     <value>Broj posjetitelja</value>

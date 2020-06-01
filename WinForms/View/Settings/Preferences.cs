@@ -94,10 +94,10 @@ namespace WinForms.View.Settings
 
             if(preferences.LeagueId != 0 && (Leagues)preferences.LeagueId == Leagues.WomanLeague)
             {
-                RbMenLeague.Checked = true;
+                RbWomenLeague.Checked = true;
             } else
             {
-                RbWomenLeague.Checked = true;
+                RbMenLeague.Checked = true;
             }
         }
 

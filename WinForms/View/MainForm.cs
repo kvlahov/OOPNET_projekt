@@ -2,6 +2,7 @@
 using System.Text;
 using Utilities.Helpers;
 using Utilities.POCO;
+using WinForms.Resources.Views;
 using WinForms.View.Settings;
 
 namespace WinForms.View
@@ -13,47 +14,73 @@ namespace WinForms.View
             InitializeComponent();
             var prefs = FileHelper.ReadPreferences();
             Utils.SetApplicationSettings(prefs);
+
+            InitLabels();
+        }
+
+        private void InitLabels()
+        {
+            BtnFavoriteTeams.Text = FormResources.ShowFavoriteTeam;
+            BtnUploadImages.Text = FormResources.UploadImages;
+            BtnRankings.Text = FormResources.ShowRankings;
+            MiPreferences.Text = FormResources.Preferences;
         }
 
         private void MiPreferences_Click(object sender, EventArgs e)
         {
-            var prefForm = new Preferences(showConfirmCancelButtons: true);
+            var prefForm = new Preferences(showConfirmCancelButtons: true)
+            {
+                ShowClosingMessage = false
+            };
+
+            var oldLeague = Properties.Settings.Default.League;
+
+            prefForm.FormClosed += (source, args) =>
+            {
+                HandleLeagueChanged(oldLeague);
+                InitLabels();
+            };
 
             prefForm.ShowDialog(this);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void HandleLeagueChanged(Leagues oldLeague)
         {
-            (new FavoriteTeam()).ShowDialog(this);
+            var newLeague = Properties.Settings.Default.League;
+            if (oldLeague != newLeague)
+            {
+                var favoriteTeamDialog = new FavoriteTeam
+                {
+                    ShowClosingMessage = false
+                };
+                favoriteTeamDialog.ShowDialog(this);
+            }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void BtnFavoriteTeams_Click(object sender, EventArgs e)
         {
-            var sb = new StringBuilder();
-
-            var api = Properties.Settings.Default.ApiUrl;
-            var lang = Properties.Settings.Default.Language;
-
-            sb.Append("ApiUrl: ");
-            sb.Append(api);
-            sb.Append(Environment.NewLine);
-
-            sb.Append("Lang: ");
-            sb.Append(lang);
-            sb.Append(Environment.NewLine);
-
-            TbSettings.Text = sb.ToString();
+            var favoriteTeamDialog = new FavoriteTeam
+            {
+                ShowClosingMessage = false
+            };
+            favoriteTeamDialog.ShowDialog(this);
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void BtnRankings_Click(object sender, EventArgs e)
         {
-            var rankingsForm = new Rankings();
+            var rankingsForm = new Rankings
+            {
+                ShowClosingMessage = false
+            };
             rankingsForm.ShowDialog(this);
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void BtnUploadImages_Click(object sender, EventArgs e)
         {
-            var imageUploadForm = new UploadPictures();
+            var imageUploadForm = new UploadPictures
+            {
+                ShowClosingMessage = false
+            };
             imageUploadForm.ShowDialog(this);
         }
     }

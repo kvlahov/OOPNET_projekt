@@ -132,11 +132,23 @@
   <data name="ChooseLeague" xml:space="preserve">
     <value>Choose league</value>
   </data>
+  <data name="closingApp" xml:space="preserve">
+    <value>Closing application</value>
+  </data>
+  <data name="closingAppMessage" xml:space="preserve">
+    <value>Are you sure you want to exit the application?</value>
+  </data>
   <data name="Confirm" xml:space="preserve">
     <value>Confirm</value>
   </data>
   <data name="Count" xml:space="preserve">
     <value>Count</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ErrorSaving" xml:space="preserve">
+    <value>Error while saving</value>
   </data>
   <data name="FavoritePlayers" xml:space="preserve">
     <value>Favorite players</value>
@@ -168,11 +180,29 @@
   <data name="PlayerName" xml:space="preserve">
     <value>Player name</value>
   </data>
+  <data name="Preferences" xml:space="preserve">
+    <value>Preferences</value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>
   </data>
   <data name="SelectedTeam" xml:space="preserve">
     <value>Selected team</value>
+  </data>
+  <data name="ShowFavoriteTeam" xml:space="preserve">
+    <value>Show favorite team</value>
+  </data>
+  <data name="ShowRankings" xml:space="preserve">
+    <value>Show rankings</value>
+  </data>
+  <data name="SuccesfullySaved" xml:space="preserve">
+    <value>Succesfully saved!</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>Success</value>
+  </data>
+  <data name="UploadImages" xml:space="preserve">
+    <value>Upload images</value>
   </data>
   <data name="VisitorNumber" xml:space="preserve">
     <value>Number of visitors</value>

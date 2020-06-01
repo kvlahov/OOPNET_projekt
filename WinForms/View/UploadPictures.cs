@@ -23,13 +23,11 @@ namespace WinForms.View
         private Dictionary<string, Image> originalFilesAndImages;
 
         private IEnumerable<Player> allPlayers;
-        private IEnumerable<Player> startingEleven;
 
         public UploadPictures()
         {
             InitializeComponent();
             allPlayers = Enumerable.Empty<Player>();
-            startingEleven = Enumerable.Empty<Player>();
         }
 
         private async void SetInitialStateAsync()
@@ -37,20 +35,23 @@ namespace WinForms.View
             playersImagesPath = new Dictionary<string, string>();
             originalFilesAndImages = new Dictionary<string, Image>();
             visibleImageIndex = -1;
+            //disable all buttons untill images are uploaded
             DisableControls();
 
-            var allPlayersTask = DataHelper.GetAllPlayersAsync(settings.ApiUrl, settings.FavoriteTeam.FifaCode);
-            var startingElevenTask = DataHelper.GetStartingEleven(settings.ApiUrl, settings.FavoriteTeam.FifaCode);
-
-            var res = await Task.WhenAll(allPlayersTask, startingElevenTask);
-            allPlayers = res[0];
-            startingEleven = res[1];
-
-            CbStartingEleven.Enabled = true;
+            allPlayers = await DataHelper.GetAllPlayersAsync(settings.ApiUrl, settings.FavoriteTeam.FifaCode);
 
             CbPlayers.Items.AddRange(allPlayers.ToArray());
 
-            //disable all buttons untill images are uploaded
+            SetContextMenuItems(allPlayers);
+        }
+
+        private void SetContextMenuItems(IEnumerable<Player> players)
+        {
+            ImageContextMenuStrip.Items.Clear();
+            players.Select(p => p.Name).ToList().ForEach(p =>
+            {
+                ImageContextMenuStrip.Items.Add(p, null, (sender, args) => TagPlayer(p));
+            });
         }
 
         private void BtnUpload_Click(object sender, EventArgs e)
@@ -151,6 +152,11 @@ namespace WinForms.View
         private void BtnTagPlayer_Click(object sender, EventArgs e)
         {
             var playerName = (CbPlayers.SelectedItem as Player)?.Name;
+            TagPlayer(playerName);
+        }
+
+        private void TagPlayer(string playerName)
+        {
             var imagePath = originalFilesAndImages.Keys.ToList()[visibleImageIndex];
 
             if (playersImagesPath.ContainsKey(playerName))
@@ -174,6 +180,9 @@ namespace WinForms.View
             {
                 BtnImageLeft.PerformClick();
             }
+
+            //Set items of players not yet tagged
+            SetContextMenuItems(allPlayers.Where(p => !playersImagesPath.Keys.Contains(p.Name)));
         }
 
         private bool ShowAlert(string playerName)
@@ -203,19 +212,6 @@ namespace WinForms.View
         private void UploadPictures_Load(object sender, EventArgs e)
         {
             SetInitialStateAsync();
-        }
-
-        private void CbStartingEleven_CheckedChanged(object sender, EventArgs e)
-        {
-            CbPlayers.Items.Clear();
-            if (CbStartingEleven.Checked)
-            {
-                CbPlayers.Items.AddRange(startingEleven.ToArray());
-            } 
-            else
-            {
-                CbPlayers.Items.AddRange(allPlayers.ToArray());
-            }
         }
     }
 }

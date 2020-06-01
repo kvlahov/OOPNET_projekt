@@ -29,7 +29,7 @@ namespace WinForms
         {
             var preferences = FileHelper.ReadPreferences();
             Utils.SetApplicationSettings(preferences);
-            
+
             var formsToShow = Enumerable.Empty<BaseForm>().ToList();
 
             //main preferences

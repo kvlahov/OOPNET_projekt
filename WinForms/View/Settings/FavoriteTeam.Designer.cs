@@ -72,9 +72,9 @@
             this.LbLeagueTitle.Location = new System.Drawing.Point(28, 191);
             this.LbLeagueTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LbLeagueTitle.Name = "LbLeagueTitle";
-            this.LbLeagueTitle.Size = new System.Drawing.Size(121, 29);
+            this.LbLeagueTitle.Size = new System.Drawing.Size(89, 29);
             this.LbLeagueTitle.TabIndex = 3;
-            this.LbLeagueTitle.Text = "League url:";
+            this.LbLeagueTitle.Text = "League:";
             // 
             // LbLeague
             // 

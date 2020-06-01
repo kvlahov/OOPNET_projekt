@@ -6,6 +6,7 @@ using System.Threading;
 using System.Windows.Forms;
 using Utilities.Helpers;
 using Utilities.POCO;
+using WinForms.Resources.Views;
 
 namespace WinForms.View
 {
@@ -14,6 +15,8 @@ namespace WinForms.View
 
         public event Action UserClosesApplication;
         public BaseForm NextForm { get; set; }
+        public IWin32Window NextFormOwner { get; set; }
+        public bool ShowClosingMessage { get; set; } = true;
         public BaseForm()
         {
             InitEvents();
@@ -43,16 +46,17 @@ namespace WinForms.View
             try
             {
                 FileHelper.WritePreferences(prefs);
-                MessageBox.Show("Succesfully saved!", "Success");
+                MessageBox.Show(FormResources.SuccesfullySaved, FormResources.Success);
 
                 Utils.SetApplicationSettings(prefs);
                 this.Close();
-                NextForm.Show();
+
+                NextForm?.Show();
 
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error occured!");
+                MessageBox.Show(FormResources.ErrorSaving, FormResources.Error);
                 MessageBox.Show(ex.Message);
             }
         }
@@ -61,16 +65,19 @@ namespace WinForms.View
         {
             if (new StackTrace().GetFrames().All(x => x.GetMethod().Name != "Close"))
             {
-                var res = MessageBox.Show("Are you sure you want to close the application?", "Closing application", MessageBoxButtons.OKCancel);
-                if(res == DialogResult.OK)
+                if (!ShowClosingMessage) return;
+                var res = MessageBox.Show(FormResources.closingAppMessage, FormResources.closingApp, MessageBoxButtons.OKCancel);
+                if (res == DialogResult.OK)
                 {
                     UserClosesApplication?.Invoke();
-                } 
+                }
                 else
                 {
                     e.Cancel = true;
                 }
             }
         }
+
+        protected string GetLeagueString(Leagues league) => league == Leagues.MenLeague ? FormResources.MenLeague : FormResources.WomenLeague;
     }
 }

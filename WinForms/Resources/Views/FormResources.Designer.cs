@@ -106,6 +106,24 @@ namespace WinForms.Resources.Views {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Closing application.
+        /// </summary>
+        internal static string closingApp {
+            get {
+                return ResourceManager.GetString("closingApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to exit the application?.
+        /// </summary>
+        internal static string closingAppMessage {
+            get {
+                return ResourceManager.GetString("closingAppMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Confirm.
         /// </summary>
         internal static string Confirm {
@@ -120,6 +138,24 @@ namespace WinForms.Resources.Views {
         internal static string Count {
             get {
                 return ResourceManager.GetString("Count", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        internal static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error while saving.
+        /// </summary>
+        internal static string ErrorSaving {
+            get {
+                return ResourceManager.GetString("ErrorSaving", resourceCulture);
             }
         }
         
@@ -214,6 +250,15 @@ namespace WinForms.Resources.Views {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Preferences.
+        /// </summary>
+        internal static string Preferences {
+            get {
+                return ResourceManager.GetString("Preferences", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         internal static string Save {
@@ -228,6 +273,51 @@ namespace WinForms.Resources.Views {
         internal static string SelectedTeam {
             get {
                 return ResourceManager.GetString("SelectedTeam", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show favorite team.
+        /// </summary>
+        internal static string ShowFavoriteTeam {
+            get {
+                return ResourceManager.GetString("ShowFavoriteTeam", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show rankings.
+        /// </summary>
+        internal static string ShowRankings {
+            get {
+                return ResourceManager.GetString("ShowRankings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Succesfully saved!.
+        /// </summary>
+        internal static string SuccesfullySaved {
+            get {
+                return ResourceManager.GetString("SuccesfullySaved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Success.
+        /// </summary>
+        internal static string Success {
+            get {
+                return ResourceManager.GetString("Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upload images.
+        /// </summary>
+        internal static string UploadImages {
+            get {
+                return ResourceManager.GetString("UploadImages", resourceCulture);
             }
         }
         
