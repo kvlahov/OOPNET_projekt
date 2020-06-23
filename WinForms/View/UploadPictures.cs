@@ -202,10 +202,11 @@ namespace WinForms.View
                 MessageBox.Show("Succesfully saved", "Success", MessageBoxButtons.OK);
                 Close();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Error while saving", "Error", MessageBoxButtons.OK);
-                throw;
+                var msg = "Error while saving" + Environment.NewLine;
+                MessageBox.Show(msg + ex.Message, "Error", MessageBoxButtons.OK);
+
             }
         }
 
